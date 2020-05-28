@@ -1,12 +1,12 @@
 {
-	"name": "es6-boilerplate",
+	"name": "advance-svg",
 	"version": "1.0.0",
-	"description": "ES6 application boilerplate",
+	"description": "JavaScript library for advancing SVG graphics with responsive behaviour and popup shapes",
 	"main": "dist/index.js",
-	"homepage": "https://github.com/vasilnedev/es6-boilerplate",
+	"homepage": "https://github.com/processesjs-com/advance-svg",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/vasilnedev/es6-boilerplate"
+		"url": "https://github.com/processesjs-com/advance-svg"
 	},
 	"author": "Vasil Nedev",
 	"license": "MIT",
