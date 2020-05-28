@@ -1,0 +1,4 @@
+Cheat sheet for staring a development http server on the build server via Docker
+
+sudo docker pull tobilg/mini-webserver
+sudo docker run --name mini-web -p 3000:3000 -v /build:/app/public:ro -d tobilg/mini-webserver
