@@ -1,3 +1,20 @@
-body {
-	font-family: sans-serif;
+[data-asvg] { text-align: center; }
+[data-asvg-display] { visibility:hidden; }
+[data-asvg-popupid]
+{
+  -webkit-filter: url(#drop-shadow);
+  filter:url(#drop-shadow);
+}
+[data-asvg-popuplink]:hover,
+[data-asvg-link]:hover
+{
+  -webkit-filter: url(#yellow-highlight);
+  filter:url(#yellow-highlight);
+  cursor:pointer;
+}
+.asvg-popup-close:hover
+{
+  -webkit-filter:url(#invert-color);
+  filter:url(#invert-color);
+  cursor:pointer;
 }
