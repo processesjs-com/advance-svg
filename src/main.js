@@ -1,8 +1,8 @@
-import asvg from './index'
+import ASVG from './asvg'
 
-window.handlePopupLinkClick  = asvg.handlePopupLinkClick
-window.handlePopupCloseClick = asvg.handlePopupCloseClick
-window.handleSvgLinkClick    = asvg.handleSvgLinkClick
+window.onPopupLinkClick  = ASVG.onPopupLinkClick
+window.onPopupCloseClick = ASVG.onPopupCloseClick
+window.onSvgLinkClick    = ASVG.onSvgLinkClick
 
-window.addEventListener('load'  , asvg.handleWindowLoad )
-window.addEventListener('resize', asvg.handleWindowResize )
+window.addEventListener('load'  , ASVG.onWindowLoad )
+window.addEventListener('resize', ASVG.onWindowResize )

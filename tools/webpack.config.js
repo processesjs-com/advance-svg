@@ -6,13 +6,13 @@ export default {
 	devtool : 'inline-source-map',
 	mode    : 'development',
 	entry   : {
-    index : path.resolve( __dirname,'../src/index.js' ),
+    index : path.resolve( __dirname,'../src/asvg.js' ),
     main  : path.resolve( __dirname,'../src/main.js' )
   },
 	target  : 'web',
 	output  : { path : path.resolve( __dirname,'../dist') , filename : '[name].js' },
 	plugins : [
-		new HtmlWebpackPlugin({ title : 'Front end boilerpAdvance SVG' , template : './src/index.html', inject : true , chunks : ['main'] }),
+		new HtmlWebpackPlugin({ title : 'Advance SVG' , template : './src/index.html', inject : true , chunks : ['main'] }),
 		new MiniCssExtractPlugin({ filename: 'style.css' })
 	],
 	module  : { rules: [
