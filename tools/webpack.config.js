@@ -1,6 +1,7 @@
 import path   from 'path'
 import HtmlWebpackPlugin    from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import CopyPlugin           from 'copy-webpack-plugin'
 
 export default {
 	devtool : 'inline-source-map',
