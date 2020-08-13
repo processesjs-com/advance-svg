@@ -8,7 +8,7 @@ export default {
 	mode    : 'development',
 	entry   : {
     index : path.resolve( __dirname,'../src/asvg.js' ),
-    main  : path.resolve( __dirname,'../src/main.js' )
+    bundle: path.resolve( __dirname,'../src/main.js' )
   },
 	target  : 'web',
 	output  : { path : path.resolve( __dirname,'../dist') , filename : '[name].js' },
