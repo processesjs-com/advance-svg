@@ -19,7 +19,7 @@ export default {
 	],
 	module  : { rules: [
       { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } },
-      { test: /\.css$/, exclude: /style\.css/ }
+      { test: /\.css$/, exclude: /.*/ }
       //,{ test: /\.css$/, use: [ { loader: MiniCssExtractPlugin.loader } , { loader: 'css-loader' } ] }
 	]}
 }
