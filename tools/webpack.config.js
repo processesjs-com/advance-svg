@@ -15,7 +15,7 @@ export default {
 	plugins : [
 		new HtmlWebpackPlugin({ title : 'Advance SVG' , template : './src/index.html', inject : true , chunks : ['main'] }),
     new MiniCssExtractPlugin({ filename: 'style.css' }),
-    new CopyPlugin({ patterns: [ { from: '../src/*.svg' , to: '../dist' } ] })
+    new CopyPlugin({ patterns: [ { from: './src/*.svg' , to: './dist' } ] })
 	],
 	module  : { rules: [
       { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } },
