@@ -18,7 +18,7 @@ export default {
     new CopyPlugin({ patterns: [ { from: path.resolve(__dirname, '../svg', '*.svg') , to: path.resolve(__dirname, '../dist' ) } ] })
 	],
 	module  : { rules: [
-      { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } },
-			{ test: /\.css$/, use: [ { loader: MiniCssExtractPlugin.loader } , { loader: 'css-loader' } ] }
+      { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } }
+      //,{ test: /\.css$/, use: [ { loader: MiniCssExtractPlugin.loader } , { loader: 'css-loader' } ] }
 	]}
 }
