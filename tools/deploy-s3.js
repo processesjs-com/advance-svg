@@ -4,7 +4,7 @@ import AWS  from 'aws-sdk'
 import gitBranch from 'current-git-branch'
 
 const pathToDist = path.resolve( __dirname , '../dist' )
-const Bucket = 'es6-boilerplate'
+const Bucket = 'asvg-cdn'
 
 AWS.config.update({region: 'eu-central-1'})
 const s3 = new AWS.S3()

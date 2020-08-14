@@ -1,4 +1,8 @@
-import './style.css'
-import app from './index.js'
+import ASVG from './asvg'
 
-app.run()
+window.onPopupLinkClick  = ASVG.onPopupLinkClick
+window.onPopupCloseClick = ASVG.onPopupCloseClick
+window.onSvgLinkClick    = ASVG.onSvgLinkClick
+
+window.addEventListener('load'  , ASVG.onWindowLoad )
+window.addEventListener('resize', ASVG.onWindowResize )
