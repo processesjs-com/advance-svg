@@ -15,7 +15,11 @@ export default {
 	plugins : [
 		new HtmlWebpackPlugin({ title : 'Advance SVG' , template : './src/index.html', inject : true , chunks : ['bundle'] }),
     new MiniCssExtractPlugin({ filename: 'style.css' }),
-    new CopyPlugin({ patterns: [ { from: path.resolve(__dirname, '../svg', '*.svg') , to: path.resolve(__dirname, '../dist' ) } ] })
+    new CopyPlugin({ patterns: [ {
+      from:    path.resolve(__dirname, '../svg', '*.svg') ,
+      to:      path.resolve(__dirname, '../dist' ),
+      context: path.resolve(__dirname, '../svg'  ),
+    } ] })
 	],
 	module  : { rules: [
       { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } },
