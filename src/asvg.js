@@ -17,7 +17,9 @@ class ASVG{
 
     this.config = { svgFilesFolder: '' }
 
-    console.log( Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ) )
+    Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
+      console.log( key + ' typeof ' + typeof this[key] )
+    })
   }
 
 // Event handlers
