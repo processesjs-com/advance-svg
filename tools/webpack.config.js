@@ -21,10 +21,7 @@ export default {
       to:      path.resolve(__dirname, '../dist' ),
       context: path.resolve(__dirname, '../svg'  ),
     } ] }),
-    new RemovePlugin({
-      before : { include: [ './dist' ] },
-      after: { include: [ './dist/style.css','./dist/style.css.map' ] }
-    })
+    new RemovePlugin({ before : { include: [ './dist' ] } })
 	],
 	module  : { rules: [
       { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } },
