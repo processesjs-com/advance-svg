@@ -1,5 +1,5 @@
 import 'whatwg-fetch'
-import $ from 'jquery'
+import cheerio from 'cheerio'
 import './style.css'
 
 class ASVG{
@@ -17,6 +17,9 @@ class ASVG{
 
     this.config = { svgFilesFolder: '' }
 
+    let serializer = new XMLSerializer()
+    this.c$ = cheerio.load( serializer.serializeToString( document ) )
+
     // Bind this to all methods
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
       if( key != 'constructor' && typeof this[key] == 'function' ){ this[key] = this[key].bind(this) }
@@ -25,12 +28,11 @@ class ASVG{
 
 // Event handlers
   onWindowLoad( event ){
-    console.log( 'onWindowLoad event' )
     this.updateAll()
   }
 
   onWindowResize( event ){
-    console.log( 'onWindowResize event' )
+
   }
 
   onPopupCloseClick( popupClose ){}
@@ -41,7 +43,8 @@ class ASVG{
 
 // Functions
   updateAll( ){
-    for(let div of $( document ).find( 'div[data-asvg]' ) ){
+
+    for(let div of this.c$.find( 'div[data-asvg]' ) ){
       this.updateParams( div )
     }
   }
