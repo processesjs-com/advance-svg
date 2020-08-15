@@ -1,4 +1,5 @@
 import 'whatwg-fetch'
+import $ from 'jquery'
 import './style.css'
 
 class ASVG{
@@ -12,9 +13,14 @@ class ASVG{
       [ 'T', { min:0    , max:350      }]
     ])
 
-    this.asvgParams = new WeakMap() // Map of all asvg divs - to be populated by searchAllASVG
+    this.asvgParams = new WeakMap() // Map of all asvg divs
 
+    this.config = { svgFilesFolder: '' }
+
+    console.log( Object.getOwnPropertyNames(this) )
   }
+
+// Event handlers
 
   onWindowLoad( event ){
     console.log('onWindowLoad event')
@@ -29,6 +35,15 @@ class ASVG{
   onPopupLinkClick( popuplink ){}
 
   onSvgLinkClick( svglink ){}
+
+// Functions
+  updateParams( div ){ console.log( div ) }
+
+  updateAll( ){
+    for(let div of $( document ).find( 'div[data-asvg]' ) ){
+      this.updateParams( div )
+    }
+  }
 
 }
 
