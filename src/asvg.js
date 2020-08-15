@@ -18,7 +18,10 @@ class ASVG{
     this.config = { svgFilesFolder: '' }
 
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
-      console.log( key + ' typeof ' + typeof this[key] )
+      if( key != 'constructor' && typeof this[key] == 'function' ){
+        console.log( 'Bid this to ' + key )
+        this[key] = this[key].bind(this)
+      }
     })
   }
 
