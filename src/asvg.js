@@ -17,7 +17,8 @@ class ASVG{
 
     this.config = { svgFilesFolder: '' }
 
-    console.log( Object.getOwnPropertyNames(this) )
+    this.onWindowLoad = this.onWindowLoad.bind( this )
+    console.log( Object.getOwnPropertyNames( this ) )
   }
 
 // Event handlers
