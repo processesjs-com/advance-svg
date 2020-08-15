@@ -22,7 +22,7 @@ export default {
       context: path.resolve(__dirname, '../svg'  ),
     } ] }),
     new RemovePlugin({
-      after: { root: path.resolve(__dirname, '../dist' ) , test: [ 'style.css','style.css.map' ] }
+      after: { root: './dist' , test: [ 'style.css','style.css.map' ] }
     })
 	],
 	module  : { rules: [
