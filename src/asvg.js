@@ -17,16 +17,16 @@ class ASVG{
 
     this.config = { svgFilesFolder: '' }
 
-    console.log( Object.getOwnPropertyNames( this.prototype ) )
+    console.log( Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ) )
   }
 
 // Event handlers
   onWindowLoad( event ){
-    console.log('onWindowLoad event')
+    console.log( 'onWindowLoad event' )
   }
 
   onWindowResize( event ){
-    console.log('onWindowResize event')
+    console.log( 'onWindowResize event' )
   }
 
   onPopupCloseClick( popupClose ){}
