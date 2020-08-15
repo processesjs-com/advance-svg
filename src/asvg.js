@@ -43,10 +43,9 @@ class ASVG{
 
 // Functions
   updateAll( ){
-    console.log( this.c$ )
-    //for(let div of this.c$.find( 'div[data-asvg]' ) ){
-     // this.updateParams( div )
-    //}
+    for(let div of this.c$( 'div[data-asvg]' ) ){
+      this.updateParams( div )
+    }
   }
 
   updateParams( div ){ console.log( div ) }
