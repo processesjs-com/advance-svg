@@ -1,4 +1,3 @@
-import fs        from 'fs'
 import gitBranch from 'current-git-branch'
 import webpack   from 'webpack'
 import wpConfig  from './webpack.config'
