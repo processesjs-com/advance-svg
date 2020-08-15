@@ -1,12 +1,6 @@
-import fs        from 'fs'
-import rimraf    from 'rimraf'
 import gitBranch from 'current-git-branch'
 import webpack   from 'webpack'
 import wpConfig  from './webpack.config'
-
-// Flush output path
-rimraf.sync(  wpConfig.output.path )
-fs.mkdirSync( wpConfig.output.path )
 
 // If master branch, set up for production
 if( gitBranch() == 'master' ){

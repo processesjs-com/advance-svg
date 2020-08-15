@@ -26,7 +26,6 @@ if( gitBranch()=='master' ){
   })
   .then( filenamesToUpload => {
     return Promise.all( filenamesToUpload.map( filenameToUpload => { return new Promise ( ( res , rej ) => {
-      console.log( filenameToUpload + ' Content-Type:' + getContentType( filenameToUpload ) )
       const uploadParams = { Bucket , Body: fs.createReadStream( pathToDist + '/' + filenameToUpload ) , Key: filenameToUpload , ContentType: getContentType( filenameToUpload ) }
       s3.upload ( uploadParams , ( err , uploadedFile ) => {
         if( !err ){ console.log('Uploaded ', uploadedFile.Key ) ; res( uploadedFile.Key ) }else{ rej( err ) }
