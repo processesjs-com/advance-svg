@@ -17,17 +17,16 @@ class ASVG{
 
     this.config = { svgFilesFolder: '' }
 
+    // Bind this to all methods
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
-      if( key != 'constructor' && typeof this[key] == 'function' ){
-        console.log( 'Bid this to ' + key )
-        this[key] = this[key].bind(this)
-      }
+      if( key != 'constructor' && typeof this[key] == 'function' ){ this[key] = this[key].bind(this) }
     })
   }
 
 // Event handlers
   onWindowLoad( event ){
     console.log( 'onWindowLoad event' )
+    this.updateAll()
   }
 
   onWindowResize( event ){
@@ -41,13 +40,13 @@ class ASVG{
   onSvgLinkClick( svglink ){}
 
 // Functions
-  updateParams( div ){ console.log( div ) }
-
   updateAll( ){
     for(let div of $( document ).find( 'div[data-asvg]' ) ){
       this.updateParams( div )
     }
   }
+
+  updateParams( div ){ console.log( div ) }
 
 }
 
