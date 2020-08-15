@@ -17,12 +17,10 @@ class ASVG{
 
     this.config = { svgFilesFolder: '' }
 
-    this.onWindowLoad = this.onWindowLoad.bind( this )
-    console.log( Object.getOwnPropertyNames( this ) )
+    console.log( Object.getOwnPropertyNames( this.prototype ) )
   }
 
 // Event handlers
-
   onWindowLoad( event ){
     console.log('onWindowLoad event')
   }
