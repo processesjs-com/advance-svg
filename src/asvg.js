@@ -18,7 +18,7 @@ class ASVG{
     this.config = { svgFilesFolder: '' }
 
     let serializer = new XMLSerializer()
-    this.c$ = cheerio.load( serializer.serializeToString( document ) )
+    this.c$ = cheerio.load( serializer.serializeToString( document ) , { ignoreWhitespace: true, xmlMode: true } )
 
     // Bind this to all methods
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
@@ -43,7 +43,7 @@ class ASVG{
 
 // Functions
   updateAll( ){
-    console.log( this.c$().find( 'div[data-asvg]' ) )
+    console.log( this.c$( 'div[data-asvg]' ) )
     //for(let div of this.c$( 'div[data-asvg]' ) ){
     //  this.updateParams( div )
     //}
