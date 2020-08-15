@@ -1,8 +1,8 @@
 {
 	"name": "advance-svg",
 	"version": "1.0.0",
-	"description": "JavaScript library for advancing SVG graphics with responsive behaviour and popup shapes",
-	"main": "dist/index.js",
+	"description": "JavaScript library for advancing SVG graphics with responsive behavior and popup shapes",
+	"main": "dist/asvg.js",
 	"homepage": "https://d2a8hhqmsel69m.cloudfront.net/",
 	"repository": {
 		"type": "git",
@@ -37,7 +37,8 @@
 		"css-loader": "^3.5.3",
 		"html-webpack-plugin": "^4.3.0",
 		"mini-css-extract-plugin": "^0.9.0",
-		"copy-webpack-plugin": "^6.0.3",
+    "copy-webpack-plugin": "^6.0.3",
+    "remove-files-webpack-plugin":"^1.4.3",
 		"rimraf": "^3.0.2",
 		"current-git-branch": "^1.1.0",
 		"shelljs": "^0.8.4",
