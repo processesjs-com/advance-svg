@@ -15,10 +15,7 @@ class ASVG{
     this.config = { svgFilesFolder: './' }
     // Bind 'this' to all methods except the constructor and injectFilters
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
-      if( key != 'constructor' && key != 'injectFilters' && typeof this[key] == 'function' ){
-        this[key] = this[key].bind(this)
-        console.log('Binding this to ' + key )
-      }
+      if( key != 'constructor' && key != 'injectFilters' && typeof this[key] == 'function' ){ this[key] = this[key].bind(this) }
     })
   }
 
