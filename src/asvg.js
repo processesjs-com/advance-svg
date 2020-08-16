@@ -20,7 +20,7 @@ class ASVG{
   }
 
 // Event handlers
-  onWindowLoad( event ){ injectFilters(); this.updateAll() }
+  onWindowLoad( event ){ this.injectFilters(); this.updateAll() }
   onWindowResize( event ){ this.updateAll() }
 
   onPopupCloseClick( element ){}
