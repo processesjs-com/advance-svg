@@ -35,6 +35,7 @@ class ASVG{
     for(let div of $( 'div[data-asvg]' ) ){
       let params = this.updateParams( div )
       if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
+        params.injected = $( div ).data( 'asvg-show' )
         console.log( 'Injecting ' + $( div ).data( 'asvg-show' ) )
       }
       console.log('Fitting ' + $( div ).data( 'asvg-show' ) + ' in display ' + params.targetDisplay )
