@@ -35,7 +35,10 @@ class ASVG{
         params.injected = $( div ).data( 'asvg-show' )
         console.log( 'Injecting ' + $( div ).data( 'asvg-show' ) )
       }
-      console.log('Fitting ' + $( div ).data( 'asvg-show' ) + ' in display ' + params.targetDisplay )
+      if( params.currentDisplay != params.targetDisplay ){
+        params.currentDisplay = params.targetDisplay
+        console.log('Fitting ' + $( div ).data( 'asvg-show' ) + ' in display ' + params.targetDisplay )
+      }
     }
   }
 
