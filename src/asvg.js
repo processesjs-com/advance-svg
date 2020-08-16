@@ -40,6 +40,7 @@ class ASVG{
       }
       console.log('Fitting ' + $( div ).data( 'asvg-show' ) + ' in display ' + params.targetDisplay )
     }
+    console.log( this.asvgParams )
   }
 
   updateParams( div ){
