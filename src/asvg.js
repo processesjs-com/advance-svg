@@ -15,10 +15,12 @@ class ASVG{
     this.config = { svgFilesFolder: './' }
     // Bind 'this' to all methods except the constructor and injectFilters
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
-      if( key != 'constructor' && key != 'injectFilters' && typeof this[key] == 'function' ){ this[key] = this[key].bind(this) }
+      if( key != 'constructor' && typeof this[key] == 'function' && this[key].toString().match(/ this./)){
+        console.log( 'Bind this to ' + key)
+        this[key] = this[key].bind(this)
+      }else{ console.log( 'Pass ' + key ) }
     })
   }
-
 // Event handlers
   onWindowLoad( event ){ this.injectFilters(); this.updateAll() }
   onWindowResize( event ){ this.updateAll() }
