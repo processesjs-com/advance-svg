@@ -37,7 +37,7 @@ class ASVG{
       if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
         injectSvg( div , this.config.svgFilesFolder + $( div ).data( 'asvg-show' ) + '.svg' )
         .then( () => { params.injected = $( div ).data( 'asvg-show' ) ; params.currentDisplay = null })
-        .catch( err => { $( div ).data( 'asvg-show' , params.injected ) ; errorHandling( err ) })
+        .catch( err => { $( div ).data( 'asvg-show' , params.injected ) ; this.errorHandling( err ) })
       }
       if( params.currentDisplay != params.targetDisplay ){
         params.currentDisplay = params.targetDisplay
