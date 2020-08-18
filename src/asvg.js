@@ -1,6 +1,7 @@
 import 'whatwg-fetch'
 import $ from 'jquery'
 import './style.css'
+import injectSvg from './js/injectSvg'
 
 class ASVG{
 
@@ -13,16 +14,16 @@ class ASVG{
     ])
     this.asvgParams = new WeakMap() // Map of all asvg divs
     this.config = { svgFilesFolder: './' }
-    // Bind 'this' to all methods except the constructor and injectFilters
+
+    // Bind 'this' to all methods that need to
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
       if( key != 'constructor' && typeof this[key] == 'function' && this[key].toString().match(/this./)){
-        console.log( 'Bind this to ' + key)
         this[key] = this[key].bind(this)
-      }else{ console.log( 'Pass ' + key ) }
+      }
     })
   }
 // Event handlers
-  onWindowLoad( event ){ this.injectFilters(); this.updateAll() }
+  onWindowLoad( event ){ this.injectSvgFilters(); this.updateAll() }
   onWindowResize( event ){ this.updateAll() }
 
   onPopupCloseClick( element ){}
@@ -34,12 +35,12 @@ class ASVG{
     for(let div of $( 'div[data-asvg]' ) ){
       let params = this.updateParams( div )
       if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
-        params.injected = $( div ).data( 'asvg-show' )
-        console.log( 'Injecting ' + $( div ).data( 'asvg-show' ) )
+        injectSvg( div , this.config.svgFilesFolder + $( div ).data( 'asvg-show' ) )
+        .then( () => { params.injected = $( div ).data( 'asvg-show' ) ; params.currentDisplay = null })
+        .catch( err => { $( div ).data( 'asvg-show' , params.injected ) ; console.log( err ) })
       }
       if( params.currentDisplay != params.targetDisplay ){
         params.currentDisplay = params.targetDisplay
-        console.log('Fitting ' + $( div ).data( 'asvg-show' ) + ' in display ' + params.targetDisplay )
       }
     }
   }
@@ -60,7 +61,7 @@ class ASVG{
     return params
   }
 
-  injectFilters(){
+  injectSvgFilters(){
     let filterDiv = document.createElement( 'div' )
     filterDiv.innerHTML = `
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
