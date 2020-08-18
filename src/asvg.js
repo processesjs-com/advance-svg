@@ -35,7 +35,7 @@ class ASVG{
     for(let div of $( 'div[data-asvg]' ) ){
       let params = this.updateParams( div )
       if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
-        injectSvg( div , this.config.svgFilesFolder + $( div ).data( 'asvg-show' ) )
+        injectSvg( div , this.config.svgFilesFolder + $( div ).data( 'asvg-show' ) + '.svg' )
         .then( () => { params.injected = $( div ).data( 'asvg-show' ) ; params.currentDisplay = null })
         .catch( err => { $( div ).data( 'asvg-show' , params.injected ) ; console.log( err ) })
       }
