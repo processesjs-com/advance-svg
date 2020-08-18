@@ -1,4 +1,4 @@
-import {Spinner} from 'spin'
+import Spinner from 'spin'
 
 const injectSvg = ( div , url ) => {
   return new Promise( ( resolve , reject ) => {
