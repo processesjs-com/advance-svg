@@ -1,8 +1,11 @@
+import {Spinner} from 'spin.js'
+
 const injectSvg = ( div , url ) => {
   return new Promise( ( resolve , reject ) => {
+    let spinner = new Spinner().spin( div )
     loadXML( url )
-    .then(  svg => { div.innerHTML = svg ; resolve() } )
-    .catch( err => { reject( err ) } )
+    .then(  svg => { div.innerHTML = svg ; spinner.stop() ; spinner = undefined ; resolve() } )
+    .catch( err => { spinner.stop() ; spinner = undefined ; reject( err ) } )
   } )
 }
 
