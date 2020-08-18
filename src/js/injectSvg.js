@@ -1,4 +1,4 @@
-import {Spinner} from 'spin.js'
+import {Spinner} from 'spin'
 
 const injectSvg = ( div , url ) => {
   return new Promise( ( resolve , reject ) => {
