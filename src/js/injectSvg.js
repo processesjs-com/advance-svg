@@ -1,4 +1,4 @@
-export default injectSvg = ( div , url ) => {
+const injectSvg = ( div , url ) => {
   return new Promise( ( resolve , reject ) => {
     loadXML( url )
     .then(  svg => { div.innerHTML = svg ; resolve() } )
@@ -20,3 +20,5 @@ const loadXML = url => {
     .catch( err => { reject( err ) } )
   })
 }
+
+export default injectSvg
