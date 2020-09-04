@@ -17,10 +17,15 @@ export default {
 		new HtmlWebpackPlugin({ title : 'Advance SVG' , template : './src/index.html', inject : true , chunks : ['bundle'] }),
     new MiniCssExtractPlugin({ filename: 'style.css' }),
     new CopyPlugin({ patterns: [ {
-      from:    path.resolve(__dirname, '../svg', '*.svg') ,
-      to:      path.resolve(__dirname, '../dist' ),
-      context: path.resolve(__dirname, '../svg'  ),
-    } ] }),
+        from:    path.resolve(__dirname, '../svg', '*.svg') ,
+        to:      path.resolve(__dirname, '../dist' ),
+        context: path.resolve(__dirname, '../svg'  )
+      },{
+        from:    path.resolve(__dirname, '../src', 'favicon.ico') ,
+        to:      path.resolve(__dirname, '../dist' ),
+        context: path.resolve(__dirname, '../src'  )
+      }
+    ] }),
     new RemovePlugin({ before : { include: [ './dist' ] } })
 	],
 	module  : { rules: [
