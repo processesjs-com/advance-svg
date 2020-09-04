@@ -28,7 +28,7 @@ class ASVG{
 
   onPopupCloseClick( element ){}
   onPopupLinkClick( element ){}
-  onSvgLinkClick( element ){ console.log('Hi') }
+  onSvgLinkClick( element ){}
 
 // Functions
   updateAll( ){
