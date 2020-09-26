@@ -64,8 +64,8 @@ const trFilterVisio2013 = ( origSvg ) =>{
     let titles = new Map()
 
     let cpTags = $('v\\:cp')
-    console.log( cpTags )
     cpTags.map( cpTagIndex => {
+      console.log( cpTagIndex )
       let cpTag = $( cpTags[ cpTagIndex ] )
       if( cpTag.attr('v\:lbl').toLowerCase().replace(/\s+/g,'') == 'activeshape' ){
         let gTagSelector = getFirst( cpTag.closest('g') )
