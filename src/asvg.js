@@ -50,7 +50,7 @@ class ASVG{
     //Fit to display if needed
       .then( () => {
         if( params.currentDisplay != params.targetDisplay ){
-          fitSvg()
+          fitSvg( div , params.targetDisplay )
           .then( () => { params.currentDisplay = params.targetDisplay } )
           .catch( err => reject( err ) )
         }

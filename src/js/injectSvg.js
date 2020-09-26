@@ -16,7 +16,7 @@ const injectSvg = ( div , url ) => {
 
 const loadXML = url => {
   return new Promise( ( resolve , reject ) => {
-    fetch( 'sdfsdf' + url )
+    fetch( url )
     .then( res => {
       if( res.ok ){
         res.text()
