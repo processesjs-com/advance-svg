@@ -16,7 +16,7 @@ class ASVG{
     this.asvgParams = new WeakMap() // Map of all asvg divs
     this.config = { svgFilesFolder: './' }
 
-    // Bind 'this' to all methods that need to
+    // Bind 'this' to all methods that need it
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
       if( key != 'constructor' && typeof this[key] == 'function' && this[key].toString().match(/this./)){
         this[key] = this[key].bind(this)
