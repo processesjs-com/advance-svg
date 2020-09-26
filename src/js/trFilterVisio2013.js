@@ -1,4 +1,4 @@
-import jquery from 'jquery'
+import $ from 'jquery'
 import { getFirst } from './misc'
 
 const trFilterVisio2013 = ( origSvg ) =>{
@@ -45,7 +45,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     }
 
     /* Create document object */
-    const $ = jquery.parseHTML( svgStr )
+    $.parseHTML( svgStr )
 
     console.log( $ )
 
