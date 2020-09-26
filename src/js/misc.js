@@ -23,4 +23,4 @@ export const setTranslateAttr = ( el , newTranslate ) => {
   el.setAttribute( 'transform' , transform )
 }
 
-export const getFirst = arr => { return ( Array.isArray( arr ) && arr.length>0 ? arr[0] : null ) }
+export const getFirst = arr => { return ( arr && arr.length>0 ? arr[0] : null ) }

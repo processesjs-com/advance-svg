@@ -72,7 +72,6 @@ const trFilterVisio2013 = ( origSvg ) =>{
           let gTag = $( gTagSelector )
           let name = cpTag.attr('v\:nameU')
           let val  = cpTag.attr('v\:val').match(/^\w+\(([\w,_-\s]+)\)/) ; val = getFirst( val )
-          console.log( 'name=' + name + ' val=' + val )
           if( name && val ){
             /*
               Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp
