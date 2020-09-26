@@ -2,6 +2,7 @@ import 'whatwg-fetch'
 import $ from 'jquery'
 import './style.css'
 import injectSvg from './js/injectSvg'
+import fitSvg from './js/fitSvg'
 
 class ASVG{
 
@@ -43,19 +44,16 @@ class ASVG{
             params.currentDisplay = null
             resolve()
           })
-          .catch( err => {
-            $( div ).data( 'asvg-show' , params.injected )
-            reject( err )
-          })
         }else{ resolve() }
       } )
     //Fit to display if needed
       .then( () => {
         if( params.currentDisplay != params.targetDisplay ){
-          params.currentDisplay = params.targetDisplay
+          fitSvg()
+          .then( () => { params.currentDisplay = params.targetDisplay } )
         }
       })
-      .catch( err => { this.errorHandling( err ) })
+      .catch( err => { this.catchError( err ) })
     }
   }
 
@@ -107,7 +105,7 @@ class ASVG{
     document.body.appendChild( filterDiv )
   }
 
-  errorHandling( err ){ console.log( err ) }
+  catchError( err ){ console.log( err ) }
 }
 
 export default new ASVG()
