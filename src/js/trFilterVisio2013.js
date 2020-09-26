@@ -4,7 +4,7 @@ import { getFirst } from './misc'
 const trFilterVisio2013 = ( origSvg ) =>{
   return new Promise( ( resolve , reject ) => {
 
-    const tagsToRemove = new Set( [ 'style' , 'title' , 'desc' ] )
+    let tagsToRemove = new Set( [ 'style' , 'title' , 'desc' ] )
     let svgStr = origSvg.slice(0) // Clone the origSvg string
 
     // Text search - Remove headers, v-namespace and change overflow style
@@ -28,8 +28,8 @@ const trFilterVisio2013 = ( origSvg ) =>{
     const stRegexp = /\.(st\d*)\s{([\w\s\:\(\)\#\.,;-]*)}/gi
     let match = stRegexp.exec( svgStr )
     while( match != null ){
-      let classRegexp = new RegExp( 'class="' + match[1] + '"',"g" )
-      svgStr = svgStr.replace( classRegexp , 'style="' + match[2] + '"' )
+      // let classRegexp = new RegExp( 'class="' + match[1] + '"',"g" )
+      svgStr = svgStr.replaceAll( 'class="' + match[1] + '"' , 'style="' + match[2] + '"' )
       match = stRegexp.exec( svgStr )
     }
 
@@ -45,10 +45,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     }
 
     /* Create document object */
-    const $ = Cheerio.load( svgStr , {
-      ignoreWhitespace: true,
-      xmlMode: true
-    })
+    const $ = Cheerio.load( svgStr , { ignoreWhitespace: true , xmlMode: true } )
 
     /*
       Remove viewBox, width and height attributes from the svg tag - these will be set dynamically
@@ -66,15 +63,15 @@ const trFilterVisio2013 = ( origSvg ) =>{
     */
     let titles = new Map()
 
-    let cps = $('v\\:cp')
-    cps.map( cpI => {
-      let cp = $( cps[cpI] )
-      if( cp.attr('v\:lbl').toLowerCase().replace(/\s+/g,'') == 'activeshape' ){
-        let cg = getFirst( cp.closest('g') )
-        if( cg ){
-          let gTag = $( cg )
-          let name = cp.attr('v\:nameU')
-          let val  = cp.attr('v\:val').match(/^\w+\(([\w,_-\s]+)\)/) ; val = getFirst( val )
+    let cpTags = $('v\\:cp')
+    cpTags.map( cpTagIndex => {
+      let cpTag = $( cpTags[ cpTagIndex ] )
+      if( cpTag.attr('v\:lbl').toLowerCase().replace(/\s+/g,'') == 'activeshape' ){
+        let gTagSelector = getFirst( cpTag.closest('g') )
+        if( gTagSelector ){
+          let gTag = $( gTagSelector )
+          let name = cpTag.attr('v\:nameU')
+          let val  = cpTag.attr('v\:val').match(/^\w+\(([\w,_-\s]+)\)/) ; val = getFirst( val )
           if( name && val ){
             /*
               Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp
@@ -126,16 +123,14 @@ const trFilterVisio2013 = ( origSvg ) =>{
     const vattrRegexp = /v:[a-zA-Z]*=\"[\w\s\(\)\.\:-]*\"/
     match = vattrRegexp.exec( svgStr )
     while(match != null){
-      let vattrRemoveRegexp = new RegExp( match[0] , "g" )
-      svgStr = svgStr.replace( vattrRemoveRegexp , '' )
+      /// let vattrRemoveRegexp = new RegExp( match[0] , "g" )
+      svgStr = svgStr.replaceAll( match[0] , '' )
       match = vattrRegexp.exec( svgStr )
     }
 
     // Text search - remove all tabulations, new lines and multiple spaces
-    svgStr = svgStr.replace(/\t/g,' ')
-    svgStr = svgStr.replace(/\s{2,}/g,' ')
-
-    console.log(svgStr)
+    // svgStr = svgStr.replace(/\t/g,' ')
+    // svgStr = svgStr.replace(/\s{2,}/g,' ')
 
     resolve( svgStr )
 
