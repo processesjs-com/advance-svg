@@ -66,13 +66,13 @@ const trFilterVisio2013 = ( origSvg ) =>{
     let cpTags = $('v\\:cp')
     cpTags.map( cpTagIndex => {
       let cpTag = $( cpTags[ cpTagIndex ] )
-      if( cpTag.attr('v\:lbl').toLowerCase().replace(/\s+/g,'') ){ console.log( cpTag.attr('v\:lbl').toLowerCase().replace(/\s+/g,'') )}
       if( cpTag.attr('v\:lbl').toLowerCase().replace(/\s+/g,'') == 'activeshape' ){
         let gTagSelector = getFirst( cpTag.closest('g') )
         if( gTagSelector ){
           let gTag = $( gTagSelector )
           let name = cpTag.attr('v\:nameU')
           let val  = cpTag.attr('v\:val').match(/^\w+\(([\w,_-\s]+)\)/) ; val = getFirst( val )
+          console.log( 'name=' + name + ' val=' + val )
           if( name && val ){
             /*
               Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp
