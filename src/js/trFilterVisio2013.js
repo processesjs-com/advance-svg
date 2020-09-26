@@ -70,6 +70,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
         let gTagSelector = getFirst( cpTag.closest('g') )
         if( gTagSelector ){
           let gTag = $( gTagSelector )
+          console.log( gTag )
           let name = cpTag.attr('v\:nameU')
           let val  = cpTag.attr('v\:val').match(/^\w+\(([\w,_-\s]+)\)/) ; val = getFirst( val )
           if( name && val ){
@@ -129,8 +130,8 @@ const trFilterVisio2013 = ( origSvg ) =>{
     }
 
     // Text search - remove all tabulations, new lines and multiple spaces
-    // svgStr = svgStr.replace(/\t/g,' ')
-    // svgStr = svgStr.replace(/\s{2,}/g,' ')
+    svgStr = svgStr.replace(/\t/g,' ')
+    svgStr = svgStr.replace(/\s{2,}/g,' ')
 
     resolve( svgStr )
 
