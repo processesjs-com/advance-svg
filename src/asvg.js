@@ -27,8 +27,49 @@ class ASVG{
   onWindowLoad( event ){ this.injectSvgFilters(); this.updateAll() }
   onWindowResize( event ){ this.updateAll() }
 
-  onPopupCloseClick( element ){}
-  onPopupLinkClick( element ){}
+  onPopupCloseClick( popupClose ){
+    let popup = getFirst( $( popupClose ).closest('[data-asvg-popup]') )
+    if( popup ){ popup.style.visibility = 'hidden' }
+  }
+
+  onPopupLinkClick( popuplink ){
+    let svg = getFirst( $( popuplink ).closest('svg') )
+    let div = getFirst( $( popuplink ).closest('div') )
+    if( svg && div ){
+
+      let display = getFirst( $( svg ).find(`[data-asvg-display="${this.mapsParams.get(div).currentDisplay}"]`) )
+      let popup   = getFirst( $( svg ).find(`[data-asvg-popupid="${popuplink.getAttribute('data-amaps-popuplink')}"]`) )
+
+      if( display && popup ){
+        popup.style.visibility='visible'
+
+        let displayRect   = display.getBBox()
+        let popuplinkRect = popuplink.getBBox()
+        let popupRect     = popup.getBBox()
+
+        let displayTranslate   = getTranslateAttr( display )
+        let popuplinkTranslate = getTranslateAttr( popuplink )
+        let popupTranslate     = getTranslateAttr( popup )
+
+        let rightMargin    = displayTranslate.x + displayRect.width  - ( popuplinkTranslate.x + popupRect.width  ) - 10
+        let bottomMargin   = ( displayTranslate.y ) - ( popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 35 )
+        let alignX = popuplinkTranslate.x + ( rightMargin < 0 ? rightMargin : 0 )
+        let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
+
+        setTranslateAttr( popup , { x:alignX , y:alignY })
+
+        let popupClose = getFirst( $( popup ).find('.asvg-popup-close') )
+        if( ! popupClose ){
+          let position = popup.getBBox()
+          let parser   = new DOMParser()
+          let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
+                        '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onPopupCloseClick(this)" />'
+          popup.appendChild( parser.parseFromString(text,"text/xml").documentElement )
+        }
+      }
+    }
+  }
+
   onSvgLinkClick( element ){}
 
 // Functions
