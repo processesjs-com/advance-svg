@@ -3,6 +3,7 @@ import $ from 'jquery'
 import './style.css'
 import injectSvg from './js/injectSvg'
 import fitSvg from './js/fitSvg'
+import { getFirst , getTranslateAttr , setTranslateAttr } from './js/misc'
 
 class ASVG{
 
