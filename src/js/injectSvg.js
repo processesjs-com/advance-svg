@@ -3,7 +3,6 @@ import trFilterVisio2013 from './trFilterVisio2013'
 
 const injectSvg = ( div , url ) => {
   return new Promise( ( resolve , reject ) => {
-    reject( new Error('Opsy bopsy!') )
     let spinner = new Spinner().spin( div )
     loadXML( url )
     .then( svgStr => {
@@ -17,7 +16,7 @@ const injectSvg = ( div , url ) => {
 
 const loadXML = url => {
   return new Promise( ( resolve , reject ) => {
-    fetch( url )
+    fetch( 'sdfsdf' + url )
     .then( res => {
       if( res.ok ){
         res.text()
