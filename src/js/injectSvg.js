@@ -24,9 +24,9 @@ const loadXML = url => {
         .then( xml => { resolve( xml ) } )
         .catch( err => { reject( err ) } )
       }
-      else{ reject( Error( url + ' Not found!') ) }
+      else{ reject( new Error( url + ' Not found!') ) }
     })
-    .catch( err => { reject( err ) } )
+    .catch( err => reject( err ) )
   })
 }
 

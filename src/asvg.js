@@ -44,6 +44,7 @@ class ASVG{
             params.currentDisplay = null
             resolve()
           })
+          .catch( err => reject( err ) )
         }else{ resolve() }
       } )
     //Fit to display if needed
@@ -51,9 +52,10 @@ class ASVG{
         if( params.currentDisplay != params.targetDisplay ){
           fitSvg()
           .then( () => { params.currentDisplay = params.targetDisplay } )
+          .catch( err => reject( err ) )
         }
       })
-      .catch( err => { this.catchError( err ) })
+      .catch( err => this.catchError( err ) )
     }
   }
 
