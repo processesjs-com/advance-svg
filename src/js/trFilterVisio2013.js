@@ -119,7 +119,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
 
     // Convert document object to text
-    svgStr = new String( $() )
+    console.log( $ )
 
     // Text search - Remove all 'v:' attributes
     const vattrRegexp = /v:[a-zA-Z]*=\"[\w\s\(\)\.\:-]*\"/
