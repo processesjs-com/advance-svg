@@ -128,7 +128,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     while(match != null){
       let vattrRemoveRegexp = new RegExp( match[0] , "g" )
       svgStr = svgStr.replace( vattrRemoveRegexp , '' )
-      match = vattrRegexp.exec( svg )
+      match = vattrRegexp.exec( svgStr )
     }
 
     // Text search - remove all tabulations, new lines and multiple spaces
