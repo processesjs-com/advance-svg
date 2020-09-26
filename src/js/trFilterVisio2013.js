@@ -4,8 +4,6 @@ import { getFirst } from './misc'
 const trFilterVisio2013 = ( origSvg ) =>{
   return new Promise( ( resolve , reject ) => {
 
-    console.log('trFilter')
-
     const tagsToRemove = new Set( [ 'style' , 'title' , 'desc' ] )
     let svgStr = origSvg.slice(0) // Clone the origSvg string
 
