@@ -66,11 +66,11 @@ const trFilterVisio2013 = ( origSvg ) =>{
     let cpTags = $('v\\:cp')
     cpTags.map( cpTagIndex => {
       let cpTag = $( cpTags[ cpTagIndex ] )
+      console.log( cpTag )
       if( cpTag.attr('v\:lbl').toLowerCase().replace(/\s+/g,'') == 'activeshape' ){
         let gTagSelector = getFirst( cpTag.closest('g') )
         if( gTagSelector ){
           let gTag = $( gTagSelector )
-          console.log( gTag )
           let name = cpTag.attr('v\:nameU')
           let val  = cpTag.attr('v\:val').match(/^\w+\(([\w,_-\s]+)\)/) ; val = getFirst( val )
           if( name && val ){
