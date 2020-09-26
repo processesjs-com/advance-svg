@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import Cheerio from 'cheerio'
 import { getFirst } from './misc'
 
 const trFilterVisio2013 = ( origSvg ) =>{
@@ -45,9 +45,10 @@ const trFilterVisio2013 = ( origSvg ) =>{
     }
 
     /* Create document object */
-    $.parseHTML( svgStr )
-
-    console.log( $ )
+    const $ = Cheerio.load( svgStr , {
+      ignoreWhitespace: true,
+      xmlMode: true
+    })
 
     /*
       Remove viewBox, width and height attributes from the svg tag - these will be set dynamically
@@ -119,20 +120,22 @@ const trFilterVisio2013 = ( origSvg ) =>{
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
 
     // Convert document object to text
-    console.log( $ )
+    svgStr = $.xml()
 
     // Text search - Remove all 'v:' attributes
     const vattrRegexp = /v:[a-zA-Z]*=\"[\w\s\(\)\.\:-]*\"/
     match = vattrRegexp.exec( svgStr )
     while(match != null){
       let vattrRemoveRegexp = new RegExp( match[0] , "g" )
-      svg = svg.replace( vattrRemoveRegexp , '' )
+      svgStr = svgStr.replace( vattrRemoveRegexp , '' )
       match = vattrRegexp.exec( svg )
     }
 
     // Text search - remove all tabulations, new lines and multiple spaces
     svgStr = svgStr.replace(/\t/g,' ')
     svgStr = svgStr.replace(/\s{2,}/g,' ')
+
+    console.log(svgStr)
 
     resolve( svgStr )
 
