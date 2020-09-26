@@ -34,14 +34,28 @@ class ASVG{
   updateAll( ){
     for(let div of $( 'div[data-asvg]' ) ){
       let params = this.updateParams( div )
-      if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
-        injectSvg( div , this.config.svgFilesFolder + $( div ).data( 'asvg-show' ) + '.svg' )
-        .then( () => { params.injected = $( div ).data( 'asvg-show' ) ; params.currentDisplay = null })
-        .catch( err => { $( div ).data( 'asvg-show' , params.injected ) ; this.errorHandling( err ) })
-      }
-      if( params.currentDisplay != params.targetDisplay ){
-        params.currentDisplay = params.targetDisplay
-      }
+    //Inject SVG file if needed
+      new Promise( ( resolve , reject ) => {
+        if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
+          injectSvg( div , this.config.svgFilesFolder + $( div ).data( 'asvg-show' ) + '.svg' )
+          .then( () => {
+            params.injected = $( div ).data( 'asvg-show' )
+            params.currentDisplay = null
+            resolve()
+          })
+          .catch( err => {
+            $( div ).data( 'asvg-show' , params.injected )
+            reject( err )
+          })
+        }else{ resolve() }
+      } )
+    //Fit to display if needed
+      .then( () => {
+        if( params.currentDisplay != params.targetDisplay ){
+          params.currentDisplay = params.targetDisplay
+        }
+      })
+      .catch( err => { this.errorHandling( err ) })
     }
   }
 

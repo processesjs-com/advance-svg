@@ -1,10 +1,12 @@
 import Spinner from 'spin'
+import trFilterVisio2013 from 'trFilterVisio2013'
 
 const injectSvg = ( div , url ) => {
   return new Promise( ( resolve , reject ) => {
     let spinner = new Spinner().spin( div )
     loadXML( url )
-    .then(  svg => { div.innerHTML = svg ; spinner.stop() ; spinner = undefined ; resolve() } )
+    .then( svgStr => trFilterVisio2013 ( svgStr ) )
+    .then( svgStr => { div.innerHTML = svgStr ; spinner.stop() ; spinner = undefined ; resolve() } )
     .catch( err => { spinner.stop() ; spinner = undefined ; reject( err ) } )
   } )
 }
