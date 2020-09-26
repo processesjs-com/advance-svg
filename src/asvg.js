@@ -38,8 +38,8 @@ class ASVG{
     let div = getFirst( $( popuplink ).closest('div') )
     if( svg && div ){
 
-      let display = getFirst( $( svg ).find(`[data-asvg-display="${this.mapsParams.get(div).currentDisplay}"]`) )
-      let popup   = getFirst( $( svg ).find(`[data-asvg-popupid="${popuplink.getAttribute('data-amaps-popuplink')}"]`) )
+      let display = getFirst( $( svg ).find(`[data-asvg-display="${this.asvgParams.get(div).currentDisplay}"]`) )
+      let popup   = getFirst( $( svg ).find(`[data-asvg-popup="${popuplink.getAttribute('data-asvg-popuplink')}"]`) )
 
       if( display && popup ){
         popup.style.visibility='visible'
