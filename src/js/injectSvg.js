@@ -1,5 +1,5 @@
 import Spinner from 'spin'
-import trFilterVisio2013 from 'trFilterVisio2013'
+import trFilterVisio2013 from './trFilterVisio2013'
 
 const injectSvg = ( div , url ) => {
   return new Promise( ( resolve , reject ) => {
