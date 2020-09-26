@@ -49,8 +49,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     /* Create document object */
     const $ = jquery.parseHTML( svgStr )
 
-    console.log('trFilter started')
-    console.log( typeof $ )
+    console.log( $ )
 
     /*
       Remove viewBox, width and height attributes from the svg tag - these will be set dynamically
