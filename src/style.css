@@ -1,9 +1,6 @@
 [data-asvg] { text-align: center; }
 [data-asvg-display] { visibility:hidden; }
-[data-asvg-popup] {
-  -webkit-filter: url(#drop-shadow);
-  filter:url(#drop-shadow);
-}
+[data-asvg-popup] { -webkit-filter: url(#drop-shadow); filter:url(#drop-shadow); }
 [data-asvg-popuplink]:hover,
 [data-asvg-hyperlink]:hover,
 [data-asvg-pagelink]:hover {

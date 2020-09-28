@@ -17,17 +17,26 @@ class ASVG{
     this.asvgParams = new WeakMap() // Map of all asvg divs
     this.config = { svgFilesFolder: './' }
 
-    // Bind 'this' to all methods that need it
+    // Bind 'this' to all functions that have in the code 'this.'
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
-      if( key != 'constructor' && typeof this[key] == 'function' && this[key].toString().match(/this./)){
+      if( key != 'constructor' && typeof this[key] == 'function' && this[key].toString().match(/\sthis\./)){
         this[key] = this[key].bind(this)
       }
     })
   }
-// Event handlers
+
+/* Public event handling functions - shall be added to the window object like:
+    window.addEventListener('load'  , ASVG.onWindowLoad )
+    window.addEventListener('resize', ASVG.onWindowResize )
+*/
   onWindowLoad( event ){ this.injectSvgFilters(); this.updateAll() }
   onWindowResize( event ){ this.updateAll() }
 
+/* Private event handling functions - shall be mapped to window object like:
+   window.onPopupLinkClick  = ASVG.onPopupLinkClick
+   window.onPopupCloseClick = ASVG.onPopupCloseClick
+   window.onPageLinkClick   = ASVG.onPageLinkClick
+*/
   onPopupCloseClick( popupClose ){
     let popup = getFirst( $( popupClose ).closest('[data-asvg-popup]') )
     if( popup ){ popup.style.visibility = 'hidden' }
@@ -77,11 +86,13 @@ class ASVG{
     else( catchError( new Error('Couldn\'t find correct id or div') ) )
   }
 
-// Functions
+// Private functions
+  catchError( err ){ console.log( err ) }
+
   updateAll( ){
     for(let div of $( 'div[data-asvg]' ) ){
       let params = this.updateParams( div )
-    //Inject SVG file if needed
+    // 1. Inject SVG file
       new Promise( ( resolve , reject ) => {
         if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
           injectSvg( div , this.config.svgFilesFolder + $( div ).data( 'asvg-show' ) + '.svg' )
@@ -93,7 +104,7 @@ class ASVG{
           .catch( err => reject( err ) )
         }else{ resolve() }
       } )
-    //Fit to display if needed
+    // 2. Fit to display
       .then( () => {
         if( params.currentDisplay != params.targetDisplay ){
           fitSvg( div , params.targetDisplay )
@@ -126,12 +137,15 @@ class ASVG{
     filterDiv.innerHTML = `
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
+
           <filter id="invert-color">
             <feColorMatrix in="SourceGraphic" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"></feColorMatrix>
           </filter>
+
           <filter id="yellow-highlight">
             <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 -1 0 0 0 0 1 0"></feColorMatrix>
           </filter>
+
           <filter id="drop-shadow">
             <feGaussianBlur in="SourceAlpha" stdDeviation="6"></feGaussianBlur>
             <feOffset dx="6" dy="6" result="offsetblur"></feOffset>
@@ -142,18 +156,18 @@ class ASVG{
               <feMergeNode in="SourceGraphic"></feMergeNode>
             </feMerge>
           </filter>
+
           <g id="asvg-popup-close" >
             <title>Close popup</title>
             <circle cx="15" cy="15" r="15" style="fill: #FAFAFA; opacity: 0.5;" />
             <path d="M 5,5 L 25,25 M 25,5 L 5,25" style="stroke: #1A1A1A; fill: transparent; stroke-linecap: round; stroke-width: 3;" />
           </g>
+
         </defs>
       </svg>
     `
     document.body.appendChild( filterDiv )
   }
-
-  catchError( err ){ console.log( err ) }
 }
 
 export default new ASVG()
