@@ -23,7 +23,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-    "is-svg": "4.2.1",
+		"is-svg": "4.2.1",
 		"cheerio": "1.0.0-rc.3",
 		"jquery": "3.5.1",
 		"whatwg-fetch": "3.0.0",
