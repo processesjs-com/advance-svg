@@ -73,7 +73,7 @@ class ASVG{
   onPageLinkClick( pagelink ){
     let id = pagelink.getAttribute('data-asvg-pagelink')
     let div = getFirst( $( pagelink ).closest('div[data-asvg]') )
-    if( id && div ){ $( div ).data( 'asvg-show' , id ) ; updateAll( )}
+    if( id && div ){ $( div ).data( 'asvg-show' , id ) ; this.updateAll( )}
     else( catchError( new Error('Couldn\'t find correct id or div') ) )
   }
 
