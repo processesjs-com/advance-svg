@@ -19,7 +19,7 @@ class ASVG{
 
     // Bind 'this' to all functions that have in the code 'this.'
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
-      if( key != 'constructor' && typeof this[key] == 'function' && this[key].toString().match(/\sthis\./)){
+      if( key != 'constructor' && typeof this[key] == 'function' && this[key].toString().match(/\Wthis\./)){
         this[key] = this[key].bind(this)
       }
     })
