@@ -53,6 +53,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     $('svg').removeAttr('width')
     $('svg').removeAttr('height')
     $('svg').removeAttr('viewBox')
+    $('a').attr( 'data-asvg-hyperlink' , '' )
 
     /*
       Make changes to all 'activeShape' elements:

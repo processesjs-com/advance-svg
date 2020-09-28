@@ -5,6 +5,7 @@
   filter:url(#drop-shadow);
 }
 [data-asvg-popuplink]:hover,
+[data-asvg-hyperlink]:hover,
 [data-asvg-pagelink]:hover {
   -webkit-filter: url(#yellow-highlight);
   filter:url(#yellow-highlight);
