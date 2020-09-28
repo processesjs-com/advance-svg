@@ -108,13 +108,8 @@ class ASVG{
         }else{ resolve() }
       } )
     // 2. Fit to display
-      .then( () => {
-        if( params.currentDisplay != params.targetDisplay ){
-          fitSvg( div , params.targetDisplay )
-          .then( () => { params.currentDisplay = params.targetDisplay } )
-          .catch( err => reject( err ) )
-        }
-      })
+      .then( () => fitSvg( div , params.targetDisplay ) )
+      .then( () => { params.currentDisplay = params.targetDisplay } )
       .catch( err => this.catchError( err ) )
     }
   }
@@ -174,3 +169,13 @@ class ASVG{
 }
 
 export default new ASVG()
+
+/*
+      .then( () => {
+        if( params.currentDisplay != params.targetDisplay ){
+          fitSvg( div , params.targetDisplay )
+          .then( () => { params.currentDisplay = params.targetDisplay } )
+          .catch( err => reject( err ) )
+        }
+      })
+*/
