@@ -133,21 +133,21 @@
 			<v:textRect cx="60.9449" cy="1129.61" width="121.89" height="121.89"/>
 			<rect x="0" y="1068.66" width="121.89" height="121.89" class="st3"/>
 			<text x="45.74" y="1147.61" class="st4" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>3</text>		</g>
-		<g id="shape11-31" v:mID="11" v:groupContext="shape" transform="translate(177.661,-1122.4)">
+		<g id="shape11-31" v:mID="11" v:groupContext="shape" transform="translate(177.661,-1027.91)">
 			<title>Sheet.11</title>
 			<desc>1</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
 			<v:textRect cx="23.3858" cy="1167.17" width="46.78" height="46.7717"/>
 			<rect x="0" y="1143.78" width="46.7717" height="46.7717" class="st3"/>
 			<text x="15.78" y="1176.17" class="st5" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>1</text>		</g>
-		<g id="shape12-34" v:mID="12" v:groupContext="shape" transform="translate(243.921,-1052.66)">
+		<g id="shape12-34" v:mID="12" v:groupContext="shape" transform="translate(243.921,-1027.91)">
 			<title>Sheet.12</title>
 			<desc>2</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
 			<v:textRect cx="23.3858" cy="1167.17" width="46.78" height="46.7717"/>
 			<rect x="0" y="1143.78" width="46.7717" height="46.7717" class="st3"/>
 			<text x="15.78" y="1176.17" class="st5" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>2</text>		</g>
-		<g id="shape13-37" v:mID="13" v:groupContext="shape" transform="translate(310.181,-982.913)">
+		<g id="shape13-37" v:mID="13" v:groupContext="shape" transform="translate(310.181,-1027.91)">
 			<title>Sheet.13</title>
 			<desc>3</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
@@ -163,9 +163,8 @@
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
 			<v:textRect cx="55.2756" cy="1135.28" width="110.56" height="110.551"/>
 			<ellipse cx="55.2756" cy="1135.28" rx="55.2756" ry="55.2756" class="st3"/>
-			<text x="31.71" y="1128.08" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page<v:newlineChar/><tspan
-						x="49.19" dy="1.2em" class="st7">2</tspan></text>		</g>
-		<g id="shape18-44" v:mID="18" v:groupContext="shape" transform="translate(2192.56,-871.601)">
+			<text x="22.91" y="1142.48" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page 2</text>		</g>
+		<g id="shape18-43" v:mID="18" v:groupContext="shape" transform="translate(2192.56,-871.601)">
 			<title>Sheet.18</title>
 			<desc>Page 2</desc>
 			<v:custProps>
@@ -174,9 +173,8 @@
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
 			<v:textRect cx="55.2756" cy="1135.28" width="110.56" height="110.551"/>
 			<ellipse cx="55.2756" cy="1135.28" rx="55.2756" ry="55.2756" class="st3"/>
-			<text x="31.71" y="1128.08" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page<v:newlineChar/><tspan
-						x="49.19" dy="1.2em" class="st7">2</tspan></text>		</g>
-		<g id="shape19-48" v:mID="19" v:groupContext="shape" transform="translate(1317.54,-735.236)">
+			<text x="22.91" y="1142.48" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page 2</text>		</g>
+		<g id="shape19-46" v:mID="19" v:groupContext="shape" transform="translate(1317.54,-735.236)">
 			<title>Sheet.19</title>
 			<desc>Page Err</desc>
 			<v:custProps>
@@ -187,7 +185,7 @@
 			<ellipse cx="55.2756" cy="1135.28" rx="55.2756" ry="55.2756" class="st3"/>
 			<text x="31.71" y="1128.08" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page<v:newlineChar/><tspan
 						x="41.05" dy="1.2em" class="st7">Err</tspan></text>		</g>
-		<g id="shape20-52" v:mID="20" v:groupContext="shape" transform="translate(2192.56,-706.767)">
+		<g id="shape20-50" v:mID="20" v:groupContext="shape" transform="translate(2192.56,-706.767)">
 			<title>Sheet.20</title>
 			<desc>Page Err</desc>
 			<v:custProps>
@@ -198,23 +196,25 @@
 			<ellipse cx="55.2756" cy="1135.28" rx="55.2756" ry="55.2756" class="st3"/>
 			<text x="31.71" y="1128.08" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page<v:newlineChar/><tspan
 						x="41.05" dy="1.2em" class="st7">Err</tspan></text>		</g>
-		<g id="shape24-56" v:mID="24" v:groupContext="shape" transform="translate(824.986,-1139.83)">
+		<g id="shape24-54" v:mID="24" v:groupContext="shape" transform="translate(824.986,-1099.43)">
 			<title>Sheet.24</title>
-			<desc>Test Page 1 of 2</desc>
+			<desc>Test Page 1 of 2 Horizontal layout</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-			<v:textRect cx="103.838" cy="1176.38" width="207.68" height="28.3465"/>
-			<rect x="0" y="1162.2" width="207.675" height="28.3465" class="st8"/>
-			<text x="26.73" y="1183.58" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Test Page 1 of 2</text>		</g>
-		<g id="shape25-59" v:mID="25" v:groupContext="shape" transform="translate(791.717,212.82) rotate(-90)">
+			<v:textRect cx="103.838" cy="1156.18" width="207.68" height="68.7428"/>
+			<rect x="0" y="1121.81" width="207.675" height="68.7428" class="st8"/>
+			<text x="26.73" y="1148.98" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Test Page 1 of 2<v:newlineChar/><tspan
+						x="19.9" dy="1.2em" class="st7">Horizontal layout</tspan></text>		</g>
+		<g id="shape25-58" v:mID="25" v:groupContext="shape" transform="translate(815.545,198.425) rotate(-90)">
 			<title>Sheet.25</title>
-			<desc>Test Page 1 of 2</desc>
+			<desc>Test Page 1 of 2 Vertical layout</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-			<v:textRect cx="87.529" cy="1176.38" width="175.06" height="28.3465"/>
-			<rect x="0" y="1162.2" width="175.058" height="28.3465" class="st8"/>
-			<text x="10.43" y="1183.58" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Test Page 1 of 2</text>		</g>
+			<v:textRect cx="87.529" cy="1152.55" width="175.06" height="76.0039"/>
+			<rect x="0" y="1114.55" width="175.058" height="76.0039" class="st8"/>
+			<text x="10.43" y="1145.35" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Test Page 1 of 2<v:newlineChar/><tspan
+						x="16.92" dy="1.2em" class="st7">Vertical layout</tspan></text>		</g>
 		<g id="shape21-62" v:mID="21" v:groupContext="shape" transform="translate(841.323,-273.021)">
 			<title>Snip Diagonal Corner Rectangle</title>
-			<desc>Popup 1</desc>
+			<desc>Page 1 Popup 1</desc>
 			<v:custProps>
 				<v:cp v:nameU="popup" v:lbl="activeShape" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="false"
 						v:ask="false" v:langID="2057" v:cal="0" v:val="VT4(01)"/>
@@ -239,11 +239,11 @@
 			<v:textRect cx="113.386" cy="1077.17" width="226.78" height="226.772"/>
 			<path d="M22.68 1190.55 L226.77 1190.55 L226.77 986.46 L204.09 963.78 L0 963.78 L0 1167.87 L22.68 1190.55 Z"
 					class="st9"/>
-			<text x="34.78" y="1059.17" class="st4" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Popup<v:newlineChar/><tspan
-						x="98.18" dy="1.2em" class="st7">1</tspan></text>		</g>
+			<text x="72.93" y="1068.17" class="st5" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page 1<v:newlineChar/><tspan
+						x="63.09" dy="1.2em" class="st7">Popup </tspan>1</text>		</g>
 		<g id="shape22-66" v:mID="22" v:groupContext="shape" transform="translate(1110.02,-273.021)">
 			<title>Snip Diagonal Corner Rectangle.22</title>
-			<desc>Popup 2</desc>
+			<desc>Page 1 Popup 2</desc>
 			<v:custProps>
 				<v:cp v:nameU="popup" v:lbl="activeShape" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="false"
 						v:ask="false" v:langID="2057" v:cal="0" v:val="VT4(02)"/>
@@ -268,11 +268,11 @@
 			<v:textRect cx="113.386" cy="1077.17" width="226.78" height="226.772"/>
 			<path d="M22.68 1190.55 L226.77 1190.55 L226.77 986.46 L204.09 963.78 L0 963.78 L0 1167.87 L22.68 1190.55 Z"
 					class="st9"/>
-			<text x="34.78" y="1059.17" class="st4" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Popup<v:newlineChar/><tspan
-						x="98.18" dy="1.2em" class="st7">2</tspan></text>		</g>
+			<text x="72.93" y="1068.17" class="st5" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page 1<v:newlineChar/><tspan
+						x="63.09" dy="1.2em" class="st7">Popup </tspan>2</text>		</g>
 		<g id="shape23-70" v:mID="23" v:groupContext="shape" transform="translate(1378.72,-273.021)">
 			<title>Snip Diagonal Corner Rectangle.23</title>
-			<desc>Popup 3</desc>
+			<desc>Page 1 Popup 3</desc>
 			<v:custProps>
 				<v:cp v:nameU="popup" v:lbl="activeShape" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="false"
 						v:ask="false" v:langID="2057" v:cal="0" v:val="VT4(03)"/>
@@ -297,8 +297,8 @@
 			<v:textRect cx="113.386" cy="1077.17" width="226.78" height="226.772"/>
 			<path d="M22.68 1190.55 L226.77 1190.55 L226.77 986.46 L204.09 963.78 L0 963.78 L0 1167.87 L22.68 1190.55 Z"
 					class="st9"/>
-			<text x="34.78" y="1059.17" class="st4" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Popup<v:newlineChar/><tspan
-						x="98.18" dy="1.2em" class="st7">3</tspan></text>		</g>
+			<text x="72.93" y="1068.17" class="st5" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Page 1<v:newlineChar/><tspan
+						x="63.09" dy="1.2em" class="st7">Popup </tspan>3</text>		</g>
 		<a xlink:href="https://www.google.com">
 			<g id="shape26-74" v:mID="26" v:groupContext="shape" transform="translate(876.756,-666.142)">
 				<title>Sheet.26</title>
@@ -331,5 +331,13 @@
 				<text x="33.9" y="1172.78" class="st11" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Hyperlink in new window<v:newlineChar/><tspan
 							x="49.3" dy="1.2em" class="st7">(</tspan>www.google.com)</text>			</g>
 		</a>
+		<g id="shape29-85" v:mID="29" v:groupContext="shape" transform="translate(163.47,-1103.81)">
+			<title>Sheet.29</title>
+			<desc>Test Page 1 of 2 Thubnail layout</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="103.838" cy="1156.18" width="207.68" height="68.7428"/>
+			<rect x="0" y="1121.81" width="207.675" height="68.7428" class="st8"/>
+			<text x="26.73" y="1148.98" class="st6" v:langID="2057"><v:paragraph v:horizAlign="1"/><v:tabList/>Test Page 1 of 2<v:newlineChar/><tspan
+						x="28.22" dy="1.2em" class="st7">Thubnail layout</tspan></text>		</g>
 	</g>
 </svg>

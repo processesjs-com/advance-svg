@@ -1,4 +1,5 @@
 import Cheerio from 'cheerio'
+import isSvg from 'is-svg'
 import { getFirst } from './misc'
 
 const trFilterVisio2013 = ( origSvg ) =>{
@@ -134,7 +135,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     svgStr = svgStr.replace(/\t/g,' ')
     svgStr = svgStr.replace(/\s{2,}/g,' ')
 
-    resolve( svgStr )
+    isSvg( svgStr ) ? resolve( svgStr ) : reject ( new Error ('Transformation filter failed') )
 
   } )
 }

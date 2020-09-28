@@ -15,7 +15,7 @@ class ASVG{
       [ 'T', { min:0    , max:350      }]
     ])
     this.asvgParams = new WeakMap() // Map of all asvg divs
-    this.config = { svgFilesFolder: './' }
+    this.defaultFileLocation = window.ASVG_FILELOCATION ? window.ASVG_FILELOCATION : './'
 
     // Bind 'this' to all functions that have in the code 'this.'
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
@@ -95,7 +95,8 @@ class ASVG{
     // 1. Inject SVG file
       new Promise( ( resolve , reject ) => {
         if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
-          injectSvg( div , this.config.svgFilesFolder + $( div ).data( 'asvg-show' ) + '.svg' )
+          let fileLocation = $( div ).data( 'asvg-filelocation' ) ? $( div ).data( 'asvg-filelocation' ) : this.defaultFileLocation
+          injectSvg( div , fileLocation + $( div ).data( 'asvg-show' ) + '.svg' )
           .then( () => {
             params.injected = $( div ).data( 'asvg-show' )
             params.currentDisplay = null
@@ -169,13 +170,3 @@ class ASVG{
 }
 
 export default new ASVG()
-
-/*
-      .then( () => {
-        if( params.currentDisplay != params.targetDisplay ){
-          fitSvg( div , params.targetDisplay )
-          .then( () => { params.currentDisplay = params.targetDisplay } )
-          .catch( err => reject( err ) )
-        }
-      })
-*/
