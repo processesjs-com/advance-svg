@@ -101,7 +101,10 @@ class ASVG{
             params.currentDisplay = null
             resolve()
           })
-          .catch( err => reject( err ) )
+          .catch( err => {
+            $( div ).data( 'asvg-show' , params.injected )
+            reject( err )
+          } )
         }else{ resolve() }
       } )
     // 2. Fit to display
