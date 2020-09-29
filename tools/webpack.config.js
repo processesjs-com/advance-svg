@@ -1,7 +1,5 @@
 import path   from 'path'
 import HtmlWebpackPlugin    from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import StyleLoader          from 'style-loader'
 import CopyPlugin           from 'copy-webpack-plugin'
 import RemovePlugin         from 'remove-files-webpack-plugin'
 
@@ -31,6 +29,6 @@ export default {
 	],
 	module  : { rules: [
       { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } },
-      { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] } // { loader: MiniCssExtractPlugin.loader } , { loader: 'css-loader' }
+      { test: /\.css$/, use: [ { loader: 'style-loader' } , { loader : 'css-loader' } ] }
 	]}
 }
