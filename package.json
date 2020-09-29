@@ -45,7 +45,7 @@
 		"remove-files-webpack-plugin": "^1.4.3",
 		"current-git-branch": "^1.1.0",
 		"shelljs": "^0.8.4",
-    "aws-sdk": "^2.681.0",
-    "style-loader":"^1.2.1"
+		"aws-sdk": "^2.681.0",
+		"style-loader": "^1.2.1"
 	}
 }
