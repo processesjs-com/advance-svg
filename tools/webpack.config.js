@@ -1,6 +1,5 @@
 import path   from 'path'
 import HtmlWebpackPlugin    from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CopyPlugin           from 'copy-webpack-plugin'
 import RemovePlugin         from 'remove-files-webpack-plugin'
 
@@ -15,7 +14,7 @@ export default {
 	output  : { path : path.resolve( __dirname,'../dist') , filename : '[name].js' },
 	plugins : [
 		new HtmlWebpackPlugin({ title : 'Advance SVG' , template : './src/index.html', inject : true , chunks : ['bundle'] }),
-    new MiniCssExtractPlugin({ filename: 'style.css' }),
+    // new MiniCssExtractPlugin({ filename: 'style.css' }),
     new CopyPlugin({ patterns: [ {
         from:    path.resolve(__dirname, '../svg', '*.svg') ,
         to:      path.resolve(__dirname, '../dist' ),
@@ -30,6 +29,6 @@ export default {
 	],
 	module  : { rules: [
       { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } },
-      { test: /\.css$/, use: [ { loader: MiniCssExtractPlugin.loader } , { loader: 'css-loader' } ] }
+      { test: /\.css$/, use: [ { loader: 'style-loader' } , { loader : 'css-loader' } ] }
 	]}
 }
