@@ -31,6 +31,6 @@ export default {
 	],
 	module  : { rules: [
       { test: /\.js$/ , exclude: /node_modules/ , use: { loader: 'babel-loader' } },
-      { test: /\.css$/, use: [ { loader: StyleLoader.loader } , { loader: 'css-loader' } ] } // { loader: MiniCssExtractPlugin.loader } , { loader: 'css-loader' }
+      { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] } // { loader: MiniCssExtractPlugin.loader } , { loader: 'css-loader' }
 	]}
 }
