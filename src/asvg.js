@@ -9,8 +9,8 @@ class ASVG{
 
   constructor(){
     this.displayBreakpoints = new Map([
-      [ 'L', { min:1300 , max:Infinity }],
-      [ 'M', { min:600  , max:1300     }],
+      [ 'L', { min:1100 , max:Infinity }],
+      [ 'M', { min:600  , max:1100     }],
       [ 'S', { min:300  , max:600      }],
       [ 'T', { min:0    , max:300      }]
     ])
