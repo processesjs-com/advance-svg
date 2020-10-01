@@ -23,45 +23,39 @@ class ASVG{
         this[key] = this[key].bind(this)
       }
     })
-
     this.injectSvgFilters()
-
   }
 
-/* Public event handling functions - shall be added to the window object like:
-    window.addEventListener('load'  , ASVG.onWindowLoad )
-    window.addEventListener('resize', ASVG.onWindowResize )
-*/
-  onWindowLoad( event ){ this.injectSvgFilters(); this.updateAll() }
-  onWindowResize( event ){ this.updateAll() }
-
-// Private functions
   catchError( err ){ console.log( err ) }
 
-  updateAll( ){
-    for(let div of $( 'div[data-asvg]' ) ){
-      let params = this.updateParams( div )
+  updateAll( event ){
+    for(let element of $( 'div[data-asvg]' ) ){
+      this.updateElement( element )
+    }
+  }
+
+  updateElement ( element ){
+    let params = this.updateParams( element )
     // 1. Inject SVG file
       new Promise( ( resolve , reject ) => {
-        if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
-          let fileLocation = $( div ).data( 'asvg-filelocation' ) ? $( div ).data( 'asvg-filelocation' ) : this.defaultFileLocation
-          injectSvg( div , fileLocation + $( div ).data( 'asvg-show' ) + '.svg' )
+        if( !params.injected || params.injected != $( element ).data( 'asvg-show' ) ){
+          let fileLocation = $( element ).data( 'asvg-filelocation' ) ? $( element ).data( 'asvg-filelocation' ) : this.defaultFileLocation
+          injectSvg( element , fileLocation + $( element ).data( 'asvg-show' ) + '.svg' )
           .then( () => {
-            params.injected = $( div ).data( 'asvg-show' )
+            params.injected = $( element ).data( 'asvg-show' )
             params.currentDisplay = null
             resolve()
           })
           .catch( err => {
-            $( div ).data( 'asvg-show' , params.injected )
+            $( element ).data( 'asvg-show' , params.injected )
             reject( err )
           } )
         }else{ resolve() }
       } )
     // 2. Fit to display
-      .then( () => fitSvg( div , params.targetDisplay ) )
+      .then( () => fitSvg( element , params.targetDisplay ) )
       .then( () => { params.currentDisplay = params.targetDisplay } )
       .catch( err => this.catchError( err ) )
-    }
   }
 
   updateParams( div ){
@@ -168,9 +162,9 @@ class ASVG{
     `
     document.body.appendChild( filterDiv )
 
-    window["onPopupLinkClick"]  = this.onPopupLinkClick
-    window["onPopupCloseClick"] = this.onPopupCloseClick
-    window["onPageLinkClick"]   = this.onPageLinkClick
+    window["onASVGPopupLinkClick"]  = this.onPopupLinkClick
+    window["onASVGPopupCloseClick"] = this.onPopupCloseClick
+    window["onASVGPageLinkClick"]   = this.onPageLinkClick
 
   }
 }
