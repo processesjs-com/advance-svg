@@ -23,6 +23,9 @@ class ASVG{
         this[key] = this[key].bind(this)
       }
     })
+
+    this.injectSvgFilters()
+
   }
 
 /* Public event handling functions - shall be added to the window object like:
@@ -32,10 +35,53 @@ class ASVG{
   onWindowLoad( event ){ this.injectSvgFilters(); this.updateAll() }
   onWindowResize( event ){ this.updateAll() }
 
-/* Private event handling functions - shall be mapped to window object like:
-   window.onPopupLinkClick  = ASVG.onPopupLinkClick
-   window.onPopupCloseClick = ASVG.onPopupCloseClick
-   window.onPageLinkClick   = ASVG.onPageLinkClick
+// Private functions
+  catchError( err ){ console.log( err ) }
+
+  updateAll( ){
+    for(let div of $( 'div[data-asvg]' ) ){
+      let params = this.updateParams( div )
+    // 1. Inject SVG file
+      new Promise( ( resolve , reject ) => {
+        if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
+          let fileLocation = $( div ).data( 'asvg-filelocation' ) ? $( div ).data( 'asvg-filelocation' ) : this.defaultFileLocation
+          injectSvg( div , fileLocation + $( div ).data( 'asvg-show' ) + '.svg' )
+          .then( () => {
+            params.injected = $( div ).data( 'asvg-show' )
+            params.currentDisplay = null
+            resolve()
+          })
+          .catch( err => {
+            $( div ).data( 'asvg-show' , params.injected )
+            reject( err )
+          } )
+        }else{ resolve() }
+      } )
+    // 2. Fit to display
+      .then( () => fitSvg( div , params.targetDisplay ) )
+      .then( () => { params.currentDisplay = params.targetDisplay } )
+      .catch( err => this.catchError( err ) )
+    }
+  }
+
+  updateParams( div ){
+    if( !this.asvgParams.has( div ) ){
+      this.asvgParams.set( div , {
+        initial: $( div ).data( 'asvg' ) ,injected:null, currentDisplay:null, targetDisplay:null
+      })
+    }
+    let params = this.asvgParams.get( div )
+    for(let [ label , size ] of this.displayBreakpoints.entries()){
+      if( div.offsetWidth >= size.min && div.offsetWidth < size.max ){
+        if( params.targetDisplay != label ){ params.targetDisplay = label }
+        break
+      }
+    }
+    return params
+  }
+
+/*
+  Private event handling functions mapped to window object
 */
   onPopupCloseClick( popupClose ){
     let popup = getFirst( $( popupClose ).closest('[data-asvg-popup]') )
@@ -86,51 +132,6 @@ class ASVG{
     else( catchError( new Error('Couldn\'t find correct id or div') ) )
   }
 
-// Private functions
-  catchError( err ){ console.log( err ) }
-
-  updateAll( ){
-    for(let div of $( 'div[data-asvg]' ) ){
-      let params = this.updateParams( div )
-    // 1. Inject SVG file
-      new Promise( ( resolve , reject ) => {
-        if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
-          let fileLocation = $( div ).data( 'asvg-filelocation' ) ? $( div ).data( 'asvg-filelocation' ) : this.defaultFileLocation
-          injectSvg( div , fileLocation + $( div ).data( 'asvg-show' ) + '.svg' )
-          .then( () => {
-            params.injected = $( div ).data( 'asvg-show' )
-            params.currentDisplay = null
-            resolve()
-          })
-          .catch( err => {
-            $( div ).data( 'asvg-show' , params.injected )
-            reject( err )
-          } )
-        }else{ resolve() }
-      } )
-    // 2. Fit to display
-      .then( () => fitSvg( div , params.targetDisplay ) )
-      .then( () => { params.currentDisplay = params.targetDisplay } )
-      .catch( err => this.catchError( err ) )
-    }
-  }
-
-  updateParams( div ){
-    if( !this.asvgParams.has( div ) ){
-      this.asvgParams.set( div , {
-        initial: $( div ).data( 'asvg' ) ,injected:null, currentDisplay:null, targetDisplay:null
-      })
-    }
-    let params = this.asvgParams.get( div )
-    for(let [ label , size ] of this.displayBreakpoints.entries()){
-      if( div.offsetWidth >= size.min && div.offsetWidth < size.max ){
-        if( params.targetDisplay != label ){ params.targetDisplay = label }
-        break
-      }
-    }
-    return params
-  }
-
   injectSvgFilters(){
     let filterDiv = document.createElement( 'div' )
     filterDiv.innerHTML = `
@@ -166,6 +167,11 @@ class ASVG{
       </svg>
     `
     document.body.appendChild( filterDiv )
+
+    window["onPopupLinkClick"]  = this.onPopupLinkClick
+    window["onPopupCloseClick"] = this.onPopupCloseClick
+    window["onPageLinkClick"]   = this.onPageLinkClick
+
   }
 }
 

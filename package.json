@@ -2,7 +2,7 @@
 	"name": "advance-svg",
 	"version": "1.1.1",
 	"description": "JavaScript library for advancing SVG graphics with responsive behavior and popup shapes",
-	"main": "dist/asvg.js",
+	"main": "src/asvg.js",
 	"homepage": "https://d2a8hhqmsel69m.cloudfront.net/",
 	"repository": {
 		"type": "git",

@@ -7,7 +7,6 @@ export default {
 	devtool : 'inline-source-map',
 	mode    : 'development',
 	entry   : {
-    asvg  : path.resolve( __dirname,'../src/asvg.js' ),
     bundle: path.resolve( __dirname,'../src/main.js' )
   },
 	target  : 'web',
