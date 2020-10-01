@@ -123,9 +123,7 @@ class ASVG{
   onPageLinkClick( pagelink ){
     let id = pagelink.getAttribute('data-asvg-pagelink')
     let element = pagelink.closest('div[data-asvg]')
-    console.log( element )
-    // let div = getFirst( $( pagelink ).closest('div[data-asvg]') )
-    if( id && element ){ $( element ).data( 'asvg-show' , id ) ; this.updateElement( element )}
+    if( id && element ){ element.setAttribute( 'data-asvg-show' , id ) ; this.updateElement( element )}
     else( catchError( new Error('Couldn\'t find correct id or div') ) )
   }
 
