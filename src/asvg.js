@@ -23,7 +23,8 @@ class ASVG{
         this[key] = this[key].bind(this)
       }
     })
-    this.injectSvgFilters()
+
+    this.injectStuff()
   }
 
   catchError( err ){ console.log( err ) }
@@ -75,7 +76,7 @@ class ASVG{
   }
 
 /*
-  Private event handling functions mapped to window object
+  onClick event handling functions
 */
   onPopupCloseClick( popupClose ){
     let popup = getFirst( $( popupClose ).closest('[data-asvg-popup]') )
@@ -121,12 +122,17 @@ class ASVG{
 
   onPageLinkClick( pagelink ){
     let id = pagelink.getAttribute('data-asvg-pagelink')
-    let div = getFirst( $( pagelink ).closest('div[data-asvg]') )
-    if( id && div ){ $( div ).data( 'asvg-show' , id ) ; this.updateAll( )}
+    let element = pagelink.closest('div[data-asvg]')
+    console.log( element )
+    // let div = getFirst( $( pagelink ).closest('div[data-asvg]') )
+    if( id && element ){ $( element ).data( 'asvg-show' , id ) ; this.updateElement( element )}
     else( catchError( new Error('Couldn\'t find correct id or div') ) )
   }
 
-  injectSvgFilters(){
+/*
+  Inject Svg filters and Popup Close shape, and add the OnClick event handlers to the window object
+*/
+  injectStuff(){
     let filterDiv = document.createElement( 'div' )
     filterDiv.innerHTML = `
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
