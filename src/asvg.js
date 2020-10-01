@@ -112,7 +112,7 @@ class ASVG{
           let position = popup.getBBox()
           let parser   = new DOMParser()
           let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
-                        '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onPopupCloseClick(this)" />'
+                        '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />'
           popup.appendChild( parser.parseFromString(text,"text/xml").documentElement )
         }
       }
