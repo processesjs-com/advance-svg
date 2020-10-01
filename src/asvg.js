@@ -10,9 +10,9 @@ class ASVG{
   constructor(){
     this.displayBreakpoints = new Map([
       [ 'L', { min:1300 , max:Infinity }],
-      [ 'M', { min:850  , max:1300     }],
-      [ 'S', { min:350  , max:850      }],
-      [ 'T', { min:0    , max:350      }]
+      [ 'M', { min:600  , max:1300     }],
+      [ 'S', { min:300  , max:600      }],
+      [ 'T', { min:0    , max:300      }]
     ])
     this.asvgParams = new WeakMap() // Map of all asvg divs
     this.defaultFileLocation = window.ASVG_FILELOCATION ? window.ASVG_FILELOCATION : './'
