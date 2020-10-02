@@ -25,7 +25,6 @@ class ASVG{
     })
 
     this.injectStuff()
-    console.log( document.querySelectorAll( 'div[data-asvg]' ) )
   }
 
   catchError( err ){ console.log( err ) }
