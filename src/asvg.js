@@ -25,12 +25,13 @@ class ASVG{
     })
 
     this.injectStuff()
+    console.log( document.querySelectorAll( 'div[data-asvg]' ) )
   }
 
   catchError( err ){ console.log( err ) }
 
   updateAll( event ){
-    for(let element of $( 'div[data-asvg]' ) ){
+    for(let element of document.querySelectorAll( 'div[data-asvg]' ) ){
       this.updateElement( element )
     }
   }
@@ -39,16 +40,16 @@ class ASVG{
     let params = this.updateParams( element )
     // 1. Inject SVG file
       new Promise( ( resolve , reject ) => {
-        if( !params.injected || params.injected != $( element ).data( 'asvg-show' ) ){
-          let fileLocation = $( element ).data( 'asvg-filelocation' ) ? $( element ).data( 'asvg-filelocation' ) : this.defaultFileLocation
-          injectSvg( element , fileLocation + $( element ).data( 'asvg-show' ) + '.svg' )
+        if( !params.injected || params.injected != element.getAttribute( 'data-asvg-show' ) ){
+          let fileLocation = element.getAttribute( 'data-asvg-filelocation' ) ? element.getAttribute( 'data-asvg-filelocation' ) : this.defaultFileLocation
+          injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) )
           .then( () => {
-            params.injected = $( element ).data( 'asvg-show' )
+            params.injected = element.getAttribute( 'data-asvg-show' )
             params.currentDisplay = null
             resolve()
           })
           .catch( err => {
-            $( element ).data( 'asvg-show' , params.injected )
+            element.setAttribute( 'data-asvg-show' , params.injected )
             reject( err )
           } )
         }else{ resolve() }
@@ -59,15 +60,15 @@ class ASVG{
       .catch( err => this.catchError( err ) )
   }
 
-  updateParams( div ){
-    if( !this.asvgParams.has( div ) ){
-      this.asvgParams.set( div , {
-        initial: $( div ).data( 'asvg' ) ,injected:null, currentDisplay:null, targetDisplay:null
+  updateParams( element ){
+    if( !this.asvgParams.has( element ) ){
+      this.asvgParams.set( element , {
+        initial: element.getAttribute( 'data-asvg' ) ,injected:null, currentDisplay:null, targetDisplay:null
       })
     }
-    let params = this.asvgParams.get( div )
+    let params = this.asvgParams.get( element )
     for(let [ label , size ] of this.displayBreakpoints.entries()){
-      if( div.offsetWidth >= size.min && div.offsetWidth < size.max ){
+      if( element.offsetWidth >= size.min && element.offsetWidth < size.max ){
         if( params.targetDisplay != label ){ params.targetDisplay = label }
         break
       }
