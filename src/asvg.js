@@ -1,4 +1,3 @@
-import 'whatwg-fetch'
 import './style.css'
 import injectSvg from './js/injectSvg'
 import fitSvg    from './js/fitSvg'
