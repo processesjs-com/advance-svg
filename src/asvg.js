@@ -79,17 +79,22 @@ class ASVG{
   onClick event handling functions
 */
   onPopupCloseClick( popupClose ){
-    let popup = getFirst( $( popupClose ).closest('[data-asvg-popup]') )
+    let popup = popupClose.closest('[data-asvg-popup]')
     if( popup ){ popup.style.visibility = 'hidden' }
   }
 
   onPopupLinkClick( popuplink ){
-    let svg = getFirst( $( popuplink ).closest('svg') )
-    let div = getFirst( $( popuplink ).closest('div') )
+    let svg = popuplink.closest('svg')
+    let div = popuplink.closest('div')
+    console.log( svg )
+    console.log( div )
     if( svg && div ){
 
-      let display = getFirst( $( svg ).find(`[data-asvg-display="${this.asvgParams.get(div).currentDisplay}"]`) )
-      let popup   = getFirst( $( svg ).find(`[data-asvg-popup="${popuplink.getAttribute('data-asvg-popuplink')}"]`) )
+      let display = svg.querySelector(`[data-asvg-display="${this.asvgParams.get(div).currentDisplay}"]`)
+      let popup   = svg.querySelector(`[data-asvg-popup="${popuplink.getAttribute('data-asvg-popuplink')}"]`)
+
+      console.log( display )
+      console.log( popup )
 
       if( display && popup ){
         popup.style.visibility='visible'
