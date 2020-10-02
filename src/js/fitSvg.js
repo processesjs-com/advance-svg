@@ -1,16 +1,15 @@
-import $ from 'jquery'
-import { getFirst , getTranslateAttr } from './misc'
+import { getTranslateAttr } from './misc'
 
-const fitSvg = ( div , targetDisplay ) => {
+const fitSvg = ( element , targetDisplay ) => {
   return new Promise( ( resolve , reject ) => {
 
-    let svg = getFirst( $( div ).find('svg') )
+    let svg = element.querySelector('svg')
     if( svg ){
       let viewBox = { x:0 , y:0 , w:100 , h:100 }
-      let display = getFirst( $( svg ).find('[data-asvg-display="' + targetDisplay + '"]') )
+      let display = svg.querySelector('[data-asvg-display="' + targetDisplay + '"]')
       if( display ){
         let translate = getTranslateAttr( display )
-        let rect = getFirst( $( display ).find('rect') )
+        let rect = display.querySelector('rect')
         if( rect ){
           viewBox = {
             x:Math.round( 1*rect.getAttribute('x') + translate.x ),
@@ -21,8 +20,8 @@ const fitSvg = ( div , targetDisplay ) => {
         }else{ reject( new Error('Could not find rect shape.') ) ; return }
       }else{ reject( new Error('Could not find display group.') ) ; return }
       svg.setAttribute( 'viewBox' , ''+ viewBox.x +' '+ viewBox.y +' '+ viewBox.w +' '+ viewBox.h )
-      svg.setAttribute( 'width'   , ''+ div.offsetWidth +'px' )
-      svg.setAttribute( 'height'  , ''+ viewBox.h * div.offsetWidth / viewBox.w +'px' )
+      svg.setAttribute( 'width'   , ''+ element.offsetWidth +'px' )
+      svg.setAttribute( 'height'  , ''+ viewBox.h * element.offsetWidth / viewBox.w +'px' )
 
       resolve ()
     }else{ reject( new Error('Could not find SVG object.') ) }

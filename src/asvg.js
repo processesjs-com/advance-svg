@@ -1,9 +1,8 @@
 import 'whatwg-fetch'
-import $ from 'jquery'
 import './style.css'
 import injectSvg from './js/injectSvg'
-import fitSvg from './js/fitSvg'
-import { getFirst , getTranslateAttr , setTranslateAttr } from './js/misc'
+import fitSvg    from './js/fitSvg'
+import { getTranslateAttr , setTranslateAttr } from './js/misc'
 
 class ASVG{
 
@@ -29,12 +28,6 @@ class ASVG{
 
   catchError( err ){ console.log( err ) }
 
-  updateAll( event ){
-    for(let element of document.querySelectorAll( 'div[data-asvg]' ) ){
-      this.updateElement( element )
-    }
-  }
-
   updateElement ( element ){
     let params = this.updateParams( element )
     // 1. Inject SVG file
@@ -57,6 +50,12 @@ class ASVG{
       .then( () => fitSvg( element , params.targetDisplay ) )
       .then( () => { params.currentDisplay = params.targetDisplay } )
       .catch( err => this.catchError( err ) )
+  }
+
+  updateAll( event ){
+    for(let element of document.querySelectorAll( 'div[data-asvg]' ) ){
+      this.updateElement( element )
+    }
   }
 
   updateParams( element ){
@@ -86,15 +85,11 @@ class ASVG{
   onPopupLinkClick( popuplink ){
     let svg = popuplink.closest('svg')
     let div = popuplink.closest('div')
-    console.log( svg )
-    console.log( div )
+
     if( svg && div ){
 
       let display = svg.querySelector(`[data-asvg-display="${this.asvgParams.get(div).currentDisplay}"]`)
       let popup   = svg.querySelector(`[data-asvg-popup="${popuplink.getAttribute('data-asvg-popuplink')}"]`)
-
-      console.log( display )
-      console.log( popup )
 
       if( display && popup ){
         popup.style.visibility='visible'
@@ -113,7 +108,7 @@ class ASVG{
 
         setTranslateAttr( popup , { x:alignX , y:alignY })
 
-        let popupClose = getFirst( $( popup ).find('.asvg-popup-close') )
+        let popupClose = popup.querySelector('.asvg-popup-close')
         if( ! popupClose ){
           let position = popup.getBBox()
           let parser   = new DOMParser()
