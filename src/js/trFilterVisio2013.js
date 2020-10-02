@@ -73,7 +73,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
         if( gTagSelector ){
           let gTag = $( gTagSelector )
           let name = cpTag.attr('v\:nameU')
-          let val  = cpTag.attr('v\:val').match(/^\w+\(([\w,_-\s]+)\)/)
+          let val  = cpTag.attr('v\:val').match(/^\w+\(([\w,_-\s\.]+)\)/)
           if( val && val.length > 1 ){ val=val[1] }
           if( name && val ){
             /*
@@ -90,11 +90,11 @@ const trFilterVisio2013 = ( origSvg ) =>{
                 break
               case 'popuplink':
                 gTag.attr( 'data-asvg-popuplink' , val )
-                gTag.attr( 'onclick' , 'onPopupLinkClick(this)' )
+                gTag.attr( 'onclick' , 'onASVGPopupLinkClick(this)' )
                 break
               case 'pagelink':
                 gTag.attr( 'data-asvg-pagelink' , val )
-                gTag.attr( 'onclick' , 'onPageLinkClick(this)' )
+                gTag.attr( 'onclick' , 'onASVGPageLinkClick(this)' )
                 break
               case 'popup':
                 gTag.attr( 'data-asvg-popup' , val )

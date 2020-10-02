@@ -188,7 +188,7 @@
 			<desc>Page 1</desc>
 			<v:custProps>
 				<v:cp v:nameU="pagelink" v:lbl="activeShape" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="false"
-						v:ask="false" v:langID="2057" v:cal="0" v:val="VT4(page1)"/>
+						v:ask="false" v:langID="2057" v:cal="0" v:val="VT4(page1.svg)"/>
 			</v:custProps>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
@@ -202,7 +202,7 @@
 			<desc>Page 1</desc>
 			<v:custProps>
 				<v:cp v:nameU="pagelink" v:lbl="activeShape" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="false"
-						v:ask="false" v:langID="2057" v:cal="0" v:val="VT4(page1)"/>
+						v:ask="false" v:langID="2057" v:cal="0" v:val="VT4(page1.svg)"/>
 			</v:custProps>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>

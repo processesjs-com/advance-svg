@@ -1,18 +1,17 @@
 import 'whatwg-fetch'
-import $ from 'jquery'
 import './style.css'
 import injectSvg from './js/injectSvg'
-import fitSvg from './js/fitSvg'
-import { getFirst , getTranslateAttr , setTranslateAttr } from './js/misc'
+import fitSvg    from './js/fitSvg'
+import { getTranslateAttr , setTranslateAttr } from './js/misc'
 
 class ASVG{
 
   constructor(){
     this.displayBreakpoints = new Map([
-      [ 'L', { min:1300 , max:Infinity }],
-      [ 'M', { min:850  , max:1300     }],
-      [ 'S', { min:350  , max:850      }],
-      [ 'T', { min:0    , max:350      }]
+      [ 'L', { min:1100 , max:Infinity }],
+      [ 'M', { min:600  , max:1100     }],
+      [ 'S', { min:300  , max:600      }],
+      [ 'T', { min:0    , max:300      }]
     ])
     this.asvgParams = new WeakMap() // Map of all asvg divs
     this.defaultFileLocation = window.ASVG_FILELOCATION ? window.ASVG_FILELOCATION : './'
@@ -23,32 +22,74 @@ class ASVG{
         this[key] = this[key].bind(this)
       }
     })
+
+    this.injectStuff()
   }
 
-/* Public event handling functions - shall be added to the window object like:
-    window.addEventListener('load'  , ASVG.onWindowLoad )
-    window.addEventListener('resize', ASVG.onWindowResize )
-*/
-  onWindowLoad( event ){ this.injectSvgFilters(); this.updateAll() }
-  onWindowResize( event ){ this.updateAll() }
+  catchError( err ){ console.log( err ) }
 
-/* Private event handling functions - shall be mapped to window object like:
-   window.onPopupLinkClick  = ASVG.onPopupLinkClick
-   window.onPopupCloseClick = ASVG.onPopupCloseClick
-   window.onPageLinkClick   = ASVG.onPageLinkClick
+  updateElement ( element ){
+    let params = this.updateParams( element )
+    // 1. Inject SVG file
+      new Promise( ( resolve , reject ) => {
+        if( !params.injected || params.injected != element.getAttribute( 'data-asvg-show' ) ){
+          let fileLocation = element.getAttribute( 'data-asvg-filelocation' ) ? element.getAttribute( 'data-asvg-filelocation' ) : this.defaultFileLocation
+          injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) )
+          .then( () => {
+            params.injected = element.getAttribute( 'data-asvg-show' )
+            params.currentDisplay = null
+            resolve()
+          })
+          .catch( err => {
+            element.setAttribute( 'data-asvg-show' , params.injected )
+            reject( err )
+          } )
+        }else{ resolve() }
+      } )
+    // 2. Fit to display
+      .then( () => fitSvg( element , params.targetDisplay ) )
+      .then( () => { params.currentDisplay = params.targetDisplay } )
+      .catch( err => this.catchError( err ) )
+  }
+
+  updateAll( event ){
+    for(let element of document.querySelectorAll( 'div[data-asvg]' ) ){
+      this.updateElement( element )
+    }
+  }
+
+  updateParams( element ){
+    if( !this.asvgParams.has( element ) ){
+      this.asvgParams.set( element , {
+        initial: element.getAttribute( 'data-asvg' ) ,injected:null, currentDisplay:null, targetDisplay:null
+      })
+    }
+    let params = this.asvgParams.get( element )
+    for(let [ label , size ] of this.displayBreakpoints.entries()){
+      if( element.offsetWidth >= size.min && element.offsetWidth < size.max ){
+        if( params.targetDisplay != label ){ params.targetDisplay = label }
+        break
+      }
+    }
+    return params
+  }
+
+/*
+  onClick event handling functions
 */
   onPopupCloseClick( popupClose ){
-    let popup = getFirst( $( popupClose ).closest('[data-asvg-popup]') )
+    let popup = popupClose.closest('[data-asvg-popup]')
     if( popup ){ popup.style.visibility = 'hidden' }
   }
 
   onPopupLinkClick( popuplink ){
-    let svg = getFirst( $( popuplink ).closest('svg') )
-    let div = getFirst( $( popuplink ).closest('div') )
+    let svg = popuplink.closest('svg')
+    let div = popuplink.closest('div')
+
     if( svg && div ){
 
-      let display = getFirst( $( svg ).find(`[data-asvg-display="${this.asvgParams.get(div).currentDisplay}"]`) )
-      let popup   = getFirst( $( svg ).find(`[data-asvg-popup="${popuplink.getAttribute('data-asvg-popuplink')}"]`) )
+      let display = svg.querySelector(`[data-asvg-display="${this.asvgParams.get(div).currentDisplay}"]`)
+      let popup   = svg.querySelector(`[data-asvg-popup="${popuplink.getAttribute('data-asvg-popuplink')}"]`)
 
       if( display && popup ){
         popup.style.visibility='visible'
@@ -67,12 +108,12 @@ class ASVG{
 
         setTranslateAttr( popup , { x:alignX , y:alignY })
 
-        let popupClose = getFirst( $( popup ).find('.asvg-popup-close') )
+        let popupClose = popup.querySelector('.asvg-popup-close')
         if( ! popupClose ){
           let position = popup.getBBox()
           let parser   = new DOMParser()
           let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
-                        '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onPopupCloseClick(this)" />'
+                        '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />'
           popup.appendChild( parser.parseFromString(text,"text/xml").documentElement )
         }
       }
@@ -81,57 +122,15 @@ class ASVG{
 
   onPageLinkClick( pagelink ){
     let id = pagelink.getAttribute('data-asvg-pagelink')
-    let div = getFirst( $( pagelink ).closest('div[data-asvg]') )
-    if( id && div ){ $( div ).data( 'asvg-show' , id ) ; this.updateAll( )}
+    let element = pagelink.closest('div[data-asvg]')
+    if( id && element ){ element.setAttribute( 'data-asvg-show' , id ) ; this.updateElement( element )}
     else( catchError( new Error('Couldn\'t find correct id or div') ) )
   }
 
-// Private functions
-  catchError( err ){ console.log( err ) }
-
-  updateAll( ){
-    for(let div of $( 'div[data-asvg]' ) ){
-      let params = this.updateParams( div )
-    // 1. Inject SVG file
-      new Promise( ( resolve , reject ) => {
-        if( !params.injected || params.injected != $( div ).data( 'asvg-show' ) ){
-          let fileLocation = $( div ).data( 'asvg-filelocation' ) ? $( div ).data( 'asvg-filelocation' ) : this.defaultFileLocation
-          injectSvg( div , fileLocation + $( div ).data( 'asvg-show' ) + '.svg' )
-          .then( () => {
-            params.injected = $( div ).data( 'asvg-show' )
-            params.currentDisplay = null
-            resolve()
-          })
-          .catch( err => {
-            $( div ).data( 'asvg-show' , params.injected )
-            reject( err )
-          } )
-        }else{ resolve() }
-      } )
-    // 2. Fit to display
-      .then( () => fitSvg( div , params.targetDisplay ) )
-      .then( () => { params.currentDisplay = params.targetDisplay } )
-      .catch( err => this.catchError( err ) )
-    }
-  }
-
-  updateParams( div ){
-    if( !this.asvgParams.has( div ) ){
-      this.asvgParams.set( div , {
-        initial: $( div ).data( 'asvg' ) ,injected:null, currentDisplay:null, targetDisplay:null
-      })
-    }
-    let params = this.asvgParams.get( div )
-    for(let [ label , size ] of this.displayBreakpoints.entries()){
-      if( div.offsetWidth >= size.min && div.offsetWidth < size.max ){
-        if( params.targetDisplay != label ){ params.targetDisplay = label }
-        break
-      }
-    }
-    return params
-  }
-
-  injectSvgFilters(){
+/*
+  Inject Svg filters and Popup Close shape, and add the OnClick event handlers to the window object
+*/
+  injectStuff(){
     let filterDiv = document.createElement( 'div' )
     filterDiv.innerHTML = `
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -166,6 +165,11 @@ class ASVG{
       </svg>
     `
     document.body.appendChild( filterDiv )
+
+    window["onASVGPopupLinkClick"]  = this.onPopupLinkClick
+    window["onASVGPopupCloseClick"] = this.onPopupCloseClick
+    window["onASVGPageLinkClick"]   = this.onPageLinkClick
+
   }
 }
 
