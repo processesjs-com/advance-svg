@@ -12,6 +12,7 @@ export const setTranslateAttr = ( el , newTranslate ) => {
   let transform = el.getAttribute('transform')
   if( transform ){
     let translate = transform.match(/translate\(([\d\.\-e]*)[\s|,]([\d\.\-e]*)\)/i)
+    console.log( translate )
     if( translate && translate.length>2){
       transform = transform.replace(translate[0],'translate(' + newTranslate.x + ',' + newTranslate.y + ')')
     }else{
