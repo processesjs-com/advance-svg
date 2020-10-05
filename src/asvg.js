@@ -3,7 +3,7 @@ import injectSvg from './js/injectSvg'
 import fitSvg    from './js/fitSvg'
 import { getTranslateAttr , setTranslateAttr } from './js/misc'
 
-console.log(' Ehoooo ')
+console.log(' Ehoooo 1 ')
 
 class ASVG{
 

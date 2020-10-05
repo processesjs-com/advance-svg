@@ -9,6 +9,9 @@ export const getTranslateAttr = el => {
 }
 
 export const setTranslateAttr = ( el , newTranslate ) => {
+
+  console.log( 'translate' )
+
   let transform = el.getAttribute('transform')
   if( transform ){
     let translate = transform.match(/translate\(([\d\.\-e]*)[\s|,]([\d\.\-e]*)\)/i)
