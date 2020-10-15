@@ -77,16 +77,14 @@ const trFilterVisio2013 = ( origSvg ) =>{
           if( val && val.length > 1 ){ val=val[1] }
           if( name && val ){
             /*
-              Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp
-              The v:val attribute looks like:
-                'VT4(display size)',
-                'VT4(popup)', Note: for popups, the v:nameU attribute contains an id
-                'VT4(popuplink XX)'
-              val is an array of the substrings (split by space) from within VT4( ... ) brackets
+              Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp tag
             */
             switch( name.toLowerCase().replace( /\s+/g ,'') ){
               case 'display':
                 gTag.attr( 'data-asvg-display' , val )
+                break
+              case 'annotation':
+                $( gTag ).remove()
                 break
               case 'popuplink':
                 gTag.attr( 'data-asvg-popuplink' , val )

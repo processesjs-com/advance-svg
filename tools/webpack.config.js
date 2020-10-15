@@ -13,7 +13,6 @@ export default {
 	output  : { path : path.resolve( __dirname,'../dist') , filename : '[name].js' },
 	plugins : [
 		new HtmlWebpackPlugin({ title : 'Advance SVG' , template : './src/index.html', inject : true , chunks : ['bundle'] }),
-    // new MiniCssExtractPlugin({ filename: 'style.css' }),
     new CopyPlugin({ patterns: [ {
         from:    path.resolve(__dirname, '../svg', '*.svg') ,
         to:      path.resolve(__dirname, '../dist' ),
