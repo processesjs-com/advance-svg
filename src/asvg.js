@@ -25,7 +25,10 @@ class ASVG{
     this.injectStuff()
   }
 
-  catchError( err ){ console.log( err ) }
+  catchError( err ){
+    console.error( err )
+    if( err.name == 'UserError' ){ alert( err ) }
+  }
 
   updateElement ( element ){
     let params = this.updateParams( element )
