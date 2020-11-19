@@ -1,4 +1,6 @@
 import ASVG from './asvg'
 
-window.addEventListener('load'  , ASVG.updateAll )
-window.addEventListener('resize', ASVG.updateAll )
+const asvg = new ASVG()
+
+window.addEventListener('load'  , asvg.updateAll )
+window.addEventListener('resize', asvg.updateAll )
