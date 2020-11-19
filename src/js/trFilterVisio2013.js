@@ -2,6 +2,8 @@ import Cheerio from 'cheerio'
 import isSvg from 'is-svg'
 import { getFirst } from './misc'
 
+const flatStr = str => str.toLowerCase().replace( /[\s-_]+/g,'' )
+
 const trFilterVisio2013 = ( origSvg ) =>{
   return new Promise( ( resolve , reject ) => {
 
@@ -68,7 +70,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     let cpTags = $('v\\:cp')
     cpTags.map( cpTagIndex => {
       let cpTag = $( cpTags[ cpTagIndex ] )
-      if( cpTag.attr('v\:lbl').toLowerCase().replace(/\s+/g,'') == 'activeshape' ){
+      if( flatStr( cpTag.attr('v\:lbl' ) ) == 'activeshape' ){
         let gTagSelector = getFirst( cpTag.closest('g') )
         if( gTagSelector ){
           let gTag = $( gTagSelector )
@@ -79,7 +81,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
             /*
               Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp tag
             */
-            switch( name.toLowerCase().replace( /\s+/g ,'') ){
+            switch( flatStr( name ) ){
               case 'display':
                 gTag.attr( 'data-asvg-display' , val )
                 break

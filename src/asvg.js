@@ -5,7 +5,9 @@ import { getTranslateAttr , setTranslateAttr } from './js/misc'
 
 class ASVG{
 
-  constructor(){
+  constructor( properties ){
+    this.properties = properties
+
     this.displayBreakpoints = new Map([
       [ 'L', { min:1100 , max:Infinity }],
       [ 'M', { min:600  , max:1100     }],
@@ -27,7 +29,9 @@ class ASVG{
 
   catchError( err ){
     console.error( err )
-    if( err.name == 'UserError' ){ alert( err ) }
+    if( err.name == 'UserError' ){
+      ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler( err ) : alert( err )
+    }
   }
 
   updateElement ( element ){
@@ -175,4 +179,4 @@ class ASVG{
   }
 }
 
-export default new ASVG()
+export default ASVG
