@@ -6,9 +6,9 @@ JavaScript library for advancing SVG graphics with:
 * in-page links
 
 The responsive behaiour allows fitting a graphic to pre-defined rectangular boundries (scenes), depending on the container's (div tag) width.
-The graphics shall define four rectangular boudries, from smalles to larges: Thumbnail, Small, Medium and Large.
+The graphics shall define four rectangular boudries, from smallest to largest: Thumbnail, Small, Medium and Large.
 
-The popup shapes are hidden from the scenes. When clicking on a popuplink the corresponding popup shape pops over.
+The popup shapes are hidden from the scenes. When clicking on a popuplink the corresponding popup shape will show over the popuplink.
 
 Five types of shapes can be set in the graphic:
 * displayX  - define boundaries (scenes) to fit various screen sizes: Thumb, Small, Medium and Large
@@ -17,7 +17,7 @@ Five types of shapes can be set in the graphic:
 * pagelink  - in-page link to another graphic which will replace the current one within the same container
 * hyperlink - link to another page in the browser
 
-The library can be used from CDN or as NPM module.
+The library can be used from CDN or from NPM module.
 
 ## Demo and CDN repository
 
@@ -41,13 +41,13 @@ window.addEventListener('resize', asvg.updateAll )
 ## Properties
 
 The Constructor accepts a properties object. However, currently only one parameter is implemented for custom error handling function when page-not-found error occurs.
-By default the library will display the browser's Alert message. To implement custom function, can use the snippet below:
+By default the library will display the browser's Alert message. To implement custom function, can use this snippet:
 
 ```
 import ASVG from 'advance-svg'
 
 const customPageNotFoundFunction = err => {
-  ... // Custome code
+  ... // Custom code
 }
 
 const asvg = new ASVG( {
