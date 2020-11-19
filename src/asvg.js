@@ -179,4 +179,4 @@ class ASVG{
   }
 }
 
-export default ASVG()
+export default ASVG
