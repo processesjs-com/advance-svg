@@ -30,7 +30,7 @@ class ASVG{
   catchError( err ){
     console.error( err )
     if( err.name == 'UserError' ){
-      this.properties.userErrorHandler ? this.properties.userErrorHandler( err ) : alert( err )
+      ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler( err ) : alert( err )
     }
   }
 
