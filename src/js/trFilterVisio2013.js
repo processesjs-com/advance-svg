@@ -31,8 +31,14 @@ const trFilterVisio2013 = ( origSvg ) =>{
     const stRegexp = /\.(st\d*)\s{([\w\s\:\(\)\#\.,;-]*)}/gi
     let match = stRegexp.exec( svgStr )
     while( match != null ){
-      // let classRegexp = new RegExp( 'class="' + match[1] + '"',"g" )
-      svgStr = svgStr.replaceAll( 'class="' + match[1] + '"' , 'style="' + match[2] + '"' )
+      /*
+         String.prototype.replaceAll is since Chrome v. 85 and does not work in nodejs
+         The command below, shall be replaced when replaceAll is widely available
+         svgStr.replaceAll( 'class="' + match[1] + '"' , 'style="' + match[2] + '"' )
+         Here is a variant for replace with a RegExp
+         let classRegexp = new RegExp( 'class="' + match[1] + '"',"g" )
+      */
+      svgStr = svgStr.split( 'class="' + match[1] + '"' ).join( 'style="' + match[2] + '"' )
       match = stRegexp.exec( svgStr )
     }
 
@@ -127,7 +133,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     match = vattrRegexp.exec( svgStr )
     while(match != null){
       /// let vattrRemoveRegexp = new RegExp( match[0] , "g" )
-      svgStr = svgStr.replaceAll( match[0] , '' )
+      svgStr = svgStr.split( match[0] ).join( '' ) // See above note about replaceALL: replaceAll( match[0] , '' )
       match = vattrRegexp.exec( svgStr )
     }
 
