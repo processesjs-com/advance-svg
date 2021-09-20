@@ -63,7 +63,7 @@ class ASVG{
       this.updateElement( element )
     }
     console.log('Update popuplinks')
-    for(let linkElement of document.querySelectorAll( 'g[data-asvg-popuplink]' ) ){
+    for(let linkElement of document.querySelectorAll( '[data-asvg-popuplink]' ) ){
       console.log( linkElement.name )
       let position = linkElement.getBBox()
       let parser   = new DOMParser()
