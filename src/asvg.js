@@ -62,7 +62,9 @@ class ASVG{
     for(let element of document.querySelectorAll( 'div[data-asvg]' ) ){
       this.updateElement( element )
     }
+    console.log('3')
     for(let linkElement of document.querySelectorAll( '[data-asvg-popuplink]' ) ){
+      console.log( linkElement.name )
       let position = linkElement.getBBox()
       let parser   = new DOMParser()
       let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
