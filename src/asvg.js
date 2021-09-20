@@ -52,15 +52,7 @@ class ASVG{
           } )
         }else{ resolve() }
       } )
-    // 2. Add icons to popup and page links
-      .then( () => {
-        let position = element.getBBox()
-        let parser   = new DOMParser()
-        let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
-                      '" href="#asvg-popuplink-icon" />'
-        element.appendChild( parser.parseFromString(text,"text/xml").documentElement )
-      } )
-    // 3. Fit to display
+    // 2. Fit to display
       .then( () => fitSvg( element , params.targetDisplay ) )
       .then( () => { params.currentDisplay = params.targetDisplay } )
       .catch( err => this.catchError( err ) )
@@ -69,6 +61,13 @@ class ASVG{
   updateAll( event ){
     for(let element of document.querySelectorAll( 'div[data-asvg]' ) ){
       this.updateElement( element )
+    }
+    for(let linkElement of document.querySelectorAll( 'g[data-asvg-popuplink]' ) ){
+      let position = linkElement.getBBox()
+      let parser   = new DOMParser()
+      let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
+                    '" href="#asvg-popuplink-icon" />'
+      linkElement.appendChild( parser.parseFromString(text,"text/xml").documentElement )
     }
   }
 
