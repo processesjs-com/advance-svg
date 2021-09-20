@@ -97,7 +97,6 @@ const trFilterVisio2013 = ( origSvg ) =>{
               case 'popuplink':
                 gTag.attr( 'data-asvg-popuplink' , val )
                 gTag.attr( 'onclick' , 'onASVGPopupLinkClick(this)' )
-                gTag.append( '<use xmlns="http://www.w3.org/2000/svg" href="#asvg-popup-icon"/>' )
                 break
               case 'pagelink':
                 gTag.attr( 'data-asvg-pagelink' , val )
