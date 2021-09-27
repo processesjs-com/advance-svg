@@ -47,7 +47,7 @@ class ASVG{
           })
           // 1.1. Add icons to popups, popuplinks and pagelinks
           .then( () => {
-            this.addIcons( element , '[data-asvg-popup]'     , '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
+            this.addIcons( element , '[data-asvg-popup]'     , '" href="#asvg-popup-close" />' )
             this.addIcons( element , '[data-asvg-popuplink]' , '" href="#asvg-popuplink-icon" />' )
             this.addIcons( element , '[data-asvg-pagelink]'  , '" href="#asvg-pagelink-icon" />'  )
             resolve()
@@ -167,7 +167,7 @@ class ASVG{
             </feMerge>
           </filter>
 
-          <g id="asvg-popup-close">
+          <g id="asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" >
             <title>Close popup</title>
             <circle cx="15" cy="15" r="15" style="fill: #FAFAFA; opacity: 0.5;" />
             <path d="M 5,5 L 25,25 M 25,5 L 5,25" style="stroke: #1A1A1A; fill: transparent; stroke-linecap: round; stroke-width: 3;" />
