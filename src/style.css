@@ -16,10 +16,9 @@
 .asvg-popuplink-icon,
 .asvg-pagelink-icon {
   stroke:none;
-  animation: asvg-icon-fill 3s linear infinite;
+  animation: asvg-icon-fill 3s linear infinite alternate;
 }
 @keyframes asvg-icon-fill {
-  0%   {fill: red;}
-  50%  {fill: yellow;}
-  100% {fill: red;}
+  0%   {fill: #555;}
+  100% {fill: #999;}
 }
