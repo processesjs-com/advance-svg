@@ -44,6 +44,15 @@ class ASVG{
           .then( () => {
             params.injected = element.getAttribute( 'data-asvg-show' )
             params.currentDisplay = null
+          })
+          // 1.1. Add icons to popups, popuplinks and pagelinks
+          .then( () => {
+            this.addIcons( element ,  '[data-asvg-popup]' ,
+                                      '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
+            this.addIcons( element ,  '[data-asvg-popuplink]' ,
+                                      '" class="asvg-popuplink-icon" href="#asvg-popuplink-icon" />' )
+            this.addIcons( element ,  '[data-asvg-pagelink]'  ,
+                                      '" class="asvg-pagelink-icon" href="#asvg-pagelink-icon" />' )
             resolve()
           })
           .catch( err => {
@@ -55,15 +64,6 @@ class ASVG{
     // 2. Fit to display
       .then( () => fitSvg( element , params.targetDisplay ) )
       .then( () => { params.currentDisplay = params.targetDisplay } )
-    // 3. Add icons to popups, popuplinks and pagelinks
-      .then( () => {
-        this.addIcons( element ,  '[data-asvg-popup]:not(.asvg-popup-close)' ,
-                                  '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
-        this.addIcons( element ,  '[data-asvg-popuplink]:not(.asvg-popuplink-icon)' ,
-                                  '" class="asvg-popuplink-icon" href="#asvg-popuplink-icon" />' )
-        this.addIcons( element ,  '[data-asvg-pagelink]:not(.asvg-pagelink-icon)'  ,
-                                  '" class="asvg-pagelink-icon" href="#asvg-pagelink-icon" />' )
-      })
       .catch( err => this.catchError( err ) )
   }
 
