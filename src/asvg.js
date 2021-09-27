@@ -55,21 +55,22 @@ class ASVG{
     // 2. Fit to display
       .then( () => fitSvg( element , params.targetDisplay ) )
       .then( () => { params.currentDisplay = params.targetDisplay } )
+      .then( () => {
+        for(let linkElement of element.querySelectorAll( '[data-asvg-popuplink]' ) ){
+          console.log( linkElement )
+          let position = linkElement.getBBox()
+          let parser   = new DOMParser()
+          let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
+                        '" href="#asvg-popuplink-icon" />'
+          linkElement.appendChild( parser.parseFromString(text,"text/xml").documentElement )
+        }
+      })
       .catch( err => this.catchError( err ) )
   }
 
   updateAll( event ){
     for(let element of document.querySelectorAll( 'div[data-asvg]' ) ){
       this.updateElement( element )
-    }
-    console.log('3')
-    for(let linkElement of document.querySelectorAll( '[data-asvg-popuplink]' ) ){
-      console.log( linkElement.name )
-      let position = linkElement.getBBox()
-      let parser   = new DOMParser()
-      let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
-                    '" href="#asvg-popuplink-icon" />'
-      linkElement.appendChild( parser.parseFromString(text,"text/xml").documentElement )
     }
   }
 
