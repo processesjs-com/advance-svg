@@ -1,6 +1,6 @@
 [data-asvg] { text-align: center; }
 [data-asvg-display] { visibility:hidden; }
-[data-asvg-popup] { -webkit-filter: url(#drop-shadow); filter:url(#drop-shadow); }
+[data-asvg-popup] { visibility:visible; -webkit-filter: url(#drop-shadow); filter:url(#drop-shadow); }
 [data-asvg-popuplink]:hover,
 [data-asvg-hyperlink]:hover,
 [data-asvg-pagelink]:hover {
@@ -19,6 +19,7 @@
   animation: asvg-icon-fill 3s linear infinite;
 }
 @keyframes asvg-icon-fill {
-  0% {fill: red;}
-  100% {fill: yellow;}
+  0%   {fill: red;}
+  50%  {fill: yellow;}
+  100% {fill: red;}
 }
