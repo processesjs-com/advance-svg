@@ -15,10 +15,9 @@
 }
 .asvg-popuplink-icon,
 .asvg-pagelink-icon {
-  animation-name: asvg-icon-backgrounds;
-  animation-duration: 1s;
+  animation: asvg-icon-fill 3s linear infinite;
 }
-@keyframes asvg-icon-backgrounds {
-  from {fill: red;}
-  to {fill: yellow;}
+@keyframes asvg-icon-fill {
+  0% {fill: red;}
+  100% {fill: yellow;}
 }
