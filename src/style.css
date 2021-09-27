@@ -15,6 +15,10 @@
 }
 .asvg-popuplink-icon,
 .asvg-pagelink-icon {
-  -webkit-filter:url(#invert-color);
-  filter:url(#invert-color);
+  animation-name: icon-backgrounds;
+  animation-duration: 1s;
+}
+@keyframes icon-backgrounds {
+  from {background-color: red;}
+  to {background-color: yellow;}
 }
