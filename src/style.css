@@ -1,6 +1,6 @@
 [data-asvg] { text-align: center; }
 [data-asvg-display] { visibility:hidden; }
-[data-asvg-popup] { -webkit-filter: url(#drop-shadow); filter:url(#drop-shadow); }
+[data-asvg-popup] { visibility:visible; -webkit-filter: url(#drop-shadow); filter:url(#drop-shadow); }
 [data-asvg-popuplink]:hover,
 [data-asvg-hyperlink]:hover,
 [data-asvg-pagelink]:hover {
@@ -12,4 +12,13 @@
   -webkit-filter:url(#invert-color);
   filter:url(#invert-color);
   cursor:pointer;
+}
+.asvg-popuplink-icon,
+.asvg-pagelink-icon {
+  stroke:none;
+  animation: asvg-icon-fill 3s linear infinite alternate;
+}
+@keyframes asvg-icon-fill {
+  0%   {fill: #555;}
+  100% {fill: #ccc;}
 }

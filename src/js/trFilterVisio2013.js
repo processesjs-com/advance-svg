@@ -104,7 +104,6 @@ const trFilterVisio2013 = ( origSvg ) =>{
                 break
               case 'popup':
                 gTag.attr( 'data-asvg-popup' , val )
-                gTag.attr( 'onclick' , '' )
                 break
               case 'hreftarget':
                 let aTag = getFirst( gTag.closest('a') )
