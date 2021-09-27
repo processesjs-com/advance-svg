@@ -15,6 +15,7 @@
 }
 .asvg-popuplink-icon,
 .asvg-pagelink-icon {
+  stroke:none;
   animation: asvg-icon-fill 3s linear infinite;
 }
 @keyframes asvg-icon-fill {
