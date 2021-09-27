@@ -55,17 +55,23 @@ class ASVG{
     // 2. Fit to display
       .then( () => fitSvg( element , params.targetDisplay ) )
       .then( () => { params.currentDisplay = params.targetDisplay } )
+    // 3. Add icons to popups, popuplinks and pagelinks
       .then( () => {
-        for(let linkElement of element.querySelectorAll( '[data-asvg-popuplink]' ) ){
-          console.log( linkElement )
-          let position = linkElement.getBBox()
-          let parser   = new DOMParser()
-          let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
-                        '" href="#asvg-popuplink-icon" />'
-          linkElement.appendChild( parser.parseFromString(text,"text/xml").documentElement )
-        }
+        this.addIcons( element , '.asvg-popup-close' , '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
+        this.addIcons( element , '[data-asvg-popuplink]' , '" href="#asvg-popuplink-icon" />' )
+        this.addIcons( element , '[data-asvg-pagelink]'  , '" href="#asvg-pagelink-icon" />' )
       })
       .catch( err => this.catchError( err ) )
+  }
+
+  addIcons( element , selector , addString ){
+    for(let linkElement of element.querySelectorAll( selector ) ){
+      console.log( linkElement )
+      let position = linkElement.getBBox()
+      let parser   = new DOMParser()
+      let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+addString
+      linkElement.appendChild( parser.parseFromString( text , 'text/xml' ).documentElement )
+    }
   }
 
   updateAll( event ){
@@ -123,15 +129,6 @@ class ASVG{
         let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
 
         setTranslateAttr( popup , { x:alignX , y:alignY })
-
-        let popupClose = popup.querySelector('.asvg-popup-close')
-        if( ! popupClose ){
-          let position = popup.getBBox()
-          let parser   = new DOMParser()
-          let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+
-                        '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />'
-          popup.appendChild( parser.parseFromString(text,"text/xml").documentElement )
-        }
       }
     }
   }
