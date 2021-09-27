@@ -57,16 +57,18 @@ class ASVG{
       .then( () => { params.currentDisplay = params.targetDisplay } )
     // 3. Add icons to popups, popuplinks and pagelinks
       .then( () => {
-        this.addIcons( element , '[data-asvg-popup]' , '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
-        this.addIcons( element , '[data-asvg-popuplink]' , '" href="#asvg-popuplink-icon" />' )
-        this.addIcons( element , '[data-asvg-pagelink]'  , '" href="#asvg-pagelink-icon" />' )
+        this.addIcons( element ,  '[data-asvg-popup]:not(.asvg-popup-close)' ,
+                                  '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
+        this.addIcons( element ,  '[data-asvg-popuplink]:not(.asvg-popuplink-icon)' ,
+                                  '" class="asvg-popuplink-icon" href="#asvg-popuplink-icon" />' )
+        this.addIcons( element ,  '[data-asvg-pagelink]:not(.asvg-pagelink-icon)'  ,
+                                  '" class="asvg-pagelink-icon" href="#asvg-pagelink-icon" />' )
       })
       .catch( err => this.catchError( err ) )
   }
 
   addIcons( element , selector , addString ){
     for(let linkElement of element.querySelectorAll( selector ) ){
-      console.log( linkElement )
       let position = linkElement.getBBox()
       let parser   = new DOMParser()
       let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+addString

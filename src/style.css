@@ -13,3 +13,8 @@
   filter:url(#invert-color);
   cursor:pointer;
 }
+.asvg-popuplink-icon,
+.asvg-pagelink-icon {
+  -webkit-filter:url(#invert-color);
+  filter:url(#invert-color);
+}
