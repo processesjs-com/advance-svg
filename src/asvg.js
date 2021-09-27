@@ -57,7 +57,7 @@ class ASVG{
       .then( () => { params.currentDisplay = params.targetDisplay } )
     // 3. Add icons to popups, popuplinks and pagelinks
       .then( () => {
-        this.addIcons( element , '.asvg-popup-close' , '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
+        this.addIcons( element , '[data-asvg-popup]' , '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
         this.addIcons( element , '[data-asvg-popuplink]' , '" href="#asvg-popuplink-icon" />' )
         this.addIcons( element , '[data-asvg-pagelink]'  , '" href="#asvg-pagelink-icon" />' )
       })
