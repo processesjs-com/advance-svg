@@ -144,9 +144,9 @@ class ASVG{
   <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 */
   injectStuff(){
-    let filterDiv = document.createElement( 'svg' )
+    let filterDiv = document.createElement( 'p' )
     filterDiv.innerHTML = `
-      
+      <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
 
           <filter id="invert-color">
@@ -183,6 +183,7 @@ class ASVG{
           </g>
 
         </defs>
+      </svg>
     `
     filterDiv.style.height   = "0px";
     filterDiv.style.width    = "0px";
