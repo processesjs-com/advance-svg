@@ -140,7 +140,7 @@ class ASVG{
   }
 
 /*
-  Inject Svg filters and Popup Close shape, and add the OnClick event handlers to the window object
+  Inject Svg filters and Popup Close shape
 */
   injectStuff(){
     let filterDiv = document.createElement( 'span' )
@@ -184,8 +184,10 @@ class ASVG{
         </defs>
       </svg>
     `
+    filterDiv.style.height   = "0px";
+    filterDiv.style.width    = "0px";
+    filterDiv.style.overflow = "hidden";
     document.body.appendChild( filterDiv )
-    console.log('span')
   }
 }
 
