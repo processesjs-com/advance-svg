@@ -5,17 +5,18 @@ JavaScript library for advancing SVG graphics with:
 * popup shapes
 * in-page links
 
-The responsive behaiour allows fitting a graphic to pre-defined rectangular boundries (scenes), depending on the container's (div tag) width.
-The graphics shall define four rectangular boudries, from smallest to largest: Thumbnail, Small, Medium and Large.
+The responsive behaiour allows fitting a graphic to pre-defined rectangular boundries (Display shapes), in response to the container's (div tag) size (width).
+The graphics shall define four Display shapes, from smallest to largest: Thumbnail, Small, Medium and Large.
 
-The popup shapes are hidden from the scenes. When clicking on a popuplink the corresponding popup shape will show over the popuplink.
+The popup shapes are hidden from the scene. When a popuplink is selected (tap/click), the corresponding popup shape shows over the popuplink.
 
-Five types of shapes can be set in the graphic:
-* displayX  - define boundaries (scenes) to fit various screen sizes: Thumb, Small, Medium and Large
-* popup     - shapes that are hidden and show over a popuplink when clicked
-* popuplink - shapes that link to a pupup
-* pagelink  - in-page link to another graphic which will replace the current one within the same container
-* hyperlink - link to another page in the browser
+There are six parameters that can modify any shape (group tag) in the graphic:
+* display    - define boundaries (scenes) i.e.: Thumbnail, Small, Medium and Large
+* popup      - shapes that are hidden and show over popuplinks
+* popuplink  - shapes that link to a pupups
+* pagelink   - in-page link to another graphic that will replace the current graphic within the same container
+* hreftarget - modifies the target of anchor tags
+* icon       - icon that can be added to shapes
 
 The library can be used from CDN or from NPM module.
 
@@ -28,7 +29,7 @@ NPM installation command:
 npm install advance-svg
 ```
 
-Snippet for useing the library
+Snippet for useing the library (see main.js in the source code)
 ```
 import ASVG from 'advance-svg'
 
@@ -51,7 +52,7 @@ const customPageNotFoundFunction = err => {
 }
 
 const asvg = new ASVG( {
-  userErrorHandler = customPageNotFoundFunction
+  userErrorHandler : customPageNotFoundFunction
 } )
 
 window.addEventListener('load'  , asvg.updateAll )

@@ -37,31 +37,31 @@ class ASVG{
   updateElement ( element ){
     let params = this.updateParams( element )
     // 1. Inject SVG file
-      new Promise( ( resolve , reject ) => {
-        if( !params.injected || params.injected != element.getAttribute( 'data-asvg-show' ) ){
-          let fileLocation = element.getAttribute( 'data-asvg-filelocation' ) ? element.getAttribute( 'data-asvg-filelocation' ) : this.defaultFileLocation
-          injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) )
-          .then( () => {
-            params.injected = element.getAttribute( 'data-asvg-show' )
-            params.currentDisplay = null
-          })
-          // 1.1. Add icons to popups, popuplinks and pagelinks
-          .then( () => {
-            this.addIcons( element , '[data-asvg-popup]'     , '" href="#asvg-popup-close" class="asvg-popup-close" onclick="onASVGPopupCloseClick(this)" />' )
-            this.addIcons( element , '[data-asvg-popuplink]' , '" href="#asvg-popuplink-icon" />' )
-            this.addIcons( element , '[data-asvg-pagelink]'  , '" href="#asvg-pagelink-icon" />'  )
-            resolve()
-          })
-          .catch( err => {
-            element.setAttribute( 'data-asvg-show' , params.injected )
-            reject( err )
-          } )
-        }else{ resolve() }
-      } )
+    new Promise( ( resolve , reject ) => {
+      if( !params.injected || params.injected != element.getAttribute( 'data-asvg-show' ) ){
+        let fileLocation = element.getAttribute( 'data-asvg-filelocation' ) ? element.getAttribute( 'data-asvg-filelocation' ) : this.defaultFileLocation
+        injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) )
+        .then( () => {
+          params.injected = element.getAttribute( 'data-asvg-show' )
+          params.currentDisplay = null
+        })
+        // 1.1. Add icons to popups, popuplinks and pagelinks
+        .then( () => {
+          this.addIcons( element , '[data-asvg-popup]'     , '" href="#asvg-popup-close" class="asvg-popup-close" onclick="asvg.onPopupCloseClick(this)" />' )
+          this.addIcons( element , '[data-asvg-popuplink]' , '" href="#asvg-popuplink-icon" />' )
+          this.addIcons( element , '[data-asvg-pagelink]'  , '" href="#asvg-pagelink-icon" />'  )
+          resolve()
+        })
+        .catch( err => {
+          element.setAttribute( 'data-asvg-show' , params.injected )
+          reject( err )
+        } )
+      }else{ resolve() }
+    } )
     // 2. Fit to display
-      .then( () => fitSvg( element , params.targetDisplay ) )
-      .then( () => { params.currentDisplay = params.targetDisplay } )
-      .catch( err => this.catchError( err ) )
+    .then( () => fitSvg( element , params.targetDisplay ) )
+    .then( () => { params.currentDisplay = params.targetDisplay } )
+    .catch( err => this.catchError( err ) )
   }
 
   addIcons( element , selector , addString ){
@@ -186,13 +186,13 @@ class ASVG{
     `
     document.body.appendChild( filterDiv )
 
+    /* 
     window["onASVGPopupLinkClick"]  = this.onPopupLinkClick
     window["onASVGPopupCloseClick"] = this.onPopupCloseClick
     window["onASVGPageLinkClick"]   = this.onPageLinkClick
+    */
 
   }
 }
 
 export default ASVG
-
-// fill-rule:nonzero;fill:#000000;fill-opacity:0.5;
