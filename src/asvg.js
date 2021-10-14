@@ -184,13 +184,9 @@ class ASVG{
         </defs>
       </svg>
     `
-    document.body.appendChild( filterDiv )
+    //document.body.appendChild( filterDiv )
+    document.body.prepend( filterDiv )
 
-    /*
-    window["onASVGPopupLinkClick"]  = this.onPopupLinkClick
-    window["onASVGPopupCloseClick"] = this.onPopupCloseClick
-    window["onASVGPageLinkClick"]   = this.onPageLinkClick
-    */
   }
 }
 
