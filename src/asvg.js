@@ -186,7 +186,7 @@ class ASVG{
     `
     //document.body.appendChild( filterDiv )
     document.body.prepend( filterDiv )
-
+    console.log('prepend')
   }
 }
 
