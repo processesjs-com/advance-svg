@@ -143,7 +143,7 @@ class ASVG{
   Inject Svg filters and Popup Close shape, and add the OnClick event handlers to the window object
 */
   injectStuff(){
-    let filterDiv = document.createElement( 'div' )
+    let filterDiv = document.createElement( 'span' )
     filterDiv.innerHTML = `
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
@@ -184,9 +184,8 @@ class ASVG{
         </defs>
       </svg>
     `
-    //document.body.appendChild( filterDiv )
-    document.body.prepend( filterDiv )
-    console.log('prepend')
+    document.body.appendChild( filterDiv )
+    console.log('span')
   }
 }
 
