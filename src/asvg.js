@@ -151,7 +151,7 @@ class ASVG{
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
 
-          <linearGradient id="asvg-icon-gradient">
+          <linearGradient id="asvg-icon-gradient" x1="50%" y1="0%" x2="50%" y2="100%">
             <stop offset="0%" stop-color="#333" />
               <animate attributeName="stop-color" values="#333; #999; #CCC" dur="3s" repeatCount="indefinite"></animate>
             </stop>
