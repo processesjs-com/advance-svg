@@ -151,14 +151,13 @@ class ASVG{
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
 
-          <linearGradient id="icon-gradient-1">
+          <linearGradient id="icon-gradient">
             <stop offset="0%" stop-color="#333" />
+              <animate attributeName="stop-color" values="#333; #999; #ccc" dur="3s" repeatCount="indefinite"></animate>
+            </stop>
             <stop offset="100%" stop-color="#ccc" />
-          </linearGradient>
-
-          <linearGradient id="icon-gradient-2">
-            <stop offset="0%" stop-color="#ccc" />
-            <stop offset="100%" stop-color="#333" />
+              <animate attributeName="stop-color" values="#ccc; #999; #333" dur="3s" repeatCount="indefinite"></animate>
+            </stop>
           </linearGradient>
 
           <filter id="invert-color">
