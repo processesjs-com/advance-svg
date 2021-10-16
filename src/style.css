@@ -17,9 +17,3 @@
   filter:url(#asvg-invert-color);
   cursor:pointer;
 }
-.asvg-popuplink-icon,
-.asvg-pagelink-icon {
-  stroke:none;
-  fill:url(#asvg-icon-gradient);
-}
-
