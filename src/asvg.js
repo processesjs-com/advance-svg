@@ -14,7 +14,7 @@ class ASVG{
       [ 'S', { min:300  , max:600      }],
       [ 'T', { min:0    , max:300      }]
     ])
-    this.asvgParams = new WeakMap() // Map of all asvg divs
+    this.asvgParams = new WeakMap() // Map all asvg divs
     this.defaultFileLocation = window.ASVG_FILELOCATION ? window.ASVG_FILELOCATION : './'
 
     // Bind 'this' to all functions that have in the code 'this.'
@@ -27,6 +27,9 @@ class ASVG{
     this.injectStuff()
   }
 
+/*
+  Global error handler
+*/
   catchError( err ){
     console.error( err )
     if( err.name == 'UserError' ){
@@ -140,14 +143,23 @@ class ASVG{
   }
 
 /*
-  Inject Svg filters and Popup Close shape
-  <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  Inject Svg filters and icons
 */
   injectStuff(){
     let filterDiv = document.createElement( 'div' )
     filterDiv.innerHTML = `
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
+
+          <linearGradient id="icon-gradient-1">
+            <stop offset="0%" stop-color="#333" />
+            <stop offset="100%" stop-color="#ccc" />
+          </linearGradient>
+
+          <linearGradient id="icon-gradient-2">
+            <stop offset="0%" stop-color="#ccc" />
+            <stop offset="100%" stop-color="#333" />
+          </linearGradient>
 
           <filter id="invert-color">
             <feColorMatrix in="SourceGraphic" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"></feColorMatrix>
