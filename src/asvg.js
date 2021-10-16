@@ -151,24 +151,24 @@ class ASVG{
       <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
 
-          <linearGradient id="icon-gradient">
+          <linearGradient id="asvg-icon-gradient">
             <stop offset="0%" stop-color="#333" />
-              <animate attributeName="stop-color" values="#333; #999; #ccc" dur="3s" repeatCount="indefinite"></animate>
+              <animate attributeName="stop-color" values="#333; #999; #CCC" dur="3s" repeatCount="indefinite"></animate>
             </stop>
-            <stop offset="100%" stop-color="#ccc" />
-              <animate attributeName="stop-color" values="#ccc; #999; #333" dur="3s" repeatCount="indefinite"></animate>
+            <stop offset="100%" stop-color="#CCC" />
+              <animate attributeName="stop-color" values="#CCC; #999; #333" dur="3s" repeatCount="indefinite"></animate>
             </stop>
           </linearGradient>
 
-          <filter id="invert-color">
+          <filter id="asvg-invert-color">
             <feColorMatrix in="SourceGraphic" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"></feColorMatrix>
           </filter>
 
-          <filter id="yellow-highlight">
+          <filter id="asvg-yellow-highlight">
             <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 -1 0 0 0 0 1 0"></feColorMatrix>
           </filter>
 
-          <filter id="drop-shadow">
+          <filter id="asvg-drop-shadow">
             <feGaussianBlur in="SourceAlpha" stdDeviation="6"></feGaussianBlur>
             <feOffset dx="6" dy="6" result="offsetblur"></feOffset>
             <feFlood flood-color="#202020"></feFlood>
