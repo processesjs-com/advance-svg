@@ -19,6 +19,6 @@
   animation: asvg-icon-fill 2s linear infinite alternate;
 }
 @keyframes asvg-icon-fill {
-  0%   {fill: url(#icon-gradient-1) #333;}
-  100% {fill: url(#icon-gradient-2) #ccc;}
+  0%   {fill: url(#icon-gradient-1);}
+  100% {fill: url(#icon-gradient-2);}
 }
