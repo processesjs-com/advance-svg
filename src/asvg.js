@@ -181,7 +181,7 @@ class ASVG{
               <animate attributeName="stop-color" values="#333333; #CCCCCC; #333333" dur="4s" repeatCount="indefinite"></animate>
             </stop>
             <stop offset="100%" stop-color="#CCCCCC">
-                <animate attributeName="stop-color" values="#CCCCCC; #333333; #CCCCCC" dur="4s" repeatCount="indefinite"></animate>
+              <animate attributeName="stop-color" values="#CCCCCC; #333333; #CCCCCC" dur="4s" repeatCount="indefinite"></animate>
             </stop>
           </linearGradient>
 
