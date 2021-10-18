@@ -103,6 +103,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
                 gTag.attr( 'onclick' , 'asvg.onPageLinkClick(this)' )
                 break
               case 'icon_close':
+                console.log('icon close found')
                 gTag.attr( 'data-asvg-icon-close' , val )
                 break
               case 'icon_popuplink':
