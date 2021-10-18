@@ -104,7 +104,6 @@ const trFilterVisio2013 = ( origSvg ) =>{
                 break
               case 'iconclose':
                 gTag.attr( 'data-asvg-icon-close' , val )
-                console.log( gTag )
                 break
               case 'iconpopuplink':
                 gTag.attr( 'data-asvg-icon-popuplink' , val )
