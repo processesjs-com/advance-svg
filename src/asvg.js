@@ -177,11 +177,11 @@ class ASVG{
           </g>
 
           <linearGradient id="asvg-icon-gradient-popuplink" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="rgba(30,30,30,1)">
-              <animate attributeName="stop-color" values="rgba(30,30,30,1); rgba(30,30,30,0.5); rgba(30,30,30,0)" dur="4s" repeatCount="indefinite"></animate>
+            <stop offset="0%" stop-color="rgba(30,30,30,0)">
+              <animate attributeName="stop-color" values="rgba(30,30,30,0); rgba(30,30,30,0.5); rgba(30,30,30,1) ; rgba(30,30,30,0.5)" dur="4s" repeatCount="indefinite"></animate>
             </stop>
-            <stop offset="100%" stop-color="rgba(30,30,30,0)">
-              <animate attributeName="stop-color" values="rgba(30,30,30,0); rgba(30,30,30,0.5); rgba(30,30,30,1)" dur="4s" repeatCount="indefinite"></animate>
+            <stop offset="100%" stop-color="rgba(30,30,30,1)">
+              <animate attributeName="stop-color" values="rgba(30,30,30,1); rgba(30,30,30,0.5); rgba(30,30,30,0) ; rgba(30,30,30,0.5)" dur="4s" repeatCount="indefinite"></animate>
             </stop>
           </linearGradient>
 
