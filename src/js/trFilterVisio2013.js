@@ -87,8 +87,8 @@ const trFilterVisio2013 = ( origSvg ) =>{
             /*
               Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp tag
             */
+            console.log( name + ' found' )
             switch( flatStr( name ) ){
-              console.log( name + ' found' )
               case 'display':
                 gTag.attr( 'data-asvg-display' , val )
                 break
