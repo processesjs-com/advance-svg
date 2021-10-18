@@ -88,6 +88,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
               Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp tag
             */
             switch( flatStr( name ) ){
+              console.log( name + ' found' )
               case 'display':
                 gTag.attr( 'data-asvg-display' , val )
                 break
@@ -103,7 +104,6 @@ const trFilterVisio2013 = ( origSvg ) =>{
                 gTag.attr( 'onclick' , 'asvg.onPageLinkClick(this)' )
                 break
               case 'icon_close':
-                console.log('icon close found')
                 gTag.attr( 'data-asvg-icon-close' , val )
                 break
               case 'icon_popuplink':
