@@ -12,7 +12,7 @@
   filter:url(#asvg-yellow-highlight);
   cursor:pointer;
 }
-.asvg-popup-close:hover {
+.asvg-icon-close:hover {
   -webkit-filter:url(#asvg-invert-color);
   filter:url(#asvg-invert-color);
   cursor:pointer;
