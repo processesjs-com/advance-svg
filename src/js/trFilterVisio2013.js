@@ -63,7 +63,6 @@ const trFilterVisio2013 = ( origSvg ) =>{
     $('svg').removeAttr('height')
     $('svg').removeAttr('viewBox')
     $('a').attr( 'data-asvg-hyperlink' , '' )
-    $('g').removeAttr('id')
 
     /*
       Make changes to all 'activeShape' elements:
@@ -130,6 +129,9 @@ const trFilterVisio2013 = ( origSvg ) =>{
 
     // Remove all tagsToRemove
     for( let tag of tagsToRemove ){ $( tag ).remove() }
+
+    // Remove all id attributes
+    $('[id]').removeAttr('id')
 
     // Set titles
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
