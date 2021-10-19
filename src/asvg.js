@@ -27,6 +27,13 @@ class ASVG{
         this[key] = this[key].bind(this)
       }
     })
+
+    // Insert all common svg filters and icons
+    let insertEl = document.createElement( 'div' )
+    insertEl.innerHTML = svgFiltersAndIcons
+    insertEl.style.height   = "0px"
+    insertEl.style.width    = "0px"
+    document.appendChild( insertEl )
   }
 
 /*
@@ -55,17 +62,6 @@ class ASVG{
       // 1. Inject SVG file
       new Promise( ( resolve , reject ) => {
         if( !params.injected || params.injected != element.getAttribute( 'data-asvg-show' ) ){
-
-          // Check if one of the common svg filters and icons is already inserted. If no, then insert all
-          if( !document.querySelectorAll('#asvg-icon-close') ){
-            // Insert all common svg filters and icons
-            let insertEl = document.createElement( 'div' )
-            insertEl.innerHTML = svgFiltersAndIcons
-            insertEl.style.height   = "0px"
-            insertEl.style.width    = "0px"
-            element.appendChild( insertEl )
-          }
-
           let fileLocation = element.getAttribute( 'data-asvg-filelocation' ) ? element.getAttribute( 'data-asvg-filelocation' ) : this.defaultFileLocation
           injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) )
           .then( () => {
