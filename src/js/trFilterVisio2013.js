@@ -135,8 +135,9 @@ const trFilterVisio2013 = ( origSvg ) =>{
     $('g').removeAttr('id')
 
     let ids=[]
-    $('[id]').map( element => console.log( element ) )
-    // console.log( ids )
+    let elements = $('[id]')
+    elements.map( elId => ids.push( $(elements[ elId ]).attr('id') ) )
+    console.log( ids )
 
     // Set titles
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
