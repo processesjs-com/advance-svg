@@ -34,7 +34,7 @@ class ASVG{
     insertEl.innerHTML = svgFiltersAndIcons
     insertEl.style.height   = "0px"
     insertEl.style.width    = "0px"
-    document.appendChild( insertEl )
+    document.body.appendChild( insertEl )
   }
 
 /*
