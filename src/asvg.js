@@ -70,9 +70,9 @@ class ASVG{
           })
           // 1.1. Add icons
           .then( () => {
-            this.addIcons( element , '[data-asvg-icon-close]'     , '" href="#asvg-icon-close" class="asvg-icon-close" onclick="asvg.onPopupCloseClick(this)" />' )
-            this.addIcons( element , '[data-asvg-icon-popuplink]' , '" href="#asvg-icon-popuplink" />' )
-            this.addIcons( element , '[data-asvg-icon-pagelink]'  , '" href="#asvg-icon-pagelink" />'  )
+            this.addIcons( element , 'data-asvg-icon-close'     , '" href="#asvg-icon-close" class="asvg-icon-close" onclick="asvg.onPopupCloseClick(this)" />' )
+            this.addIcons( element , 'data-asvg-icon-popuplink' , '" href="#asvg-icon-popuplink" />' )
+            this.addIcons( element , 'data-asvg-icon-pagelink'  , '" href="#asvg-icon-pagelink" />'  )
             resolve()
           })
           .catch( err => {
@@ -86,6 +86,30 @@ class ASVG{
       .then( () => { params.currentDisplay = params.targetDisplay } )
       .catch( err => this.catchError( err ) )
     }
+
+      addIcons( element , dataAttr , addString ){
+        const flatStr = str => str.toLowerCase().replace( /[\s-_]+/g,'' )
+
+        for(let targetElement of element.querySelectorAll( '[' + dataAttr + ']' ) ){
+          let BBox = targetElement.getBBox()
+          const x={ l: BBox.x + 2 , c: BBox.x + BBox.width/2 - 10  , r: BBox.x + BBox.width - 20  }
+          const y={ t: BBox.y + 2 , m: BBox.y + BBox.height/2 - 10 , b: BBox.y + BBox.height - 20 }
+          let position = { x: x.l , y: y.t } // Top Left by default
+          switch( flatStr( targetElement.getAttribute( dataAttr ) ) ){
+            case 'tc': position = { x: x.c , y: y.t }; break
+            case 'tr': position = { x: x.r , y: y.t }; break
+            case 'ml': position = { x: x.l , y: y.m }; break
+            case 'mc': position = { x: x.c , y: y.m }; break
+            case 'mr': position = { x: x.r , y: y.m }; break
+            case 'bl': position = { x: x.l , y: y.b }; break
+            case 'bc': position = { x: x.c , y: y.b }; break
+            case 'br': position = { x: x.r , y: y.b }; break
+          }
+          let parser   = new DOMParser()
+          let text     ='<use xmlns="http://www.w3.org/2000/svg" x="' + position.x + '" y="' + position.y + addString
+          targetElement.appendChild( parser.parseFromString( text , 'text/xml' ).documentElement )
+        }
+      }
 
       updateParams( element ){
         if( !this.asvgParams.has( element ) ){
@@ -101,15 +125,6 @@ class ASVG{
           }
         }
         return params
-      }
-
-      addIcons( element , selector , addString ){
-        for(let targetElement of element.querySelectorAll( selector ) ){
-          let position = targetElement.getBBox()
-          let parser   = new DOMParser()
-          let text     ='<use xmlns="http://www.w3.org/2000/svg" x="'+(position.x+2)+'" y="'+(position.y+2)+addString
-          targetElement.appendChild( parser.parseFromString( text , 'text/xml' ).documentElement )
-        }
       }
 
 /*

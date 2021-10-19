@@ -27,13 +27,13 @@ const svgFiltersAndIcons = `
     </g>
 
     <linearGradient id="asvg-icon-gradient-popuplink" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(30,30,30,0)"></stop>
-      <stop offset="100%" stop-color="rgba(30,30,30,1)"></stop>
+      <stop offset="0%" stop-color="rgba(30,30,30,1)"></stop>
+      <stop offset="100%" stop-color="rgba(30,30,30,0)"></stop>
     </linearGradient>
 
     <linearGradient id="asvg-icon-gradient-pagelink" x1="0%" y1="50%" x2="100%" y2="50%">
-      <stop offset="0%" stop-color="rgba(30,30,30,1)"></stop>
-      <stop offset="100%" stop-color="rgba(30,30,30,0)"></stop>
+      <stop offset="0%" stop-color="rgba(30,30,30,0)"></stop>
+      <stop offset="100%" stop-color="rgba(30,30,30,1)"></stop>
     </linearGradient>
 
     <g id="asvg-icon-popuplink">
