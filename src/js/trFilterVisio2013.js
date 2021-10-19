@@ -134,10 +134,10 @@ const trFilterVisio2013 = ( origSvg ) =>{
     // Remove all id attributes from group elements
     $('g').removeAttr('id')
 
+    // List all id attributs
     let ids=[]
     let elements = $('[id]')
     elements.map( elId => ids.push( $(elements[ elId ]).attr('id') ) )
-    console.log( ids )
 
     // Set titles
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
@@ -155,7 +155,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     }
 
     // Replace all ids with unique ones
-    // ids.forEach( id => svgStr.replace( id , uuidv4() ) )
+    ids.forEach( id => svgStr.replace( id , uuidv4() ) )
 
     // Text search - remove all tabulations, new lines and multiple spaces
     svgStr = svgStr.replace(/\t/g,' ')
