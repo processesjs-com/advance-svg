@@ -155,7 +155,10 @@ const trFilterVisio2013 = ( origSvg ) =>{
     }
 
     // Replace all ids with unique ones
-    ids.forEach( id => svgStr.replaceAll( id , uuidv4() ) )
+    ids.forEach( id => {
+      console.log( id )
+      // svgStr.replaceAll( id , uuidv4() )
+    } )
 
     // Text search - remove all tabulations, new lines and multiple spaces
     svgStr = svgStr.replace(/\t/g,' ')
