@@ -7,6 +7,7 @@ import svgFiltersAndIcons from './js/svgFiltersAndIcons'
 class ASVG{
 
   constructor( properties ){
+
     this.properties = properties
 
     this.displayBreakpoints = new Map([
@@ -15,8 +16,10 @@ class ASVG{
       [ 'S', { min:300  , max:600      }],
       [ 'T', { min:0    , max:300      }]
     ])
+
     this.asvgParams = new WeakMap() // Map all asvg divs
-    this.defaultFileLocation = properties.defaultFileLocation ? properties.defaultFileLocation : './'
+
+    this.defaultFileLocation = ( properties && properties.defaultFileLocation ) ? properties.defaultFileLocation : './'
 
     // Bind 'this' to all functions that have in the code 'this.'
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
