@@ -29,7 +29,6 @@ class ASVG{
     })
 
     // Insert all common svg filters and icons
-    console.log( svgFiltersAndIcons )
     let insertEl = document.createElement( 'div' )
     insertEl.innerHTML = svgFiltersAndIcons
     insertEl.style.height   = "0px"
