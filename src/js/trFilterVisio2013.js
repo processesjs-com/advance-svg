@@ -156,7 +156,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
 
     // Replace all ids with unique ones
     ids.forEach( id => {
-      console.log( id )
+      console.log( id + ' ~ ' +  uuidv4() )
       // svgStr.replaceAll( id , uuidv4() )
     } )
 
