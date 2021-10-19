@@ -1,5 +1,6 @@
 import Cheerio from 'cheerio'
 import isSvg from 'is-svg'
+import { v4 as uuidv4 } from 'uuid'
 import { getFirst } from './misc'
 
 const flatStr = str => str.toLowerCase().replace( /[\s-_]+/g,'' )
@@ -130,8 +131,12 @@ const trFilterVisio2013 = ( origSvg ) =>{
     // Remove all tagsToRemove
     for( let tag of tagsToRemove ){ $( tag ).remove() }
 
-    // Remove all id attributes
-    $('[id]').removeAttr('id')
+    // Remove all id attributes from group elements
+    $('g').removeAttr('id')
+
+    let ids=[]
+    $('[id]').map( element => ids.push( element.attr('id') ) )
+    console.log( ids )
 
     // Set titles
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
@@ -147,6 +152,9 @@ const trFilterVisio2013 = ( origSvg ) =>{
       svgStr = svgStr.split( match[0] ).join( '' ) // See above note about replaceALL: replaceAll( match[0] , '' )
       match = vattrRegexp.exec( svgStr )
     }
+
+    // Replace all ids with unique ones
+    // ids.forEach( id => svgStr.replace( id , uuidv4() ) )
 
     // Text search - remove all tabulations, new lines and multiple spaces
     svgStr = svgStr.replace(/\t/g,' ')

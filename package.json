@@ -25,6 +25,7 @@
 	"dependencies": {
 		"is-svg": "^4.2.1",
 		"cheerio": "^1.0.0-rc.3",
+    "uuid": "^8.3.2",
 		"spin": "^0.0.1"
 	},
 	"devDependencies": {
