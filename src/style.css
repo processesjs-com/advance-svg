@@ -17,3 +17,9 @@
   filter:url(#asvg-invert-color);
   cursor:pointer;
 }
+#asvg-common-svg {
+  display: block;
+  line-height:0;
+  height: 0;
+  overflow: hidden;
+}
