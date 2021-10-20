@@ -2,19 +2,19 @@
 [data-asvg-display] { visibility:hidden; }
 [data-asvg-popup] {
   visibility:visible;
-  -webkit-filter: url(#asvg-drop-shadow);
-  filter:url(#asvg-drop-shadow);
+  -webkit-filter: url(#asvg-popup-filter);
+  filter:url(#asvg-popup-filter);
 }
 [data-asvg-popuplink]:hover,
 [data-asvg-hyperlink]:hover,
 [data-asvg-pagelink]:hover {
-  -webkit-filter: url(#asvg-yellow-highlight);
-  filter:url(#asvg-yellow-highlight);
+  -webkit-filter: url(#asvg-link-filter);
+  filter:url(#asvg-link-filter);
   cursor:pointer;
 }
 .asvg-icon-close:hover {
-  -webkit-filter:url(#asvg-invert-color);
-  filter:url(#asvg-invert-color);
+  -webkit-filter:url(#asvg-icon-close-filter);
+  filter:url(#asvg-icon-close-filter);
   cursor:pointer;
 }
 #asvg-common-svg {
