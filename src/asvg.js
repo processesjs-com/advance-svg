@@ -29,11 +29,15 @@ class ASVG{
     })
 
     // Insert all common svg filters and icons
-    let insertEl = document.createElement( 'div' )
-    insertEl.innerHTML = svgFiltersAndIcons
-    insertEl.style.height   = "0px"
-    insertEl.style.width    = "0px"
-    document.body.appendChild( insertEl )
+    let commonSvgEl = document.createElement( 'div' )
+    // insertEl.innerHTML = svgFiltersAndIcons
+    commonSvgEl.style.height   = "0px"
+    commonSvgEl.style.width    = "0px"
+    commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
+    document.body.appendChild( commonSvgEl )
+    injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' )
+    .then( () => { console.log('Common SVG inserted.') } )
+    .catch( err => this.catchError( err ) )
   }
 
 /*
