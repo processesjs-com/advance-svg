@@ -1,19 +1,19 @@
 <svg width="0px" height="0px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
-    <!-- Invert colour filter -->
     <filter id="asvg-icon-close-filter">
+      <!-- Invert colour -->
       <feColorMatrix in="SourceGraphic" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"></feColorMatrix>
     </filter>
 
-    <!-- Yellow highlight filter -->
     <filter id="asvg-link-filter">
+      <!-- Yellow highlight -->
       <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 -1 0 0 0 0 1 0">
-      <animate attributeName="values" attributeType="XML" begin="indefinite" dur="2" end="indefinite" from="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" to="1 0 0 0 0 0 1 0 0 0 0 0 1 -1 0 0 0 0 1 0" fill="freeze" />
+        <animate attributeName="values" dur="3s" from="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" to="1 0 0 0 0 0 1 0 0 0 0 0 1 -1 0 0 0 0 1 0" repeatCount="indefinite" />
       </feColorMatrix>
     </filter>
 
-    <!-- Drop shadow filter -->
     <filter id="asvg-popup-filter">
+      <!-- Drop shadow -->
       <feGaussianBlur in="SourceAlpha" stdDeviation="6"></feGaussianBlur>
       <feOffset dx="6" dy="6" result="offsetblur"></feOffset>
       <feFlood flood-color="#202020"></feFlood>
