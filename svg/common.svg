@@ -7,8 +7,8 @@
 
     <!-- Yellow highlight filter -->
     <filter id="asvg-link-filter">
-      <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0">
-      <animate attributeName="values" attributeType="XML" dur="2" from="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" to="1 0 0 0 0 0 1 0 0 0 0 0 1 -1 0 0 0 0 1 0"  />
+      <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 -1 0 0 0 0 1 0">
+      <animate attributeName="values" attributeType="XML" begin="indefinite" dur="2" end="indefinite" from="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" to="1 0 0 0 0 0 1 0 0 0 0 0 1 -1 0 0 0 0 1 0" fill="freeze" />
       </feColorMatrix>
     </filter>
 
