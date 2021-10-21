@@ -18,7 +18,10 @@ class ASVG{
 
     this.asvgParams = new WeakMap() // Map all asvg divs
 
+    // Set default properties
     this.defaultFileLocation = ( properties && properties.defaultFileLocation ) ? properties.defaultFileLocation : './'
+    this.iconMargin = ( properties && properties.iconMargin ) ? properties.iconMargin : 2
+    this.userErrorHandler = ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler( err ) : alert( err )
 
     // Bind 'this' to all functions that have in the code 'this.'
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
@@ -41,9 +44,7 @@ class ASVG{
 */
   catchError( err ){
     console.error( err )
-    if( err.name == 'UserError' ){
-      ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler( err ) : alert( err )
-    }
+    if( err.name == 'UserError' ) this.userErrorHandler
   }
 
 /*
@@ -70,9 +71,9 @@ class ASVG{
           })
           // 1.1. Add icons
           .then( () => {
-            this.addIcons( element , 'data-asvg-icon-close'     , '" href="#asvg-icon-close" class="asvg-icon-close" onclick="asvg.onPopupCloseClick(this)" />' )
-            this.addIcons( element , 'data-asvg-icon-popuplink' , '" href="#asvg-icon-popuplink" />' )
-            this.addIcons( element , 'data-asvg-icon-pagelink'  , '" href="#asvg-icon-pagelink" />'  )
+            this.addIcons( element , 'asvg-icon-close'     , '" href="#asvg-icon-close" class="asvg-icon-close" onclick="asvg.onPopupCloseClick(this)" />' )
+            this.addIcons( element , 'asvg-icon-popuplink' , '" href="#asvg-icon-popuplink" />' )
+            this.addIcons( element , 'asvg-icon-pagelink'  , '" href="#asvg-icon-pagelink" />'  )
             resolve()
           })
           .catch( err => {
@@ -87,15 +88,16 @@ class ASVG{
       .catch( err => this.catchError( err ) )
     }
 
-      addIcons( element , dataAttr , addString ){
+      addIcons( element , iconId , addString ){
         const flatStr = str => str.toLowerCase().replace( /[\s-_]+/g,'' )
+        let iconBBox = document.getElementById( iconId ).getBBox()
 
-        for(let targetElement of element.querySelectorAll( '[' + dataAttr + ']' ) ){
-          let BBox = targetElement.getBBox()
-          const x={ l: BBox.x + 2 , c: BBox.x + BBox.width/2 - 10  , r: BBox.x + BBox.width - 20  }
-          const y={ t: BBox.y + 2 , m: BBox.y + BBox.height/2 - 10 , b: BBox.y + BBox.height - 20 }
+        for(let targetElement of element.querySelectorAll( '[data-' + iconId + ']' ) ){
+          let elBBox = targetElement.getBBox()
+          const x={ l: elBBox.x + 2 , c: elBBox.x + elBBox.width/2  - iconBBox.width/2  , r: elBBox.x + elBBox.width  - iconBBox.width - this.iconMargin  }
+          const y={ t: elBBox.y + 2 , m: elBBox.y + elBBox.height/2 - iconBBox.height/2 , b: elBBox.y + elBBox.height - iconBBox.height - this.iconMargin }
           let position = { x: x.l , y: y.t } // Top Left by default
-          switch( flatStr( targetElement.getAttribute( dataAttr ) ) ){
+          switch( flatStr( targetElement.getAttribute( 'data-' + iconId ) ) ){
             case 'tc': position = { x: x.c , y: y.t }; break
             case 'tr': position = { x: x.r , y: y.t }; break
             case 'ml': position = { x: x.l , y: y.m }; break
