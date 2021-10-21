@@ -21,7 +21,7 @@ class ASVG{
     // Set default properties
     this.defaultFileLocation = ( properties && properties.defaultFileLocation ) ? properties.defaultFileLocation : './'
     this.iconMargin = ( properties && properties.iconMargin ) ? properties.iconMargin : 2
-    this.userErrorHandler = ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler : alert
+    this.userErrorHandler = ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler : err => alert(err)
 
     // Bind 'this' to all functions that have in the code 'this.'
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
