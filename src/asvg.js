@@ -74,6 +74,7 @@ class ASVG{
             this.addIcons( element , 'asvg-icon-close'     , '" href="#asvg-icon-close" class="asvg-icon-close" onclick="asvg.onPopupCloseClick(this)" />' )
             this.addIcons( element , 'asvg-icon-popuplink' , '" href="#asvg-icon-popuplink" />' )
             this.addIcons( element , 'asvg-icon-pagelink'  , '" href="#asvg-icon-pagelink" />'  )
+            this.addIcons( element , 'asvg-icon-hyperlink'  , '" href="#asvg-icon-hyperlink" />'  )
             resolve()
           })
           .catch( err => {
