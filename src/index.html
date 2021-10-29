@@ -55,6 +55,7 @@
               <pre>
                 <code>
                   &lt;div <b><span style="color: rgb(191, 144, 0);">data-asvg="page1.svg" data-asvg-show="page1.svg"</span></b> style="width:100%;"&gt; &lt;/div&gt;
+                  Optional parameter: <b><span style="color: rgb(191, 144, 0);">data-asvg-filelocation</span></b>
                 </code>
               </pre>
             </li>
@@ -131,7 +132,7 @@
               <td>data-asvg-icon-hyperlink</td>
             </tr>
           </table>
-          <h2>Extra parameters specific for MS Visio:</h2>
+          <p>Extra parameters specific for MS Visio:</p>
           <table>
             <tr>
               <td>Parameter name</td>
@@ -176,6 +177,33 @@
                 This code will make the hyperlink to open in a new browser tab or window.
               </td>
               <td>data-asvg-hreftarget</td>
+            </tr>
+          </table>
+          <p>ASVG Constructor parameters</p>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Type</td>
+              <td>Default value</td>
+              <td>Description</td>
+            </tr>
+            <tr>
+              <td>defaultFileLocation</td>
+              <td>string</td>
+              <td>'./'</td>
+              <td>The file location where the svg files are stored. Note that </td>
+            </tr>
+            <tr>
+              <td>userErrorHandler</td>
+              <td>function</td>
+              <td>err => alert( err )</td>
+              <td>A function to notify the user for some types of errors, for example file not find error.</td>
+            </tr>
+            <tr>
+              <td>iconMargin</td>
+              <td>integer</td>
+              <td>2</td>
+              <td>Pixels from the borders</td>
             </tr>
           </table>
         </div>

@@ -5,6 +5,12 @@ import { getTranslateAttr , setTranslateAttr } from './js/misc'
 
 class ASVG{
 
+/*
+  The constructor accepts parameters in a properties object:
+    defaultFileLocation - default value: './'
+    userErrorHandler - default value: err => alert( err )
+    iconMargin - pixels in integer, default value: 2
+*/
   constructor( properties ){
 
     this.properties = properties

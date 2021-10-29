@@ -5,7 +5,7 @@ import ASVG from './asvg'
 */
 
 if( !window.asvg ){
-  window.asvg = new ASVG()
+  window.asvg = new ASVG() // Can pass an object with parameters: defaultFileLocation, userErrorHandler and iconMargin
   window.addEventListener('load'  , asvg.updateAll )
   window.addEventListener('resize', asvg.updateAll )
 }
