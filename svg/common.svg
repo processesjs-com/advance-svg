@@ -37,7 +37,7 @@
     </g>
 
     <!-- Icon-popuplink -->
-    <linearGradient id="asvg-icon-gradient-popuplink" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="asvg-icon-gradient-popuplink" x1="50%" y1="0%" x2="50%" y2="100%">
       <stop offset="0%" stop-color="rgba(30,30,30,1)"></stop>
       <stop offset="100%" stop-color="rgba(30,30,30,0)"></stop>
     </linearGradient>
@@ -56,12 +56,7 @@
       <path fill="url('#asvg-icon-gradient-pagelink')" style="stroke:none;" d="M 14.125 0 L 1.875 0 C 0.839844 0 0 0.839844 0 1.875 L 0 4.375 L 1.25 4.375 L 1.25 1.875 C 1.25 1.53125 1.53125 1.25 1.875 1.25 L 14.125 1.25 C 14.46875 1.25 14.75 1.53125 14.75 1.875 L 14.75 14.125 C 14.75 14.46875 14.46875 14.75 14.125 14.75 L 1.875 14.75 C 1.53125 14.75 1.25 14.46875 1.25 14.125 L 1.25 11.625 L 0 11.625 L 0 14.125 C 0 15.160156 0.839844 16 1.875 16 L 14.125 16 C 15.160156 16 16 15.160156 16 14.125 L 16 1.875 C 16 0.839844 15.160156 0 14.125 0 Z M 14.125 0 "/>
       <path fill="url('#asvg-icon-gradient-pagelink')" style="stroke:none;" d="M 7.5 4.117188 L 6.617188 5 L 8.992188 7.375 L 0 7.375 L 0 8.625 L 8.992188 8.625 L 6.617188 11 L 7.5 11.882812 L 11.382812 8 Z M 7.5 4.117188 "/>
     </g>
-
     <!-- Icon-hyperlink -->
-    <linearGradient id="asvg-icon-gradient-pagelink" x1="0%" y1="50%" x2="100%" y2="50%">
-      <stop offset="0%" stop-color="rgba(30,30,30,0)"></stop>
-      <stop offset="100%" stop-color="rgba(30,30,30,1)"></stop>
-    </linearGradient>
     <g id="asvg-icon-hyperlink" >
       <animateTransform attributeName="transform" type="scale" additive="sum" from="4 4" to="1 1" begin="0s" dur="1s" repeatCount="1"></animateTransform>
       <path fill="url('#asvg-icon-gradient-pagelink')" style="stroke:none;" d="M 14.5 7.5 C 14.222656 7.5 14 7.722656 14 8 L 14 12.5 C 14 13.328125 13.328125 14 12.5 14 L 3.5 14 C 2.671875 14 2 13.328125 2 12.5 L 2 3.5 C 2 2.671875 2.671875 2 3.5 2 L 8 2 C 8.277344 2 8.5 1.777344 8.5 1.5 C 8.5 1.222656 8.277344 1 8 1 L 3.5 1 C 2.121094 1 1 2.121094 1 3.5 L 1 12.5 C 1 13.878906 2.121094 15 3.5 15 L 12.5 15 C 13.878906 15 15 13.878906 15 12.5 L 15 8 C 15 7.722656 14.777344 7.5 14.5 7.5 Z M 14.5 7.5 "/>
