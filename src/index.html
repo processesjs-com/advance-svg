@@ -23,7 +23,7 @@
       <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
           <h1><span style="font-family: Gloria Hallelujah; color: rgb(191, 144, 0);">Advance SVG - adds</span> <i>&lt;code /&gt;</i> <span style="font-family: Gloria Hallelujah; color: rgb(191, 144, 0);">to pictures</span></h1>
-          <div data-asvg="page1.svg" data-asvg-show="page1.svg" style="width:100%;" >This is Advance SVG insertion point. This text shold not display and if you see it, this means that ASVG Script is not working.</div>
+          <div data-asvg="page1.svg" data-asvg-show="page1.svg" style="width:100%;" >If you see this text, the ASVG Script is not working.</div>
           <h1 class="display-5 fw-bold">Introduction</h1>
           <p>Advance SVG is a technique for publishing interactive graphics on internet. The technique can be applied for any type of graphics and format e.g. free hand drawings, business process maps, mind charts, technical diagrams etc. - for any matter that can be described with a simple, at-a-glance picture.</p>
           <p>Advance SVG utilises the standard modern browsers’ abilities to show high quality, scalable graphics (see the HTML5 SVG specification) and to behave interactively via Cascadin Style Sheets (CSS) and JavaScript programms.</p>
@@ -39,19 +39,19 @@
         <div class="container-fluid py-5">
           <h1 class="display-5 fw-bold">How it works?</h1>
           <p>Advance SVG is not an authoring tool, hence it does not help to neither create web pages nor to draw graphics. Various tools can be used for these. In order to work, it is necessary to ensure that: first, the ASVG Script is included into the web page; second, the shapes are marked-up as per the ASVG Specification and finally, the web page includes a point(s) to insert the graphic(s).</p>
-          <div data-asvg="page2.svg" data-asvg-show="page2.svg" style="width:100%;" >This is Advance SVG insertion point. This text shold not display and if you see it, this means that ASVG Script is not working.</div>
+          <div data-asvg="page2.svg" data-asvg-show="page2.svg" style="width:100%;" >If you see this text, the ASVG Script is not working.</div>
           <p>The workflow steps are as follows:</p>
           <ol>
-            <li><b>Create web page</b> – this is outside of the Advance SVG scope. Can use various tools.</li>
-            <li><b>Add ASVG Script</b> – it’s as simple as adding the following snippet into the HTML code<br>
+            <li><b>Create web page</b> – can use various methods – from simple text editor to any modern Content Management System (CMS). </li>
+            <li><b>Add ASVG Script</b> – the following snippet illustrates the simplest method to insert the library into a page. <br>
               <pre>
                 <code>
                   <b><span style="color: rgb(191, 144, 0);">&lt;script src="https://d2a8hhqmsel69m.cloudfront.net/bundle.js"&gt;&lt;/script&gt;</span></b>
                 </code>
               </pre>
-              Please note that adding the library to a Content Management System (CMS) like WordPress or SharePoint requires System Administrator’s work. Also, with SharePoint, there is another mechanism to use the library via Web Part - this is outside of the scope of this page.
+              However, adding the library into a Content Management System (CMS) like WordPress or SharePoint requires System Administrator’s work. In SharePoint the mechanism to use the library requires using a special Webpart. The topic of using the library with SharePoint is outside of the scope of this specification.
             </li>
-            <li><b>Add insertion point</b> - add the following snippet in the place where the graphic is required:<br>
+            <li><b>Add insertion point</b> - the snippet below shows a simple example of adding data attributes to the standard SVG group tag:<br>
               <pre>
                 <code>
                   &lt;div <b><span style="color: rgb(191, 144, 0);">data-asvg="page1.svg" data-asvg-show="page1.svg"</span></b> style="width:100%;"&gt; &lt;/div&gt;
@@ -59,7 +59,7 @@
                 </code>
               </pre>
             </li>
-            <li><b>Draw a graphic</b> – this is outside of the Advance SVG scope. Can use various tools like MS Visio.</li>
+            <li><b>Draw a graphic</b> – can use any software that can export to SVG format. However, marking up shapes requires an easy method for adding data attributes to the group tags. Currently, the technique has a special filter, which allows reading data from MS Visio SVG files.</li>
             <li><b>Mark up shapes</b> – add data attributes to groups (g tags) in the SVG code. Here is a simple example of popuplink and the associated popup:<br>
               <pre>
                 <code>
@@ -72,20 +72,21 @@
                 </code>
               </pre>
             </li>
-            <li><b>Provide SVG file</b> - the marked up SVG file will be loaded dynamically by the ASVG Script and placed into the insertion point (see step 3).</li>
-            <li><b>Enjoy ASVG</b> - explore the examples on this page.</li>
-            <li><b>Using MS Visio</b> – MS Visio is a great authoring tool that allows adding custom data to the graphics. ASVG Script has a filter that can recognise that data and mark-up on-the-fly. Graphics created in MS Visio can be exported to SVG format and published directly. Tutorial about using MS Visio to create Advance SVG graphics will be provided separately.</li>
+            <li><b>Publish graphics</b> - the SVG file needs to be ona server. It will be loaded dynamically by the ASVG Script and placed into the insertion point (see item 3).</li>
+            <li><b>A. Content Management</b> - this specification is generic and depends solely on HTML5. In the most real situations, the web pages would be created within a Content Management System (CMS). Therefore items 1 to 3 will depend on the tools and the methods within a specific CMS. Further materials, outside this specification, about using SharePoint are available from the author.</li>
+            <li><b>B. Graphic Design</b> – this specification depends only on the SVG specification. Many graphic software can save files in the SVG format. However, the method to add data to mark-up shapes depends on a specific software. ASVG Script has a filter that can recognise the data and mark-up on-the-fly graphics created in MS Visio. Materials about using MS Visio are available outside this specification.</li>
           </ol>
         </div>
         <div class="container-fluid py-5">
           <h1 class="display-5 fw-bold">Technical Specification (v. 1.0)</h1>
-          <p>Data attributes (mark-ups) that can be added to the shapes via the 'G' tags.</p>
+          <h2>Data attributes (mark-ups)</h2>
+          <p>These should be added to the SVG group &lt;g&gt; tag.</p>
           <table>
             <tr>
               <td width="200px">Parameter name</td>
               <td>Value(s)</td>
               <td>Description</td>
-              <td width="200px">SVG 'G' tag attribute</td>
+              <td width="200px">SVG &lt;g&gt; tag attribute</td>
             </tr>
             <tr>
               <td>display</td>
@@ -132,13 +133,15 @@
               <td>data-asvg-icon-hyperlink</td>
             </tr>
           </table>
-          <p>Extra parameters specific for MS Visio:</p>
+          <p>Note: Hyperlinks to other pages are working with the standard &lt;a&gt; tag.</p>
+          <h2>Extra parameters specific for MS Visio</h2>
+          <p>These are implemented via ASVG transformation filter:</p>
           <table>
             <tr>
               <td>Parameter name</td>
               <td>Value(s)</td>
               <td>Description</td>
-              <td width="200px">SVG G TAG attribute</td>
+              <td width="200px">SVG group &lt;g&gt; tag attribute</td>
             </tr>
             <tr>
               <td>title</td>
@@ -166,7 +169,7 @@
             <tr>
               <td>hreftarget</td>
               <td>e.g. _blank</td>
-              <td>This works with hyperlinks for setting the target parameter - see HTML specification about the hyperlink targets. Here is an illustration code:<br>
+              <td>This works with hyperlinks for setting the target parameter - see HTML specification about the hyperlink targets. This is a work around when the graphic design software does not allow setting the hyperlink targets. Here is an illustration code:<br>
                 <pre>
                   <code>
                     &lt;a href="...." &gt;
@@ -174,12 +177,13 @@
                     &lt;/a&gt;
                   </code>
                 </pre><br>
-                This code will make the hyperlink to open in a new browser tab or window.
+                This code will make the hyperlink to open in a new tab or window of the browser.
               </td>
               <td>data-asvg-hreftarget</td>
             </tr>
           </table>
-          <p>ASVG Constructor parameters</p>
+          <h2>ASVG Constructor parameters.</h2>
+          <p>If the library is used from the source code, here is a list of the parameters that can be set for the ASVG Object.</p>
           <table>
             <tr>
               <td>Name</td>
@@ -203,7 +207,7 @@
               <td>iconMargin</td>
               <td>integer</td>
               <td>2</td>
-              <td>Pixels from the borders</td>
+              <td>A margin, in pixels, from the shapes' borders. The positive numbers will place the icons within the shapes i.e. popuplinks, in-page links and hyperlinks.</td>
             </tr>
           </table>
         </div>
