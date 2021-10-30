@@ -182,8 +182,23 @@
               <td>data-asvg-hreftarget</td>
             </tr>
           </table>
-          <h2>ASVG Constructor parameters.</h2>
-          <p>If the library is used from the source code, here is a list of the parameters that can be set for the ASVG Object.</p>
+          <h2>ASVG Object.</h2>
+          <p>The library can be used from the source code (from GitHub or NPM). See the snippet below:</p>
+          <pre>
+            <code>
+              import ASVG from './asvg'
+              /*
+                An instance of the ASVG class, named 'asvg', must be exposed via the window object to make onclick handlers available
+              */
+
+              if( !window.asvg ){
+                window.asvg = new ASVG() // Accepts a parameter object with these properties: defaultFileLocation, userErrorHandler and iconMargin
+                window.addEventListener('load'  , asvg.updateAll )
+                window.addEventListener('resize', asvg.updateAll )
+              }
+            </code>
+          </pre>
+          <p>ASVG Object has the following constructor parameters:</p>
           <table>
             <tr>
               <td>Name</td>
