@@ -14,6 +14,7 @@ class ASVG{
   constructor( properties ){
 
     this.properties = properties
+    this.ready = false
 
     this.displayBreakpoints = new Map([
       [ 'L', { min:1100 , max:Infinity }],
@@ -41,9 +42,11 @@ class ASVG{
     commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
     document.body.appendChild( commonSvgEl )
     injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' )
-    .then( () => {} )
+    .then( () => this.ready = true )
     .catch( err => this.catchError( err ) )
   }
+
+  isReady(){ return this.ready }
 
 /*
   Global error handler
@@ -80,7 +83,7 @@ class ASVG{
             this.addIcons( element , 'asvg-icon-close'     , '" href="#asvg-icon-close" class="asvg-icon-close" onclick="asvg.onPopupCloseClick(this)" />' )
             this.addIcons( element , 'asvg-icon-popuplink' , '" href="#asvg-icon-popuplink" />' )
             this.addIcons( element , 'asvg-icon-pagelink'  , '" href="#asvg-icon-pagelink" />'  )
-            this.addIcons( element , 'asvg-icon-hyperlink'  , '" href="#asvg-icon-hyperlink" />'  )
+            this.addIcons( element , 'asvg-icon-hyperlink' , '" href="#asvg-icon-hyperlink" />' )
             resolve()
           })
           .catch( err => {
