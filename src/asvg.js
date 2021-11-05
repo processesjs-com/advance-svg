@@ -42,7 +42,10 @@ class ASVG{
     commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
     document.body.appendChild( commonSvgEl )
     injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' )
-    .then( () => this.ready = true )
+    .then( () => {
+      this.ready = true
+      window.dispatchEvent( new Event('asvg-ready') )
+    } )
     .catch( err => this.catchError( err ) )
   }
 
