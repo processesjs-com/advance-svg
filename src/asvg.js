@@ -41,7 +41,7 @@ class ASVG{
       Insert common svg filters and icons (common.svg file).
       Notice that in FireFox, appendChild works asynchroniously, hence using Promise and delay until appendChild is complete.
     */
-    Promise( ( resolve , reject) => {
+    let commonSVGPromise = new Promise( ( resolve , reject) => {
       const maxCounts = 100
       let counter = 0
       let commonSvgEl = document.createElement( 'div' )
@@ -54,11 +54,10 @@ class ASVG{
         resolve( injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' ) )
       }else{ let err = new Error( 'Could create element for common.svg!' ); err.name='BrowserError' ; reject( err ) }
     } )
-    .then( () => {
+    commonSVGPromise.then( () => {
       this.ready = true
       window.dispatchEvent( new Event('asvg-ready') )
-    } )
-    .catch( err => this.catchError( err ) )
+    } ).catch( err => this.catchError( err ) )
   }
 
   isReady(){ return this.ready }
