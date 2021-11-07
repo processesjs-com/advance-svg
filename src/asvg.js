@@ -40,7 +40,11 @@ class ASVG{
     // Insert all common svg filters and icons
     let commonSvgEl = document.createElement( 'div' )
     commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
-    injectSvg( document.body.appendChild( commonSvgEl ) , this.defaultFileLocation + 'common.svg' )
+    document.body.appendChild( commonSvgEl )
+    while( !document.getElementById('asvg-common-svg') ){
+      setTimeout( ()=>{} , 500)
+    }
+    injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' )
     .then( () => {
       this.ready = true
       window.dispatchEvent( new Event('asvg-ready') )
