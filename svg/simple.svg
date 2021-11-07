@@ -25,13 +25,13 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.70110129"
-     inkscape:cx="257.4521"
+     inkscape:cx="94.850774"
      inkscape:cy="561.97301"
-     inkscape:window-width="1920"
-     inkscape:window-height="959"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
+     inkscape:window-width="1284"
+     inkscape:window-height="1040"
+     inkscape:window-x="-5"
+     inkscape:window-y="1"
+     inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
      id="defs2">
@@ -105,7 +105,8 @@
          y="10.980565" />
     </g>
     <g
-       id="g6158">
+       id="g6158"
+       data-asvg-display="M">
       <rect
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.284187"
          id="rect149"
@@ -115,7 +116,8 @@
          y="11.050306" />
     </g>
     <g
-       id="g6161">
+       id="g6161"
+       data-asvg-display="S">
       <rect
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.314174"
          id="rect151"
@@ -125,7 +127,8 @@
          y="84.34816" />
     </g>
     <g
-       id="g6164">
+       id="g6164"
+       data-asvg-display="T">
       <rect
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.121991"
          id="rect153"
