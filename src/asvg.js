@@ -37,14 +37,23 @@ class ASVG{
       }
     })
 
-    // Insert all common svg filters and icons
-    let commonSvgEl = document.createElement( 'div' )
-    commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
-    document.body.appendChild( commonSvgEl )
-    while( !document.getElementById('asvg-common-svg') ){
-      setTimeout( ()=>{} , 500)
-    }
-    injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' )
+    /*
+      Insert common svg filters and icons (common.svg file).
+      Notice that in FireFox, appendChild works asynchroniously, hence using Promise and delay until appendChild is complete.
+    */
+    Promise( ( resolve , reject) => {
+      const maxCounts = 100
+      let counter = 0
+      let commonSvgEl = document.createElement( 'div' )
+      commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
+      document.body.appendChild( commonSvgEl )
+      while( !document.getElementById('asvg-common-svg') && counter < maxCounts ){
+        setTimeout( () => { console.log( counter ) ; counter++ } , 10 )
+      }
+      if( document.getElementById('asvg-common-svg') ){
+        resolve( injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' ) )
+      }else{ let err = new Error( 'Could create element for common.svg!' ); err.name='BrowserError' ; reject( err ) }
+    } )
     .then( () => {
       this.ready = true
       window.dispatchEvent( new Event('asvg-ready') )
