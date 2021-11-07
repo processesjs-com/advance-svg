@@ -42,18 +42,17 @@ class ASVG{
       Notice that in FireFox, appendChild works asynchroniously, hence using Promise and delay until appendChild is complete.
     */
     let commonSVGPromise = new Promise( ( resolve , reject) => {
-      const maxCounts = 100
-      let counter = 0
       let commonSvgEl = document.createElement( 'div' )
       commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
       document.body.appendChild( commonSvgEl )
-      while( !document.getElementById('asvg-common-svg') && counter < maxCounts ){
-        setTimeout( () => { console.log( counter ) ; counter++ } , 10 )
-      }
+      const maxCounts = 100
+      let counter = 0
+      while( !document.getElementById('asvg-common-svg') && counter < maxCounts ){ setTimeout( () => counter++ , 10 ) }
       if( document.getElementById('asvg-common-svg') ){
         resolve( injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' ) )
-      }else{ let err = new Error( 'Could create element for common.svg!' ); err.name='BrowserError' ; reject( err ) }
+      }else{ let err = new Error( 'Could create element for common.svg!' ); reject( err ) }
     } )
+
     commonSVGPromise.then( () => {
       this.ready = true
       window.dispatchEvent( new Event('asvg-ready') )
