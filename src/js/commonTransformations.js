@@ -26,6 +26,7 @@ const commonTransformations = ( origSvg , isCommon ) =>{
     if( !isCommon ){
       // Remove all id attributes from group elements
       $('g').removeAttr('id')
+      $('rect').removeAttr('id')
 
       // List all id attributs
       let elements = $('[id]')
