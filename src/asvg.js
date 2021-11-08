@@ -49,7 +49,7 @@ class ASVG{
       let counter = 0
       while( !document.getElementById('asvg-common-svg') && counter < maxCounts ){ setTimeout( () => counter++ , 10 ) }
       if( document.getElementById('asvg-common-svg') ){
-        resolve( injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' ) )
+        resolve( injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' ) , true )
       }else{ let err = new Error( 'Could create element for common.svg!' ); reject( err ) }
     } )
 
@@ -86,7 +86,7 @@ class ASVG{
       new Promise( ( resolve , reject ) => {
         if( !params.injected || params.injected != element.getAttribute( 'data-asvg-show' ) ){
           let fileLocation = element.getAttribute( 'data-asvg-filelocation' ) ? element.getAttribute( 'data-asvg-filelocation' ) : this.defaultFileLocation
-          injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) )
+          injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) , false )
           .then( () => {
             params.injected = element.getAttribute( 'data-asvg-show' )
             params.currentDisplay = null
