@@ -7,6 +7,6 @@ import ASVG from './asvg'
 if( !window.asvg ){
   window.asvg = new ASVG() // Accepts a parameter object with these properties: defaultFileLocation, userErrorHandler and iconMargin
   window.addEventListener('resize', asvg.updateAll )
-  window.addEventListener('load'  , asvg.updateAll )
-  window.addEventListener('asvg-ready', e => console.log('ASVG is ready.') ) // This event shall be used insetad of 'load' event in SharePoint Webparts
+  // window.addEventListener('load'  , asvg.updateAll )
+  window.addEventListener('asvg-ready', asvg.updateAll ) // This event shall be used insetad of 'load' event in SharePoint Webparts
 }

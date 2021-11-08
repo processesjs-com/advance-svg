@@ -44,8 +44,6 @@ const commonTransformations = ( origSvg ) =>{
     svgStr = svgStr.replace(/\t/g,' ')
     svgStr = svgStr.replace(/\s{2,}/g,' ')
 
-    console.log( svgStr )
-
     isSvg( svgStr ) ? resolve( svgStr ) : reject ( new Error ('Transformation filter failed') )
   } )
 }

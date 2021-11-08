@@ -165,8 +165,6 @@ class ASVG{
 
   onPopupLinkClick( popuplink ){
 
-    console.log( 'Popuplink click!' )
-
     let svg = popuplink.closest('svg')
     let div = popuplink.closest('div')
 
