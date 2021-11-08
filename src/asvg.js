@@ -49,7 +49,7 @@ class ASVG{
       let counter = 0
       while( !document.getElementById('asvg-common-svg') && counter < maxCounts ){ setTimeout( () => counter++ , 10 ) }
       if( document.getElementById('asvg-common-svg') ){
-        resolve( injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' ) , true )
+        resolve( injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' , true ) )
       }else{ let err = new Error( 'Could create element for common.svg!' ); reject( err ) }
     } )
 
