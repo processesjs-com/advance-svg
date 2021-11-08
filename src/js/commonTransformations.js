@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 const commonTransformations = ( origSvg , isCommon ) =>{
   return new Promise( ( resolve , reject ) => {
-    console.log( isCommon )
+    console.log( 'commonTransformations ' + isCommon )
     let svgStr = origSvg.slice(0) // Clone the origSvg string
 
     /* Create document object */

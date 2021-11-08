@@ -4,6 +4,7 @@ import trFilterVisio2013 from './trFilterVisio2013'
 import isSvg from 'is-svg'
 
 const injectSvg = ( element , url , isCommon ) => {
+  console.log( 'injectSvg ' + isCommon )
   return new Promise( ( resolve , reject ) => {
     let spinner = new Spinner().spin( element )
     loadXML( url )
