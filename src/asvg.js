@@ -113,26 +113,29 @@ class ASVG{
 
       addIcons( element , iconId , addString ){
         const flatStr = str => str.toLowerCase().replace( /[\s-_]+/g,'' )
-        let iconBBox = document.getElementById( iconId ).getBBox()
 
-        for(let targetElement of element.querySelectorAll( '[data-' + iconId + ']' ) ){
-          let elBBox = targetElement.getBBox()
-          const x={ l: elBBox.x + 2 , c: elBBox.x + elBBox.width/2  - iconBBox.width/2  , r: elBBox.x + elBBox.width  - iconBBox.width - this.iconMargin  }
-          const y={ t: elBBox.y + 2 , m: elBBox.y + elBBox.height/2 - iconBBox.height/2 , b: elBBox.y + elBBox.height - iconBBox.height - this.iconMargin }
-          let position = { x: x.l , y: y.t } // Top Left by default
-          switch( flatStr( targetElement.getAttribute( 'data-' + iconId ) ) ){
-            case 'tc': position = { x: x.c , y: y.t }; break
-            case 'tr': position = { x: x.r , y: y.t }; break
-            case 'ml': position = { x: x.l , y: y.m }; break
-            case 'mc': position = { x: x.c , y: y.m }; break
-            case 'mr': position = { x: x.r , y: y.m }; break
-            case 'bl': position = { x: x.l , y: y.b }; break
-            case 'bc': position = { x: x.c , y: y.b }; break
-            case 'br': position = { x: x.r , y: y.b }; break
+        if( document.getElementById( iconId ) ){
+          let iconBBox = document.getElementById( iconId ).getBBox()
+
+          for(let targetElement of element.querySelectorAll( '[data-' + iconId + ']' ) ){
+            let elBBox = targetElement.getBBox()
+            const x={ l: elBBox.x + 2 , c: elBBox.x + elBBox.width/2  - iconBBox.width/2  , r: elBBox.x + elBBox.width  - iconBBox.width - this.iconMargin  }
+            const y={ t: elBBox.y + 2 , m: elBBox.y + elBBox.height/2 - iconBBox.height/2 , b: elBBox.y + elBBox.height - iconBBox.height - this.iconMargin }
+            let position = { x: x.l , y: y.t } // Top Left by default
+            switch( flatStr( targetElement.getAttribute( 'data-' + iconId ) ) ){
+              case 'tc': position = { x: x.c , y: y.t }; break
+              case 'tr': position = { x: x.r , y: y.t }; break
+              case 'ml': position = { x: x.l , y: y.m }; break
+              case 'mc': position = { x: x.c , y: y.m }; break
+              case 'mr': position = { x: x.r , y: y.m }; break
+              case 'bl': position = { x: x.l , y: y.b }; break
+              case 'bc': position = { x: x.c , y: y.b }; break
+              case 'br': position = { x: x.r , y: y.b }; break
+            }
+            let parser   = new DOMParser()
+            let text     ='<use xmlns="http://www.w3.org/2000/svg" x="' + position.x + '" y="' + position.y + addString
+            targetElement.appendChild( parser.parseFromString( text , 'text/xml' ).documentElement )
           }
-          let parser   = new DOMParser()
-          let text     ='<use xmlns="http://www.w3.org/2000/svg" x="' + position.x + '" y="' + position.y + addString
-          targetElement.appendChild( parser.parseFromString( text , 'text/xml' ).documentElement )
         }
       }
 
