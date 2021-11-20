@@ -8,6 +8,7 @@ const fitSvg = ( element , targetDisplay ) => {
       let viewBox = { x:0 , y:0 , w:100 , h:100 }
       let display = svg.querySelector('[data-asvg-display="' + targetDisplay + '"]')
       if( display ){
+        console.log( display.getBBox() )
         let translate = getTranslateAttr( display )
         let rect = display.querySelector('rect')
         if( rect ){
