@@ -5,9 +5,10 @@ const fitSvg = ( element , targetDisplay ) => {
 
     let svg = element.querySelector('svg')
     if( svg ){
+      let viewBox = { x:0 , y:0 , width:100 , height:100 }
       let display = svg.querySelector('[data-asvg-display="' + targetDisplay + '"]')
       if( display ){
-        let viewBox = display.getBBox()
+        viewBox = display.getBBox()
         let translate = getTranslateAttr( display )
         viewBox.x += translate.x
         viewBox.y += translate.y
