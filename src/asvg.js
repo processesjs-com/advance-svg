@@ -203,7 +203,7 @@ class ASVG{
         if( popupBottomCorner > displayBottomCorner ){ newPtY -= ( popupBottomCorner - displayBottomCorner )  }
         console.log( 'New poup translate x=' + newPtX + ' y=' + newPtY )
 
-        setTranslateAttr( popup , { x:alignX , y:alignY })
+        setTranslateAttr( popup , { x:newPtX , y:newPtY })
       }
     }
   }
