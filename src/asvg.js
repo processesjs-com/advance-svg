@@ -204,8 +204,9 @@ class ASVG{
         let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
         console.log( 'alignX=' + alignX + ' alignY=' + alignY )
 
-        let newPtX = popupRect.x - ( popuplinkTranslate.x + popuplinkRect.x )
-        console.log( 'New poup translate=' + newPtX )
+        let newPtX =  popuplinkTranslate.x + popuplinkRect.x - popupRect.x
+        let newPtY =  popuplinkTranslate.y + popuplinkRect.y - popupRect.y
+        console.log( 'New poup translate x=' + newPtX + ' y=' + newPtY )
 
         setTranslateAttr( popup , { x:alignX , y:alignY })
       }
