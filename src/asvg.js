@@ -191,8 +191,8 @@ class ASVG{
         let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
         console.log( 'alignX=' + alignX + ' alignY=' + alignY )
 
-        let newPtX =  popuplinkTranslate.x + popuplinkRect.x - popupRect.x
-        let newPtY =  popuplinkTranslate.y + popuplinkRect.y - popupRect.y
+        let newPtX =  popuplinkTranslate.x + popuplinkRect.x - popupRect.x - 10
+        let newPtY =  popuplinkTranslate.y + popuplinkRect.y - popupRect.y + 35
 
         let displayRightCorner = displayRect.x + displayTranslate.x + displayRect.width
         let popupRightCorner = popupRect.x + newPtX + popupRect.width
