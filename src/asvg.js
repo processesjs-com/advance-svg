@@ -185,7 +185,7 @@ class ASVG{
         console.log( 'Popuplink box:' )
         console.log( popuplinkRect )
         console.log( 'Popup box:' )
-        console.log( popuplinkRect )
+        console.log( popupRect )
 
         let displayTranslate   = getTranslateAttr( display )
         let popuplinkTranslate = getTranslateAttr( popuplink )
