@@ -179,26 +179,13 @@ class ASVG{
         let displayRect   = display.getBBox()
         let popuplinkRect = popuplink.getBBox()
         let popupRect     = popup.getBBox()
-        console.log( 'Display Rect' )
-        console.log( displayRect )
-        console.log( 'Popuplink Rect' )
-        console.log( popuplinkRect )
-        console.log( 'Popup Rect' )
-        console.log( popupRect )
 
         let displayTranslate   = getTranslateAttr( display )
         let popuplinkTranslate = getTranslateAttr( popuplink )
         let popupTranslate = getTranslateAttr( popup )
-        console.log( 'Display Translate' )
-        console.log( displayTranslate )
-        console.log( 'Popuplink Translate' )
-        console.log( popuplinkTranslate )
-        console.log( 'Popup Translate' )
-        console.log( popupTranslate )
 
         let rightMargin    = displayTranslate.x + displayRect.width  - ( popuplinkTranslate.x + popupRect.width ) - 10
         let bottomMargin   = displayTranslate.y - ( popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 35 )
-        console.log( 'rightMargin=' + rightMargin + ' bottomMargin=' + bottomMargin )
 
         let alignX = popuplinkTranslate.x + ( rightMargin < 0 ? rightMargin : 0 )
         let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
@@ -206,11 +193,14 @@ class ASVG{
 
         let newPtX =  popuplinkTranslate.x + popuplinkRect.x - popupRect.x
         let newPtY =  popuplinkTranslate.y + popuplinkRect.y - popupRect.y
-        console.log( 'New poup translate x=' + newPtX + ' y=' + newPtY )
 
         let displayRightCorner = displayRect.x + displayTranslate.x + displayRect.width
         let popupRightCorner = popupRect.x + newPtX + popupRect.width
         if( popupRightCorner > displayRightCorner ){ newPtX -= ( popupRightCorner - displayRightCorner )  }
+
+        let displayBottomCorner = displayRect.y + displayTranslate.y + displayRect.height
+        let popupBottomCorner = popupRect.y + newPtY + popupRect.height
+        if( popupBottomCorner > displayBottomCorner ){ newPtY -= ( popupBottomCorner - displayBottomCorner )  }
         console.log( 'New poup translate x=' + newPtX + ' y=' + newPtY )
 
         setTranslateAttr( popup , { x:alignX , y:alignY })
