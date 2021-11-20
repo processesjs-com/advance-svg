@@ -21,10 +21,12 @@ const fitSvg = ( element , targetDisplay ) => {
         }else{ reject( new Error('Could not find rect shape.') ) ; return }
       }else{ reject( new Error('Could not find display group.') ) ; return }
       */
+      popup.style.visibility='visible'
       let viewBox = svg.getBBox()
       svg.setAttribute( 'viewBox' , ''+ viewBox.x +' '+ viewBox.y +' '+ viewBox.width +' '+ viewBox.height )
       svg.setAttribute( 'width'   , ''+ element.offsetWidth +'px' )
       svg.setAttribute( 'height'  , ''+ viewBox.height * element.offsetWidth / viewBox.width +'px' )
+      popup.style.visibility='hidden'
 
       resolve ()
     }else{ reject( new Error('Could not find SVG object.') ) }
