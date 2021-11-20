@@ -180,6 +180,13 @@ class ASVG{
         let popuplinkRect = popuplink.getBBox()
         let popupRect     = popup.getBBox()
 
+        console.log( 'Display box:' )
+        console.log( displayRect )
+        console.log( 'Popuplink box:' )
+        console.log( popuplinkRect )
+        console.log( 'Popup box:' )
+        console.log( popuplinkRect )
+
         let displayTranslate   = getTranslateAttr( display )
         let popuplinkTranslate = getTranslateAttr( popuplink )
 
