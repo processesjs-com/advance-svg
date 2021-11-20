@@ -183,10 +183,18 @@ class ASVG{
         let displayTranslate   = getTranslateAttr( display )
         let popuplinkTranslate = getTranslateAttr( popuplink )
 
+        console.log( 'Display Translate' )
+        console.log( displayTranslate )
+        console.log( 'Popuplink Translate' )
+        console.log( popuplinkTranslate )
+
+
         let rightMargin    = displayTranslate.x + displayRect.width  - ( popuplinkTranslate.x + popupRect.width ) - 10
         let bottomMargin   = displayTranslate.y - ( popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 35 )
         let alignX = popuplinkTranslate.x + ( rightMargin < 0 ? rightMargin : 0 )
         let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
+
+        console.log( 'alignX=' + alignX + ' alignY=' + alignY )
 
         setTranslateAttr( popup , { x:alignX , y:alignY })
       }
