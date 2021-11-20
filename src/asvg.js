@@ -28,6 +28,8 @@ class ASVG{
     // Set default properties
     this.defaultFileLocation = ( properties && properties.defaultFileLocation ) ? properties.defaultFileLocation : './'
     this.iconMargin = ( properties && properties.iconMargin ) ? properties.iconMargin : 2
+    this.popupTopMargin = ( properties && properties.popupTopMargin ) ? properties.popupTopMargin : 35
+    this.popupRightMargin = ( properties && properties.popupRightMargin ) ? properties.popupRightMargin : 10
     this.userErrorHandler = ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler : err => alert(err)
 
     // Bind 'this' to all functions that have in the code 'this.'
@@ -182,26 +184,17 @@ class ASVG{
 
         let displayTranslate   = getTranslateAttr( display )
         let popuplinkTranslate = getTranslateAttr( popuplink )
-        let popupTranslate = getTranslateAttr( popup )
 
-        let rightMargin    = displayTranslate.x + displayRect.width  - ( popuplinkTranslate.x + popupRect.width ) - 10
-        let bottomMargin   = displayTranslate.y - ( popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 35 )
-
-        let alignX = popuplinkTranslate.x + ( rightMargin < 0 ? rightMargin : 0 )
-        let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
-        console.log( 'alignX=' + alignX + ' alignY=' + alignY )
-
-        let newPtX =  popuplinkTranslate.x + popuplinkRect.x - popupRect.x - 10
-        let newPtY =  popuplinkTranslate.y + popuplinkRect.y - popupRect.y + 35
+        let newPtX =  popuplinkTranslate.x + popuplinkRect.x - popupRect.x - this.popupRightMargin
+        let newPtY =  popuplinkTranslate.y + popuplinkRect.y - popupRect.y + this.popupTopMargin
 
         let displayRightCorner = displayRect.x + displayTranslate.x + displayRect.width
         let popupRightCorner = popupRect.x + newPtX + popupRect.width
-        if( popupRightCorner > displayRightCorner ){ newPtX -= ( popupRightCorner - displayRightCorner )  }
+        if( popupRightCorner > displayRightCorner ){ newPtX -= ( popupRightCorner - displayRightCorner ) + this.popupRightMargin }
 
         let displayBottomCorner = displayRect.y + displayTranslate.y + displayRect.height
         let popupBottomCorner = popupRect.y + newPtY + popupRect.height
         if( popupBottomCorner > displayBottomCorner ){ newPtY -= ( popupBottomCorner - displayBottomCorner )  }
-        console.log( 'New poup translate x=' + newPtX + ' y=' + newPtY )
 
         setTranslateAttr( popup , { x:newPtX , y:newPtY })
       }
