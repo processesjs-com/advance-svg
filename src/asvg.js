@@ -190,8 +190,8 @@ class ASVG{
         let displayTranslate   = getTranslateAttr( display )
         let popuplinkTranslate = getTranslateAttr( popuplink )
 
-        let rightMargin    = displayTranslate.x + displayRect.width  - ( popuplinkTranslate.x + popupRect.width  ) - 10
-        let bottomMargin   = ( displayTranslate.y ) - ( popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 35 )
+        let rightMargin    = displayTranslate.x + displayRect.width  - ( popuplinkTranslate.x + popuplinkTranslate.width + popupRect.width ) - 10
+        let bottomMargin   = displayTranslate.y - ( popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 35 )
         let alignX = popuplinkTranslate.x + ( rightMargin < 0 ? rightMargin : 0 )
         let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
 
