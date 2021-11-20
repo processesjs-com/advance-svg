@@ -5,10 +5,11 @@ const fitSvg = ( element , targetDisplay ) => {
 
     let svg = element.querySelector('svg')
     if( svg ){
-      /*
-      let viewBox = { x:0 , y:0 , w:100 , h:100 }
+      let viewBox = { x:0 , y:0 , width:100 , height:100 }
       let display = svg.querySelector('[data-asvg-display="' + targetDisplay + '"]')
       if( display ){
+        viewBox = display.getBBox()
+        /*
         let translate = getTranslateAttr( display )
         let rect = display.querySelector('rect')
         if( rect ){
@@ -19,14 +20,11 @@ const fitSvg = ( element , targetDisplay ) => {
             h:Math.round( 1*rect.getAttribute('height'))
           }
         }else{ reject( new Error('Could not find rect shape.') ) ; return }
+        */
       }else{ reject( new Error('Could not find display group.') ) ; return }
-      */
-      popup.style.visibility='visible'
-      let viewBox = svg.getBBox()
       svg.setAttribute( 'viewBox' , ''+ viewBox.x +' '+ viewBox.y +' '+ viewBox.width +' '+ viewBox.height )
       svg.setAttribute( 'width'   , ''+ element.offsetWidth +'px' )
       svg.setAttribute( 'height'  , ''+ viewBox.height * element.offsetWidth / viewBox.width +'px' )
-      popup.style.visibility='hidden'
 
       resolve ()
     }else{ reject( new Error('Could not find SVG object.') ) }
