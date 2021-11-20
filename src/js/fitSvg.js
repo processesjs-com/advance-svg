@@ -10,6 +10,9 @@ const fitSvg = ( element , targetDisplay ) => {
       if( display ){
         viewBox = display.getBBox()
         let translate = getTranslateAttr( display )
+        viewBox.x += translate.x
+        viewBox.y += translate.y
+        /*
         let rect = display.querySelector('rect')
         if( rect ){
           viewBox = {
@@ -19,6 +22,7 @@ const fitSvg = ( element , targetDisplay ) => {
             height:Math.round( 1*rect.getAttribute('height'))
           }
         }else{ reject( new Error('Could not find rect shape.') ) ; return }
+        */
       }else{ reject( new Error('Could not find display group.') ) ; return }
       console.log( '<------------------------>' )
       console.log( viewBox )
