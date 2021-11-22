@@ -22,7 +22,7 @@
      showgrid="false"
      inkscape:zoom="2"
      inkscape:cx="135.75"
-     inkscape:cy="114.75"
+     inkscape:cy="114.25"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
@@ -31,26 +31,24 @@
      inkscape:current-layer="svg856" />
   <g
      data-asvg-display="L"
-     id="g826"
-     transform="matrix(1.3725457,0,0,0.24363782,8.2615386,8.2389275)">
+     id="g826">
     <rect
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.314771"
-       width="255.19946"
-       height="260.28177"
-       x="-22.274494"
-       y="10.980565"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.182682"
+       width="347.33154"
+       height="64.413864"
+       x="-22.340538"
+       y="10.91452"
        id="rect824" />
   </g>
   <g
      data-asvg-display="M"
-     id="g830"
-     transform="matrix(1.4207095,0,0,0.24453561,-0.317217,8.2901325)">
+     id="g830">
     <rect
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.284187"
-       width="209.16277"
-       height="259.95142"
-       x="0.82419115"
-       y="11.050306"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.167821"
+       width="298.27911"
+       height="63.567776"
+       x="0.7660082"
+       y="10.992123"
        id="rect828" />
   </g>
   <g
