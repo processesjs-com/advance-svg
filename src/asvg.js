@@ -28,6 +28,8 @@ class ASVG{
     // Set default properties
     this.defaultFileLocation = ( properties && properties.defaultFileLocation ) ? properties.defaultFileLocation : './'
     this.iconMargin = ( properties && properties.iconMargin ) ? properties.iconMargin : 2
+    this.popupTopMargin = ( properties && properties.popupTopMargin ) ? properties.popupTopMargin : 35
+    this.popupRightMargin = ( properties && properties.popupRightMargin ) ? properties.popupRightMargin : 10
     this.userErrorHandler = ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler : err => alert(err)
 
     // Bind 'this' to all functions that have in the code 'this.'
@@ -37,16 +39,26 @@ class ASVG{
       }
     })
 
-    // Insert all common svg filters and icons
-    let commonSvgEl = document.createElement( 'div' )
-    commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
-    document.body.appendChild( commonSvgEl )
-    injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' )
-    .then( () => {
+    /*
+      Insert common svg filters and icons (common.svg file).
+      Notice that in FireFox, appendChild works asynchroniously, hence using Promise and delay until appendChild is complete.
+    */
+    let commonSVGPromise = new Promise( ( resolve , reject) => {
+      let commonSvgEl = document.createElement( 'div' )
+      commonSvgEl.setAttribute( 'id' , 'asvg-common-svg' )
+      document.body.appendChild( commonSvgEl )
+      const maxCounts = 100
+      let counter = 0
+      while( !document.getElementById('asvg-common-svg') && counter < maxCounts ){ setTimeout( () => counter++ , 10 ) }
+      if( document.getElementById('asvg-common-svg') ){
+        resolve( injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' , true ) )
+      }else{ let err = new Error( 'Could create element for common.svg!' ); reject( err ) }
+    } )
+
+    commonSVGPromise.then( () => {
       this.ready = true
       window.dispatchEvent( new Event('asvg-ready') )
-    } )
-    .catch( err => this.catchError( err ) )
+    } ).catch( err => this.catchError( err ) )
   }
 
   isReady(){ return this.ready }
@@ -76,7 +88,7 @@ class ASVG{
       new Promise( ( resolve , reject ) => {
         if( !params.injected || params.injected != element.getAttribute( 'data-asvg-show' ) ){
           let fileLocation = element.getAttribute( 'data-asvg-filelocation' ) ? element.getAttribute( 'data-asvg-filelocation' ) : this.defaultFileLocation
-          injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) )
+          injectSvg( element , fileLocation + element.getAttribute( 'data-asvg-show' ) , false )
           .then( () => {
             params.injected = element.getAttribute( 'data-asvg-show' )
             params.currentDisplay = null
@@ -103,26 +115,29 @@ class ASVG{
 
       addIcons( element , iconId , addString ){
         const flatStr = str => str.toLowerCase().replace( /[\s-_]+/g,'' )
-        let iconBBox = document.getElementById( iconId ).getBBox()
 
-        for(let targetElement of element.querySelectorAll( '[data-' + iconId + ']' ) ){
-          let elBBox = targetElement.getBBox()
-          const x={ l: elBBox.x + 2 , c: elBBox.x + elBBox.width/2  - iconBBox.width/2  , r: elBBox.x + elBBox.width  - iconBBox.width - this.iconMargin  }
-          const y={ t: elBBox.y + 2 , m: elBBox.y + elBBox.height/2 - iconBBox.height/2 , b: elBBox.y + elBBox.height - iconBBox.height - this.iconMargin }
-          let position = { x: x.l , y: y.t } // Top Left by default
-          switch( flatStr( targetElement.getAttribute( 'data-' + iconId ) ) ){
-            case 'tc': position = { x: x.c , y: y.t }; break
-            case 'tr': position = { x: x.r , y: y.t }; break
-            case 'ml': position = { x: x.l , y: y.m }; break
-            case 'mc': position = { x: x.c , y: y.m }; break
-            case 'mr': position = { x: x.r , y: y.m }; break
-            case 'bl': position = { x: x.l , y: y.b }; break
-            case 'bc': position = { x: x.c , y: y.b }; break
-            case 'br': position = { x: x.r , y: y.b }; break
+        if( document.getElementById( iconId ) ){
+          let iconBBox = document.getElementById( iconId ).getBBox()
+
+          for(let targetElement of element.querySelectorAll( '[data-' + iconId + ']' ) ){
+            let elBBox = targetElement.getBBox()
+            const x={ l: elBBox.x + 2 , c: elBBox.x + elBBox.width/2  - iconBBox.width/2  , r: elBBox.x + elBBox.width  - iconBBox.width - this.iconMargin  }
+            const y={ t: elBBox.y + 2 , m: elBBox.y + elBBox.height/2 - iconBBox.height/2 , b: elBBox.y + elBBox.height - iconBBox.height - this.iconMargin }
+            let position = { x: x.l , y: y.t } // Top Left by default
+            switch( flatStr( targetElement.getAttribute( 'data-' + iconId ) ) ){
+              case 'tc': position = { x: x.c , y: y.t }; break
+              case 'tr': position = { x: x.r , y: y.t }; break
+              case 'ml': position = { x: x.l , y: y.m }; break
+              case 'mc': position = { x: x.c , y: y.m }; break
+              case 'mr': position = { x: x.r , y: y.m }; break
+              case 'bl': position = { x: x.l , y: y.b }; break
+              case 'bc': position = { x: x.c , y: y.b }; break
+              case 'br': position = { x: x.r , y: y.b }; break
+            }
+            let parser   = new DOMParser()
+            let text     ='<use xmlns="http://www.w3.org/2000/svg" x="' + position.x + '" y="' + position.y + addString
+            targetElement.appendChild( parser.parseFromString( text , 'text/xml' ).documentElement )
           }
-          let parser   = new DOMParser()
-          let text     ='<use xmlns="http://www.w3.org/2000/svg" x="' + position.x + '" y="' + position.y + addString
-          targetElement.appendChild( parser.parseFromString( text , 'text/xml' ).documentElement )
         }
       }
 
@@ -151,6 +166,7 @@ class ASVG{
   }
 
   onPopupLinkClick( popuplink ){
+
     let svg = popuplink.closest('svg')
     let div = popuplink.closest('div')
 
@@ -169,12 +185,18 @@ class ASVG{
         let displayTranslate   = getTranslateAttr( display )
         let popuplinkTranslate = getTranslateAttr( popuplink )
 
-        let rightMargin    = displayTranslate.x + displayRect.width  - ( popuplinkTranslate.x + popupRect.width  ) - 10
-        let bottomMargin   = ( displayTranslate.y ) - ( popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 35 )
-        let alignX = popuplinkTranslate.x + ( rightMargin < 0 ? rightMargin : 0 )
-        let alignY = popuplinkTranslate.y + popupRect.height - popuplinkRect.height + 25 + ( bottomMargin   < 0 ? bottomMargin : 0 )
+        let newPtX =  popuplinkTranslate.x + popuplinkRect.x - popupRect.x - this.popupRightMargin
+        let newPtY =  popuplinkTranslate.y + popuplinkRect.y - popupRect.y + this.popupTopMargin
 
-        setTranslateAttr( popup , { x:alignX , y:alignY })
+        let displayRightCorner = displayRect.x + displayTranslate.x + displayRect.width
+        let popupRightCorner = popupRect.x + newPtX + popupRect.width
+        if( popupRightCorner > displayRightCorner ){ newPtX -= ( popupRightCorner - displayRightCorner ) + this.popupRightMargin }
+
+        let displayBottomCorner = displayRect.y + displayTranslate.y + displayRect.height
+        let popupBottomCorner = popupRect.y + newPtY + popupRect.height
+        if( popupBottomCorner > displayBottomCorner ){ newPtY -= ( popupBottomCorner - displayBottomCorner )  }
+
+        setTranslateAttr( popup , { x:newPtX , y:newPtY })
       }
     }
   }

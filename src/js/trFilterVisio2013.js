@@ -1,6 +1,4 @@
 import Cheerio from 'cheerio'
-import isSvg from 'is-svg'
-import { v4 as uuidv4 } from 'uuid'
 import { getFirst } from './misc'
 
 const flatStr = str => str.toLowerCase().replace( /[\s-_]+/g,'' )
@@ -11,10 +9,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     let tagsToRemove = new Set( [ 'style' , 'title' , 'desc' ] )
     let svgStr = origSvg.slice(0) // Clone the origSvg string
 
-    // Text search - Remove headers, v-namespace and change overflow style
-    svgStr = svgStr.replace(/<\?xml.*\?>/gi,'')
-    svgStr = svgStr.replace(/<\!DOCTYPE.*>/gi,'')
-    svgStr = svgStr.replace(/<\!--.*-->/gi,'')
+    // Text search - Remove v-namespace and change overflow style
     svgStr = svgStr.replace('xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/"','')
     svgStr = svgStr.replace('overflow:visible','overflow:hidden')
 
@@ -58,14 +53,6 @@ const trFilterVisio2013 = ( origSvg ) =>{
     const $ = Cheerio.load( svgStr , { ignoreWhitespace: true , xmlMode: true } )
 
     /*
-      Remove viewBox, width and height attributes from the svg tag - these will be set dynamically
-    */
-    $('svg').removeAttr('width')
-    $('svg').removeAttr('height')
-    $('svg').removeAttr('viewBox')
-    $('a').attr( 'data-asvg-hyperlink' , '' )
-
-    /*
       Make changes to all 'activeShape' elements:
       1. Serch for v:cp tags,
       2. If attr v:lbl == "activeShape", continue
@@ -89,41 +76,19 @@ const trFilterVisio2013 = ( origSvg ) =>{
               Set attributes to the g tag based on v:val and v:nameU attribute of the v:cp tag
             */
             switch( flatStr( name ) ){
-              case 'display':
-                gTag.attr( 'data-asvg-display' , val )
-                break
-              case 'annotation':
-                $( gTag ).remove()
-                break
-              case 'popuplink':
-                gTag.attr( 'data-asvg-popuplink' , val )
-                gTag.attr( 'onclick' , 'asvg.onPopupLinkClick(this)' )
-                break
-              case 'pagelink':
-                gTag.attr( 'data-asvg-pagelink' , val )
-                gTag.attr( 'onclick' , 'asvg.onPageLinkClick(this)' )
-                break
-              case 'iconclose':
-                gTag.attr( 'data-asvg-icon-close' , val )
-                break
-              case 'iconpopuplink':
-                gTag.attr( 'data-asvg-icon-popuplink' , val )
-                break
-              case 'iconpagelink':
-                gTag.attr( 'data-asvg-icon-pagelink' , val )
-                break
-              case 'iconhyperlink':
-                gTag.attr( 'data-asvg-icon-hyperlink' , val )
-                break
-              case 'popup':
-                gTag.attr( 'data-asvg-popup' , val )
-                break
-              case 'hreftarget':
+              case 'popup' : gTag.attr( 'data-asvg-popup' , val ) ; break
+              case 'title' : titles.set( gTag , val ) ; break
+              case 'display'    : gTag.attr( 'data-asvg-display' , val ) ; break
+              case 'annotation' : $( gTag ).remove() ; break
+              case 'popuplink'  : gTag.attr( 'data-asvg-popuplink' , val ) ; break
+              case 'pagelink'   : gTag.attr( 'data-asvg-pagelink' , val ) ; break
+              case 'iconclose'  : gTag.attr( 'data-asvg-icon-close' , val ) ; break
+              case 'iconpopuplink' : gTag.attr( 'data-asvg-icon-popuplink' , val ) ; break
+              case 'iconpagelink'  : gTag.attr( 'data-asvg-icon-pagelink' , val ) ; break
+              case 'iconhyperlink' : gTag.attr( 'data-asvg-icon-hyperlink' , val ) ; break
+              case 'hreftarget' :
                 let aTag = getFirst( gTag.closest('a') )
                 if( aTag ){ $( aTag ).attr('target' , val ) }
-                break
-              case 'title':
-                titles.set( gTag , val )
                 break
             }
           }
@@ -133,14 +98,6 @@ const trFilterVisio2013 = ( origSvg ) =>{
 
     // Remove all tagsToRemove
     for( let tag of tagsToRemove ){ $( tag ).remove() }
-
-    // Remove all id attributes from group elements
-    $('g').removeAttr('id')
-
-    // List all id attributs
-    let ids=[]
-    let elements = $('[id]')
-    elements.map( elId => ids.push( $(elements[ elId ]).attr('id') ) )
 
     // Set titles
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
@@ -157,14 +114,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
       match = vattrRegexp.exec( svgStr )
     }
 
-    // Replace all ids with unique ones
-    ids.forEach( id => svgStr = svgStr.split( id ).join( 'asvg-' + uuidv4() ) ) // See above note about replaceALL
-
-    // Text search - remove all tabulations, new lines and multiple spaces
-    svgStr = svgStr.replace(/\t/g,' ')
-    svgStr = svgStr.replace(/\s{2,}/g,' ')
-
-    isSvg( svgStr ) ? resolve( svgStr ) : reject ( new Error ('Transformation filter failed') )
+    resolve( svgStr )
 
   } )
 }

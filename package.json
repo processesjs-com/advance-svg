@@ -1,6 +1,6 @@
 {
 	"name": "advance-svg",
-	"version": "1.3.2",
+	"version": "1.3.4",
 	"description": "JavaScript library for advancing SVG graphics with responsive behavior, popup shapes and in-page links",
 	"main": "src/asvg.js",
 	"homepage": "https://d2a8hhqmsel69m.cloudfront.net/",
