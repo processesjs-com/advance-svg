@@ -94,7 +94,7 @@
   <g
      id="g4088"
      data-asvg-popuplink="1"
-     data-icon-popuplink="tc">
+     data-asvg-icon-popuplink="tc">
     <ellipse
        id="circle4012"
        cy="195.89598"
@@ -123,12 +123,12 @@
        x="603.98798" />
     <polygon
        id="polygon4020"
-       points="297.608,316.197 52.314,316.197 174.959,110.468 "
+       points="174.959,110.468 297.608,316.197 52.314,316.197 "
        style="fill:#ffdc00"
        transform="matrix(0.53872334,0,0,0.5608204,432.74935,52.32592)" />
     <polygon
        id="polygon4022"
-       points="297.608,316.197 175,110.537 175,316.197 "
+       points="175,316.197 297.608,316.197 175,110.537 "
        style="fill:#ffc000"
        transform="matrix(0.53872334,0,0,0.5608204,432.74935,52.32592)" />
     <ellipse
@@ -193,7 +193,8 @@
      data-name="Pop Up Action"
      id="Pop_Up_Action"
      data-asvg-popup="1"
-     data-icon-close="tr">
+     data-asvg-icon-close="tr"
+     transform="translate(-4.5403941,47.158406)">
     <path
        id="path4090"
        d="m 731.39611,647.62149 v 168.60585 a 15.841232,13.840557 0 0 1 -15.84124,13.81092 H 464.53749 A 15.841232,13.840557 0 0 1 448.69626,816.22734 V 647.62149 a 15.841232,13.840557 0 0 1 15.73947,-13.84055 h 251.01738 a 15.841232,13.840557 0 0 1 15.943,13.84055 z"
