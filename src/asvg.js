@@ -122,13 +122,9 @@ class ASVG{
       if( document.getElementById('asvg-common-svg') ){
         // Try to inject from file, if unsuccessful, use the default string above
         injectSvg( document.getElementById('asvg-common-svg') , this.defaultFileLocation + 'common.svg' , true )
-        .then( () => {
-          console.log( 'Common SVG from file' )
-          resolve()
-        })
+        .then( resolve() )
         .catch( err => {
           document.getElementById('asvg-common-svg').innerHTML = defaultCommonSvg
-          console.log( 'Common SVG from embeded' )
           resolve()
         })
       }else{ let err = new Error( 'Could create element for common.svg!' ); reject( err ) }
