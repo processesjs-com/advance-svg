@@ -105,9 +105,9 @@ const trFilterVisio2013 = ( origSvg ) =>{
     // Add default iconclose to all popups that have not got it
     let popUps = $('[data-asvg-popup]')
     popUps.map( popUpIndex => {
-      let popUp = popUps[ popUpIndex ] 
+      let popUp = $( popUps[ popUpIndex ] )
       console.log( popUp )
-      if( !popUp.attr('data-asvg-icon-close') ){
+      if( !popUp.attr( 'data-asvg-icon-close' ) ){
         console.log( 'Missing icon close' )
       }else{
         console.log( 'Has got icon close' )
