@@ -5,7 +5,7 @@ import ASVG from './asvg'
 */
 
 if( !window.asvg ){
-  window.asvg = new ASVG({ userErrorHandler:()=>{} }) // Accepts a parameter object with these properties: defaultFileLocation, userErrorHandler and iconMargin
+  window.asvg = new ASVG( ) // Accepts a parameter object with these properties: defaultFileLocation, userErrorHandler and iconMargin
   window.addEventListener('resize', asvg.updateAll )
   window.addEventListener('asvg-ready', asvg.updateAll )
 }
