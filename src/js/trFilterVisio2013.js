@@ -103,7 +103,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
 
     // Add default iconclose to all popups that have not got it
-    for( popUp in $('[data-asvg-popup]') ){
+    for( let popUp in $('[data-asvg-popup]') ){
       console.log( popUp )
       if( !popUp.attr('data-asvg-icon-close') ){
         console.log( 'Missing icon close' )
