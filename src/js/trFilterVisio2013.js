@@ -95,22 +95,22 @@ const trFilterVisio2013 = ( origSvg ) =>{
         }
       }
     } )
-
-    // Remove all tagsToRemove
+    
+    // Remove  all tagsToRemove
     for( let tag of tagsToRemove ){ $( tag ).remove() }
 
     // Set titles
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
 
     // Add default iconclose to all popups that have not got it
-    $('[data-asvg-popup]').map( popUp => {
+    for( popUp in $('[data-asvg-popup]') ){
       console.log( popUp )
       if( !popUp.attr('data-asvg-icon-close') ){
         console.log( 'Missing icon close' )
       }else{
         console.log( 'Has got icon close' )
       }
-    })
+    }
 
     // Convert document object to text
     svgStr = $.xml()
