@@ -106,7 +106,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     let popUps = $('[data-asvg-popup]')
     popUps.map( popUpIndex => {
       let popUp = $( popUps[ popUpIndex ] )
-      console.log( popUp )
+      console.log( popUp.attr( 'id' ) )
       if( !popUp.attr( 'data-asvg-icon-close' ) ){
         console.log( 'Missing icon close' )
       }else{
