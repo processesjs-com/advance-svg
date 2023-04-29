@@ -1,4 +1,4 @@
-import Cheerio from 'cheerio'
+import * as cheerio from 'cheerio'
 import { getFirst } from './misc'
 
 const flatStr = str => str.toLowerCase().replace( /[\s-_]+/g,'' )
@@ -50,7 +50,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
     }
 
     /* Create document object */
-    const $ = Cheerio.load( svgStr , { ignoreWhitespace: true , xmlMode: true } )
+    const $ = cheerio.load( svgStr , { ignoreWhitespace: true , xmlMode: true } )
 
     /*
       Make changes to all 'activeShape' elements:
@@ -95,7 +95,7 @@ const trFilterVisio2013 = ( origSvg ) =>{
         }
       }
     } )
-    
+
     // Remove  all tagsToRemove
     for( let tag of tagsToRemove ){ $( tag ).remove() }
 
