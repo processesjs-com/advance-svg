@@ -1,4 +1,4 @@
-import Cheerio from 'cheerio'
+import * as cheerio from 'cheerio'
 import isSvg from 'is-svg'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -7,7 +7,7 @@ const commonTransformations = ( origSvg , isCommon ) =>{
     let svgStr = origSvg.slice(0) // Clone the origSvg string
 
     /* Create document object */
-    const $ = Cheerio.load( svgStr , { ignoreWhitespace: true , xmlMode: true } )
+    const $ = cheerio.load( svgStr , { ignoreWhitespace: true , xmlMode: true } )
 
     /*
       Remove viewBox, width and height attributes from the svg tag - these will be set dynamically
