@@ -102,14 +102,11 @@ const trFilterVisio2013 = ( origSvg ) =>{
     // Set titles
     for( let [ gTag , title ] of titles ){ $( gTag ).append( '<title>' + title + '</title>' ) }
 
-    // Add default iconclose to all popups that have not got it
+    // Check all popups if have iconclose. If not, add by default a closeing icon at the top-left corner
     let popUps = $('[data-asvg-popup]')
     popUps.map( popUpIndex => {
       let popUp = $( popUps[ popUpIndex ] )
-      if( !popUp.attr( 'data-asvg-icon-close' ) ){
-        console.log( 'Add tl close icon to: ',popUp.attr( 'id' ) )
-        popUp.attr( 'data-asvg-icon-close' , 'tl' )
-      }
+      if( !popUp.attr( 'data-asvg-icon-close' ) ) popUp.attr( 'data-asvg-icon-close' , 'tl' )
     })
 
     // Convert document object to text
