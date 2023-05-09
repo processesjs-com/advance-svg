@@ -30,7 +30,7 @@ class ASVG{
     this.iconMargin = ( properties && properties.iconMargin ) ? properties.iconMargin : 2
     this.popupTopMargin = ( properties && properties.popupTopMargin ) ? properties.popupTopMargin : 35
     this.popupRightMargin = ( properties && properties.popupRightMargin ) ? properties.popupRightMargin : 10
-    this.userErrorHandler = ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler : err => alert(err)
+    this.userErrorHandler = ( this.properties && this.properties.userErrorHandler ) ? this.properties.userErrorHandler : err => {}
 
     // Bind 'this' to all functions that have in the code 'this.'
     Object.getOwnPropertyNames( Object.getPrototypeOf( this ) ).map( key => {
